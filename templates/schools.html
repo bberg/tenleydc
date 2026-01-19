@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="directory-page">
+    <div class="directory-header">
+        <h1><i class="fas fa-school"></i> Schools</h1>
+        <p class="directory-intro">Educational institutions serving Upper Northwest DC, from preschools to high schools. Each listing includes the school's history and community role.</p>
+    </div>
+
+    <!-- Filters -->
+    <div class="directory-filters">
+        <div class="filter-group">
+            <label>Type:</label>
+            <div class="filter-pills">
+                <a href="/schools" class="filter-pill {% if not current_type %}active{% endif %}">All</a>
+                <a href="/schools?type=public" class="filter-pill {% if current_type == 'public' %}active{% endif %}">
+                    <i class="fas fa-landmark"></i> Public
+                </a>
+                <a href="/schools?type=private" class="filter-pill {% if current_type == 'private' %}active{% endif %}">
+                    <i class="fas fa-graduation-cap"></i> Private
+                </a>
+                <a href="/schools?type=preschool" class="filter-pill {% if current_type == 'preschool' %}active{% endif %}">
+                    <i class="fas fa-child"></i> Preschool
+                </a>
+            </div>
+        </div>
+        <div class="filter-group">
+            <label>Level:</label>
+            <div class="filter-pills">
+                <a href="/schools{% if current_type %}?type={{ current_type }}{% endif %}" class="filter-pill {% if not current_level %}active{% endif %}">All Levels</a>
+                <a href="/schools?level=elementary{% if current_type %}&type={{ current_type }}{% endif %}" class="filter-pill {% if current_level == 'elementary' %}active{% endif %}">
+                    Elementary
+                </a>
+                <a href="/schools?level=middle{% if current_type %}&type={{ current_type }}{% endif %}" class="filter-pill {% if current_level == 'middle' %}active{% endif %}">
+                    Middle
+                </a>
+                <a href="/schools?level=high{% if current_type %}&type={{ current_type }}{% endif %}" class="filter-pill {% if current_level == 'high' %}active{% endif %}">
+                    High School
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results count -->
+    <p class="results-count">
+        Showing {{ schools|length }} school{% if schools|length != 1 %}s{% endif %}
+        {% if current_type %} ({{ current_type }}){% endif %}
+        {% if current_level %} - {{ current_level }} level{% endif %}
+    </p>
+
+    <!-- Schools Grid -->
+    {% if schools %}
+    <div class="business-grid">
+        {% for school in schools %}
+        <a href="/school/{{ school.slug }}" class="business-card {% if school.featured %}featured{% endif %}">
+            {% if school.featured %}
+            <span class="featured-badge"><i class="fas fa-star"></i> Featured</span>
+            {% endif %}
+            <div class="business-card-header">
+                <h3>{{ school.name }}</h3>
+                <span class="business-category">
+                    {% if school.type == 'public' %}DCPS{% elif school.type == 'private' %}Private{% else %}Preschool{% endif %}
+                    {% if school.level %} | {{ school.level | title }}{% endif %}
+                </span>
+            </div>
+            <p class="business-address">
+                <i class="fas fa-map-marker-alt"></i>
+                {{ school.address }}
+            </p>
+            {% if school.grades %}
+            <p class="school-grades">
+                <i class="fas fa-users"></i> Grades: {{ school.grades }}
+            </p>
+            {% endif %}
+            {% if school.description %}
+            <p class="business-description">{{ school.description[:120] }}{% if school.description|length > 120 %}...{% endif %}</p>
+            {% endif %}
+            {% if school.history and school.history.opened %}
+            <div class="business-history-teaser">
+                <i class="fas fa-clock-rotate-left"></i>
+                Est. {{ school.history.opened }}
+            </div>
+            {% endif %}
+            {% if school.awards %}
+            <div class="business-tags">
+                {% for award in school.awards[:2] %}
+                <span class="tag"><i class="fas fa-award"></i> {{ award }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-results">
+        <i class="fas fa-school"></i>
+        <h3>No schools found</h3>
+        <p>Try adjusting your filters or <a href="/schools">view all schools</a>.</p>
+    </div>
+    {% endif %}
+
+    <!-- Community Note -->
+    <div class="directory-note">
+        <h3>Know a school we're missing?</h3>
+        <p>Help us document the neighborhood. <a href="/about">Get in touch</a> with additions or corrections.</p>
+    </div>
+</div>
+{% endblock %}

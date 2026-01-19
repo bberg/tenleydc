@@ -1,0 +1,50 @@
+{
+  "event_sources": [
+    {
+      "id": "politics-prose",
+      "name": "Politics and Prose",
+      "url": "https://politics-prose.com/events",
+      "scraper": "politics_prose",
+      "schedule": "weekly",
+      "default_category": "literary",
+      "active": true,
+      "description": "Independent bookstore on Connecticut Ave with author events, book clubs, and readings",
+      "notes": "Website may block automated requests - manual entry may be needed"
+    },
+    {
+      "id": "dc-library-tenley",
+      "name": "Tenley-Friendship Library",
+      "url": "https://dclibrary.libnet.info/events?l=Tenley-Friendship+Neighborhood+Library",
+      "scraper": "dc_library",
+      "schedule": "weekly",
+      "default_category": "family",
+      "active": true,
+      "description": "DC Public Library branch serving Tenleytown and AU Park"
+    },
+    {
+      "id": "tenleytown-main-street",
+      "name": "Tenleytown Main Street",
+      "url": "https://tenleytownmainstreet.org/events/",
+      "scraper": "tenleytown_mainstreet",
+      "schedule": "weekly",
+      "default_category": "community",
+      "active": true,
+      "description": "Community organization hosting festivals, trivia nights, and neighborhood events"
+    },
+    {
+      "id": "american-university",
+      "name": "American University Events",
+      "url": "https://www.american.edu/events/",
+      "scraper": "american_university",
+      "schedule": "weekly",
+      "default_category": "education",
+      "active": true,
+      "description": "University public events, lectures, performances, and community programs"
+    }
+  ],
+  "metadata": {
+    "version": "1.1",
+    "last_updated": "2026-01-19",
+    "maintainer": "Tennally's Almanac"
+  }
+}

@@ -1,0 +1,338 @@
+{
+  "services": [
+    {
+      "id": "tenley-friendship-library",
+      "name": "Tenley-Friendship Library",
+      "slug": "tenley-friendship-library",
+      "type": "library",
+      "address": "4450 Wisconsin Ave NW",
+      "neighborhood": "tenleytown",
+      "website": "https://www.dclibrary.org/tenley",
+      "phone": "(202) 727-1488",
+      "hours": {
+        "monday": "9:30 AM - 9:00 PM",
+        "tuesday": "9:30 AM - 9:00 PM",
+        "wednesday": "9:30 AM - 9:00 PM",
+        "thursday": "9:30 AM - 9:00 PM",
+        "friday": "9:30 AM - 5:30 PM",
+        "saturday": "9:30 AM - 5:30 PM",
+        "sunday": "1:00 PM - 5:00 PM"
+      },
+      "description": "A modern, LEED-certified library serving the Tenleytown and Friendship Heights communities with extensive collections, meeting rooms, and community programming.",
+      "history": {
+        "opened": 1928,
+        "current_building": 2010,
+        "story": "The original Tenley-Friendship Library opened in 1928 as part of the expansion of DC's public library system into developing neighborhoods. The current building, opened in 2010, replaced the 1950s-era structure and was designed as a green, sustainable facility. It was one of the first LEED Gold certified libraries in the District."
+      },
+      "featured": true
+    },
+    {
+      "id": "chevy-chase-library",
+      "name": "Chevy Chase Library",
+      "slug": "chevy-chase-library",
+      "type": "library",
+      "address": "5625 Connecticut Ave NW",
+      "neighborhood": "chevy-chase",
+      "website": "https://www.dclibrary.org/chevychase",
+      "phone": "(202) 727-0584",
+      "hours": {
+        "monday": "9:30 AM - 9:00 PM",
+        "tuesday": "9:30 AM - 9:00 PM",
+        "wednesday": "9:30 AM - 9:00 PM",
+        "thursday": "9:30 AM - 9:00 PM",
+        "friday": "9:30 AM - 5:30 PM",
+        "saturday": "9:30 AM - 5:30 PM",
+        "sunday": "1:00 PM - 5:00 PM"
+      },
+      "description": "A neighborhood library serving the Chevy Chase DC community with a strong children's collection and popular community programs.",
+      "history": {
+        "opened": 1927,
+        "current_building": 2008,
+        "story": "The Chevy Chase Library has served the neighborhood since 1927. The current modern building opened in 2008, replacing an earlier structure. The library is known for its active children's programming and serves as a community gathering place for residents of DC's Chevy Chase neighborhood."
+      },
+      "featured": true
+    },
+    {
+      "id": "cleveland-park-library",
+      "name": "Cleveland Park Library",
+      "slug": "cleveland-park-library",
+      "type": "library",
+      "address": "3310 Connecticut Ave NW",
+      "neighborhood": "cleveland-park",
+      "website": "https://www.dclibrary.org/clevelandpark",
+      "phone": "(202) 727-1345",
+      "hours": {
+        "monday": "9:30 AM - 9:00 PM",
+        "tuesday": "9:30 AM - 9:00 PM",
+        "wednesday": "9:30 AM - 9:00 PM",
+        "thursday": "9:30 AM - 9:00 PM",
+        "friday": "9:30 AM - 5:30 PM",
+        "saturday": "9:30 AM - 5:30 PM",
+        "sunday": "1:00 PM - 5:00 PM"
+      },
+      "description": "A beloved neighborhood library in the heart of Cleveland Park's commercial district, offering programs for all ages and a welcoming community space.",
+      "history": {
+        "opened": 1931,
+        "current_building": 2011,
+        "story": "The Cleveland Park Library opened in 1931 to serve the growing Cleveland Park neighborhood. The current building, completed in 2011, features a contemporary design while maintaining the welcoming character of a neighborhood library. It sits prominently on Connecticut Avenue near the Cleveland Park Metro station."
+      },
+      "featured": true
+    },
+    {
+      "id": "friendship-recreation-center",
+      "name": "Friendship Recreation Center",
+      "slug": "friendship-recreation-center",
+      "type": "recreation-center",
+      "address": "4500 Van Ness St NW",
+      "neighborhood": "tenleytown",
+      "website": "https://dpr.dc.gov/page/friendship-recreation-center",
+      "phone": "(202) 282-2198",
+      "hours": {
+        "monday": "9:00 AM - 9:00 PM",
+        "tuesday": "9:00 AM - 9:00 PM",
+        "wednesday": "9:00 AM - 9:00 PM",
+        "thursday": "9:00 AM - 9:00 PM",
+        "friday": "9:00 AM - 9:00 PM",
+        "saturday": "9:00 AM - 5:00 PM",
+        "sunday": "Closed"
+      },
+      "description": "A full-service recreation center offering athletic facilities, fitness programs, youth activities, and community events for Tenleytown and surrounding neighborhoods.",
+      "history": {
+        "opened": 1960,
+        "current_building": 1960,
+        "story": "Friendship Recreation Center has been a cornerstone of community athletics and recreation in Upper Northwest since 1960. The center is adjacent to Friendship Park and serves residents of Tenleytown, Friendship Heights, and American University Park with year-round programming."
+      },
+      "featured": true
+    },
+    {
+      "id": "fort-reno-park",
+      "name": "Fort Reno Park",
+      "slug": "fort-reno-park",
+      "type": "recreation-center",
+      "address": "Chesapeake St & Belt Rd NW",
+      "neighborhood": "tenleytown",
+      "website": "https://dpr.dc.gov/page/fort-reno-park",
+      "phone": "(202) 282-2198",
+      "hours": {
+        "monday": "Dawn - Dusk",
+        "tuesday": "Dawn - Dusk",
+        "wednesday": "Dawn - Dusk",
+        "thursday": "Dawn - Dusk",
+        "friday": "Dawn - Dusk",
+        "saturday": "Dawn - Dusk",
+        "sunday": "Dawn - Dusk"
+      },
+      "description": "The highest natural point in Washington DC, Fort Reno Park features athletic fields, a popular summer concert series, and the historic remains of a Civil War fortification.",
+      "history": {
+        "opened": 1864,
+        "current_building": null,
+        "story": "Fort Reno was built in 1861 as part of the ring of fortifications protecting Washington during the Civil War. Named after Major General Jesse L. Reno, who died at the Battle of South Mountain in 1862, the fort saw action during Early's Raid in 1864. Today the park is beloved for its summer concert series, which has showcased emerging bands since 1968, and its athletic fields."
+      },
+      "featured": true
+    },
+    {
+      "id": "connecticut-ave-post-office",
+      "name": "Friendship Station Post Office",
+      "slug": "friendship-station-post-office",
+      "type": "post-office",
+      "address": "5300 Connecticut Ave NW",
+      "neighborhood": "chevy-chase",
+      "website": "https://www.usps.com",
+      "phone": "(202) 842-4964",
+      "hours": {
+        "monday": "9:00 AM - 5:00 PM",
+        "tuesday": "9:00 AM - 5:00 PM",
+        "wednesday": "9:00 AM - 5:00 PM",
+        "thursday": "9:00 AM - 5:00 PM",
+        "friday": "9:00 AM - 5:00 PM",
+        "saturday": "9:00 AM - 1:00 PM",
+        "sunday": "Closed"
+      },
+      "zip_code": "20015",
+      "description": "Full-service post office serving the 20015 zip code area including Chevy Chase DC and parts of Friendship Heights.",
+      "history": {
+        "opened": null,
+        "current_building": null,
+        "story": "The Friendship Station Post Office serves the 20015 zip code, one of the most established postal districts in Upper Northwest Washington."
+      },
+      "featured": false
+    },
+    {
+      "id": "palisades-post-office",
+      "name": "Palisades Station Post Office",
+      "slug": "palisades-station-post-office",
+      "type": "post-office",
+      "address": "5136 MacArthur Blvd NW",
+      "neighborhood": "palisades",
+      "website": "https://www.usps.com",
+      "phone": "(202) 842-2291",
+      "hours": {
+        "monday": "9:00 AM - 5:00 PM",
+        "tuesday": "9:00 AM - 5:00 PM",
+        "wednesday": "9:00 AM - 5:00 PM",
+        "thursday": "9:00 AM - 5:00 PM",
+        "friday": "9:00 AM - 5:00 PM",
+        "saturday": "9:00 AM - 1:00 PM",
+        "sunday": "Closed"
+      },
+      "zip_code": "20016",
+      "description": "Full-service post office serving the 20016 zip code area including the Palisades, Spring Valley, and American University Park neighborhoods.",
+      "history": {
+        "opened": null,
+        "current_building": null,
+        "story": "The Palisades Station Post Office serves the 20016 zip code, covering much of the western portion of Upper Northwest DC including the historic Palisades and Spring Valley neighborhoods."
+      },
+      "featured": false
+    },
+    {
+      "id": "mpd-second-district",
+      "name": "Metropolitan Police Second District Station",
+      "slug": "mpd-second-district",
+      "type": "police-station",
+      "address": "3320 Idaho Ave NW",
+      "neighborhood": "cleveland-park",
+      "website": "https://mpdc.dc.gov/page/second-district",
+      "phone": "(202) 715-7300",
+      "hours": {
+        "monday": "24 Hours",
+        "tuesday": "24 Hours",
+        "wednesday": "24 Hours",
+        "thursday": "24 Hours",
+        "friday": "24 Hours",
+        "saturday": "24 Hours",
+        "sunday": "24 Hours"
+      },
+      "description": "The Metropolitan Police Department's Second District station serves all of Upper Northwest DC, providing community policing and public safety services.",
+      "history": {
+        "opened": null,
+        "current_building": 1977,
+        "story": "The Second District of the Metropolitan Police Department covers the largest geographic area in the city, encompassing all of Northwest DC above Massachusetts Avenue. The district is known for its strong community policing programs and neighborhood partnerships."
+      },
+      "featured": false
+    },
+    {
+      "id": "engine-29",
+      "name": "Fire Station Engine 29",
+      "slug": "fire-station-engine-29",
+      "type": "fire-station",
+      "address": "4811 Wisconsin Ave NW",
+      "neighborhood": "tenleytown",
+      "website": "https://fems.dc.gov",
+      "phone": "(202) 673-3320",
+      "hours": {
+        "monday": "24 Hours",
+        "tuesday": "24 Hours",
+        "wednesday": "24 Hours",
+        "thursday": "24 Hours",
+        "friday": "24 Hours",
+        "saturday": "24 Hours",
+        "sunday": "24 Hours"
+      },
+      "description": "DC Fire and Emergency Medical Services station serving Tenleytown, Friendship Heights, and surrounding neighborhoods.",
+      "history": {
+        "opened": 1927,
+        "current_building": 1927,
+        "story": "Engine Company 29 has served the Tenleytown area since 1927, when the neighborhood was rapidly developing following the extension of the streetcar line on Wisconsin Avenue. The station continues to provide fire and emergency medical services to Upper Northwest."
+      },
+      "featured": false
+    },
+    {
+      "id": "engine-28",
+      "name": "Fire Station Engine 28",
+      "slug": "fire-station-engine-28",
+      "type": "fire-station",
+      "address": "3522 Connecticut Ave NW",
+      "neighborhood": "cleveland-park",
+      "website": "https://fems.dc.gov",
+      "phone": "(202) 673-3320",
+      "hours": {
+        "monday": "24 Hours",
+        "tuesday": "24 Hours",
+        "wednesday": "24 Hours",
+        "thursday": "24 Hours",
+        "friday": "24 Hours",
+        "saturday": "24 Hours",
+        "sunday": "24 Hours"
+      },
+      "description": "DC Fire and Emergency Medical Services station serving Cleveland Park, Woodley Park, and surrounding neighborhoods along the Connecticut Avenue corridor.",
+      "history": {
+        "opened": 1916,
+        "current_building": 1916,
+        "story": "Engine Company 28 has been a fixture of Cleveland Park since 1916. The historic firehouse on Connecticut Avenue has served the neighborhood through over a century of growth and change, and remains an active station providing fire and EMS services."
+      },
+      "featured": false
+    },
+    {
+      "id": "engine-20",
+      "name": "Fire Station Engine 20",
+      "slug": "fire-station-engine-20",
+      "type": "fire-station",
+      "address": "4300 Wisconsin Ave NW",
+      "neighborhood": "tenleytown",
+      "website": "https://fems.dc.gov",
+      "phone": "(202) 673-3320",
+      "hours": {
+        "monday": "24 Hours",
+        "tuesday": "24 Hours",
+        "wednesday": "24 Hours",
+        "thursday": "24 Hours",
+        "friday": "24 Hours",
+        "saturday": "24 Hours",
+        "sunday": "24 Hours"
+      },
+      "description": "DC Fire and Emergency Medical Services station serving American University Park, Tenleytown, and McLean Gardens areas.",
+      "history": {
+        "opened": 1911,
+        "current_building": 1940,
+        "story": "Engine Company 20 has served the Wisconsin Avenue corridor since 1911. The current building dates from 1940 and the station continues to provide essential fire and emergency medical services to the Upper Northwest community."
+      },
+      "featured": false
+    }
+  ],
+  "types": [
+    {
+      "id": "library",
+      "name": "Library",
+      "icon": "book",
+      "description": "DC Public Library branches"
+    },
+    {
+      "id": "recreation-center",
+      "name": "Recreation Center",
+      "icon": "running",
+      "description": "DC Department of Parks and Recreation facilities"
+    },
+    {
+      "id": "post-office",
+      "name": "Post Office",
+      "icon": "envelope",
+      "description": "United States Postal Service locations"
+    },
+    {
+      "id": "police-station",
+      "name": "Police Station",
+      "icon": "shield",
+      "description": "Metropolitan Police Department stations"
+    },
+    {
+      "id": "fire-station",
+      "name": "Fire Station",
+      "icon": "fire",
+      "description": "DC Fire and Emergency Medical Services stations"
+    }
+  ],
+  "meta": {
+    "last_updated": "2025-01-19",
+    "total_services": 11,
+    "coverage_area": "Upper Northwest Washington DC",
+    "neighborhoods_served": [
+      "tenleytown",
+      "chevy-chase",
+      "cleveland-park",
+      "palisades",
+      "spring-valley",
+      "american-university-park",
+      "friendship-heights"
+    ]
+  }
+}

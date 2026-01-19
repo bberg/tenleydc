@@ -1,0 +1,401 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="admin-page">
+    <div class="admin-header">
+        <h1><i class="fas fa-chart-line"></i> Scraper Status</h1>
+        <p class="admin-intro">Monitor event scraping activity and configure sources.</p>
+    </div>
+
+    <!-- Overall Stats -->
+    <div class="admin-stats">
+        <div class="stat-card">
+            <span class="stat-number">{{ sources|length }}</span>
+            <span class="stat-label">Active Sources</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">{{ total_events_scraped|default(0) }}</span>
+            <span class="stat-label">Events Scraped (All Time)</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">{{ last_run|default('Never') }}</span>
+            <span class="stat-label">Last Run</span>
+        </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="admin-actions">
+        <form action="/admin/scrape/run" method="post" style="display: inline;">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-play"></i> Run All Scrapers
+            </button>
+        </form>
+        <a href="/admin/review/events" class="btn btn-secondary">
+            <i class="fas fa-clipboard-check"></i> Review Events ({{ pending_count|default(0) }})
+        </a>
+    </div>
+
+    <!-- Source Status -->
+    <section class="admin-section">
+        <h2>Event Sources</h2>
+        <div class="sources-list">
+            {% for source in sources %}
+            <div class="source-card {% if source.enabled %}enabled{% else %}disabled{% endif %}">
+                <div class="source-header">
+                    <div class="source-info">
+                        <h3>{{ source.name }}</h3>
+                        <span class="source-id">{{ source.id }}</span>
+                    </div>
+                    <div class="source-status">
+                        {% if source.enabled %}
+                        <span class="status-badge active"><i class="fas fa-check-circle"></i> Active</span>
+                        {% else %}
+                        <span class="status-badge inactive"><i class="fas fa-pause-circle"></i> Disabled</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="source-details">
+                    <div class="detail-row">
+                        <span class="detail-label">URL:</span>
+                        <a href="{{ source.url }}" target="_blank" rel="noopener">{{ source.url }}</a>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Scraper:</span>
+                        <code>{{ source.scraper }}</code>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Schedule:</span>
+                        <span>{{ source.schedule | title }}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Default Category:</span>
+                        <span>{{ source.default_category }}</span>
+                    </div>
+                </div>
+
+                <div class="source-stats">
+                    <div class="source-stat">
+                        <span class="stat-value">{{ source.last_run|default('Never') }}</span>
+                        <span class="stat-label">Last Run</span>
+                    </div>
+                    <div class="source-stat">
+                        <span class="stat-value">{{ source.events_found|default(0) }}</span>
+                        <span class="stat-label">Events Found</span>
+                    </div>
+                    <div class="source-stat">
+                        <span class="stat-value">{{ source.last_status|default('N/A') }}</span>
+                        <span class="stat-label">Status</span>
+                    </div>
+                </div>
+
+                <div class="source-actions">
+                    <form action="/admin/scrape/run/{{ source.id }}" method="post" style="display: inline;">
+                        <button type="submit" class="btn btn-small">
+                            <i class="fas fa-play"></i> Run Now
+                        </button>
+                    </form>
+                    <form action="/admin/scrape/toggle/{{ source.id }}" method="post" style="display: inline;">
+                        <button type="submit" class="btn btn-small btn-secondary">
+                            {% if source.enabled %}
+                            <i class="fas fa-pause"></i> Disable
+                            {% else %}
+                            <i class="fas fa-play"></i> Enable
+                            {% endif %}
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Recent Log -->
+    <section class="admin-section">
+        <h2>Recent Activity</h2>
+        {% if log_entries %}
+        <div class="log-entries">
+            {% for entry in log_entries %}
+            <div class="log-entry {% if entry.status == 'error' %}error{% elif entry.status == 'success' %}success{% endif %}">
+                <span class="log-time">{{ entry.timestamp }}</span>
+                <span class="log-source">{{ entry.source }}</span>
+                <span class="log-message">{{ entry.message }}</span>
+                {% if entry.events_count %}
+                <span class="log-count">{{ entry.events_count }} events</span>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="no-data">No recent scraping activity.</p>
+        {% endif %}
+    </section>
+</div>
+
+<style>
+.admin-page {
+    max-width: 900px;
+}
+
+.admin-header {
+    margin-bottom: var(--space-xl);
+    border-bottom: var(--rule-double);
+    padding-bottom: var(--space-lg);
+}
+
+.admin-header h1 {
+    font-family: var(--font-headline);
+    font-size: 2rem;
+    margin-bottom: var(--space-sm);
+}
+
+.admin-intro {
+    color: var(--ink-faded);
+    font-style: italic;
+}
+
+.admin-stats {
+    display: flex;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+}
+
+.stat-card {
+    background: var(--paper-aged);
+    border: var(--rule-thin);
+    padding: var(--space-lg);
+    text-align: center;
+    flex: 1;
+}
+
+.stat-card .stat-number {
+    font-family: var(--font-headline);
+    font-size: 2rem;
+    font-weight: 700;
+    display: block;
+}
+
+.stat-card .stat-label {
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    color: var(--ink-faded);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.admin-actions {
+    margin-bottom: var(--space-xl);
+    display: flex;
+    gap: var(--space-md);
+}
+
+.admin-section {
+    margin-bottom: var(--space-2xl);
+}
+
+.admin-section h2 {
+    font-family: var(--font-headline);
+    font-size: 1.3rem;
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-sm);
+    border-bottom: var(--rule-medium);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-sm) var(--space-md);
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    text-decoration: none;
+    border: var(--rule-thin);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.btn-primary {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+}
+
+.btn-primary:hover {
+    background: var(--accent-red);
+    border-color: var(--accent-red);
+}
+
+.btn-secondary {
+    background: var(--paper);
+    color: var(--ink);
+}
+
+.btn-secondary:hover {
+    background: var(--paper-dark);
+}
+
+.btn-small {
+    padding: var(--space-xs) var(--space-sm);
+    font-size: 0.8rem;
+}
+
+.sources-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.source-card {
+    border: var(--rule-thin);
+    background: var(--paper);
+    padding: var(--space-lg);
+}
+
+.source-card.disabled {
+    opacity: 0.7;
+    background: var(--paper-dark);
+}
+
+.source-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-md);
+}
+
+.source-info h3 {
+    font-family: var(--font-headline);
+    font-size: 1.1rem;
+    margin-bottom: 2px;
+}
+
+.source-id {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--ink-faded);
+}
+
+.status-badge {
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    padding: 2px 8px;
+}
+
+.status-badge.active {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.status-badge.inactive {
+    background: var(--paper-dark);
+    color: var(--ink-faded);
+}
+
+.source-details {
+    margin-bottom: var(--space-md);
+}
+
+.detail-row {
+    display: flex;
+    gap: var(--space-sm);
+    font-size: 0.85rem;
+    margin-bottom: var(--space-xs);
+}
+
+.detail-label {
+    font-weight: 600;
+    min-width: 120px;
+    color: var(--ink-faded);
+}
+
+.detail-row a {
+    color: var(--accent-red);
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.detail-row code {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    background: var(--paper-dark);
+    padding: 1px 4px;
+}
+
+.source-stats {
+    display: flex;
+    gap: var(--space-lg);
+    padding: var(--space-md);
+    background: var(--paper-aged);
+    margin-bottom: var(--space-md);
+}
+
+.source-stat {
+    text-align: center;
+}
+
+.source-stat .stat-value {
+    display: block;
+    font-weight: 600;
+}
+
+.source-stat .stat-label {
+    font-size: 0.7rem;
+    color: var(--ink-faded);
+    text-transform: uppercase;
+}
+
+.source-actions {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.log-entries {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    background: var(--paper-aged);
+    border: var(--rule-thin);
+    padding: var(--space-md);
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.log-entry {
+    display: flex;
+    gap: var(--space-md);
+    padding: var(--space-xs) 0;
+    border-bottom: 1px dotted var(--rule-light);
+}
+
+.log-entry:last-child {
+    border-bottom: none;
+}
+
+.log-entry.error {
+    color: #c62828;
+}
+
+.log-entry.success {
+    color: #2e7d32;
+}
+
+.log-time {
+    color: var(--ink-faded);
+    min-width: 100px;
+}
+
+.log-source {
+    font-weight: 600;
+    min-width: 120px;
+}
+
+.log-count {
+    margin-left: auto;
+    color: var(--ink-faded);
+}
+
+.no-data {
+    color: var(--ink-faded);
+    font-style: italic;
+}
+</style>
+{% endblock %}

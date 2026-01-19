@@ -18,9 +18,19 @@ DATA_DIR = Path(__file__).parent / 'data'
 
 # Navigation structure with groups
 NAVIGATION = [
-    # Main (no group)
+    # Main (no group - always visible)
     {'slug': 'overview', 'title': 'Overview', 'icon': 'home', 'group': None},
-    {'slug': 'timeline', 'title': 'Timeline', 'icon': 'clock', 'group': None},
+    {'slug': 'events', 'title': 'Events', 'icon': 'calendar', 'group': None},
+    {'slug': 'map', 'title': 'Explore the Map', 'icon': 'map-marked-alt', 'group': None},
+
+    # Community
+    {'slug': 'schools', 'title': 'Schools', 'icon': 'school', 'group': 'Community'},
+    {'slug': 'arts', 'title': 'Arts & Culture', 'icon': 'palette', 'group': 'Community'},
+    {'slug': 'worship', 'title': 'Houses of Worship', 'icon': 'place-of-worship', 'group': 'Community'},
+    {'slug': 'services', 'title': 'Public Services', 'icon': 'building-columns', 'group': 'Community'},
+    {'slug': 'businesses', 'title': 'Local Businesses', 'icon': 'store', 'group': 'Community'},
+    {'slug': 'dining', 'title': 'Dining Guide', 'icon': 'utensils', 'group': 'Community'},
+    {'slug': 'neighborhood_guide', 'title': 'Neighborhood Guide', 'icon': 'compass', 'group': 'Community'},
 
     # Places
     {'slug': 'tenleytown', 'title': 'Tenleytown', 'icon': 'building', 'group': 'Places'},
@@ -29,23 +39,18 @@ NAVIGATION = [
     {'slug': 'american_university', 'title': 'American University', 'icon': 'graduation-cap', 'group': 'Places'},
     {'slug': 'neighborhoods', 'title': 'Neighborhoods', 'icon': 'map', 'group': 'Places'},
 
-    # History (renamed from Topics)
+    # History
+    {'slug': 'timeline', 'title': 'Timeline', 'icon': 'clock', 'group': 'History'},
     {'slug': 'prehistory', 'title': 'Native American History', 'icon': 'leaf', 'group': 'History'},
     {'slug': 'transportation', 'title': 'Transportation', 'icon': 'train', 'group': 'History'},
-    {'slug': 'schools', 'title': 'Schools', 'icon': 'school', 'group': 'History'},
+    {'slug': 'schools_history', 'title': 'Schools History', 'icon': 'book-open', 'group': 'History'},
     {'slug': 'broadcasting', 'title': 'Broadcasting', 'icon': 'broadcast-tower', 'group': 'History'},
     {'slug': 'landmarks', 'title': 'Landmarks', 'icon': 'landmark', 'group': 'History'},
 
-    # Community (NEW)
-    {'slug': 'businesses', 'title': 'Local Businesses', 'icon': 'store', 'group': 'Community'},
-    {'slug': 'dining', 'title': 'Dining Guide', 'icon': 'utensils', 'group': 'Community'},
-    {'slug': 'events', 'title': 'Events', 'icon': 'calendar', 'group': 'Community'},
-    {'slug': 'neighborhood_guide', 'title': 'Neighborhood Guide', 'icon': 'compass', 'group': 'Community'},
-
-    # Resources
-    {'slug': 'demographics', 'title': 'Demographics', 'icon': 'users', 'group': 'Resources'},
-    {'slug': 'resources', 'title': 'Resources', 'icon': 'book', 'group': 'Resources'},
-    {'slug': 'advertise', 'title': 'Advertise With Us', 'icon': 'bullhorn', 'group': 'Resources'},
+    # Reference
+    {'slug': 'demographics', 'title': 'Demographics', 'icon': 'users', 'group': 'Reference'},
+    {'slug': 'resources', 'title': 'Resources', 'icon': 'book', 'group': 'Reference'},
+    {'slug': 'about', 'title': 'About', 'icon': 'info-circle', 'group': 'Reference'},
 ]
 
 
@@ -83,6 +88,66 @@ def load_events():
     return data.get('events', [])
 
 
+def load_schools():
+    """Load schools from JSON file"""
+    file_path = DATA_DIR / 'schools.json'
+    if not file_path.exists():
+        return []
+    with open(file_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    return data.get('schools', [])
+
+
+def load_arts():
+    """Load arts institutions from JSON file"""
+    file_path = DATA_DIR / 'arts.json'
+    if not file_path.exists():
+        return []
+    with open(file_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    return data.get('arts_institutions', [])
+
+
+def load_religious():
+    """Load religious institutions from JSON file"""
+    file_path = DATA_DIR / 'religious.json'
+    if not file_path.exists():
+        return []
+    with open(file_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    return data.get('institutions', [])
+
+
+def load_services():
+    """Load public services from JSON file"""
+    file_path = DATA_DIR / 'services.json'
+    if not file_path.exists():
+        return []
+    with open(file_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    return data.get('services', [])
+
+
+def load_pending_events():
+    """Load pending scraped events"""
+    file_path = DATA_DIR / 'scraped' / 'events_pending.json'
+    if not file_path.exists():
+        return []
+    with open(file_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    return data.get('events', [])
+
+
+def load_event_sources():
+    """Load event source configuration"""
+    file_path = DATA_DIR / 'sources.json'
+    if not file_path.exists():
+        return []
+    with open(file_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    return data.get('event_sources', [])
+
+
 def get_business_by_slug(slug):
     """Get a single business by its slug"""
     businesses = load_businesses()
@@ -116,13 +181,15 @@ def get_businesses_by_subcategory(subcategory):
 
 
 def get_featured_events(limit=3):
-    """Get featured upcoming events"""
+    """Get featured upcoming events, sorted by date"""
     events = load_events()
     today = datetime.now().strftime('%Y-%m-%d')
     upcoming = [
         e for e in events
         if e.get('featured') and (e.get('date', '') >= today or e.get('end_date', '') >= today)
     ]
+    # Sort by date to show soonest events first
+    upcoming.sort(key=lambda x: x.get('date', ''))
     return upcoming[:limit]
 
 
@@ -335,6 +402,257 @@ def events_page():
 
 
 # ============================================
+# SCHOOLS
+# ============================================
+
+@app.route('/schools')
+@app.route('/schools/')
+def schools_page():
+    """Schools directory page"""
+    schools = load_schools()
+
+    # Filter by type if provided
+    type_filter = request.args.get('type')
+    level_filter = request.args.get('level')
+
+    if type_filter:
+        schools = [s for s in schools if s.get('type') == type_filter]
+    if level_filter:
+        schools = [s for s in schools if s.get('level') == level_filter]
+
+    # Sort: featured first, then alphabetically
+    schools.sort(key=lambda x: (not x.get('featured', False), x.get('name', '')))
+
+    return render_template('schools.html',
+                         schools=schools,
+                         current_type=type_filter,
+                         current_level=level_filter,
+                         title='Schools',
+                         navigation=NAVIGATION,
+                         current_page='schools')
+
+
+@app.route('/school/<slug>')
+def school_profile(slug):
+    """Individual school profile page"""
+    schools = load_schools()
+    school = next((s for s in schools if s.get('slug') == slug), None)
+
+    if not school:
+        return render_template('404.html', navigation=NAVIGATION), 404
+
+    # Get related schools (same neighborhood or type)
+    related = [s for s in schools
+               if s.get('slug') != slug and
+               (s.get('neighborhood') == school.get('neighborhood') or
+                s.get('type') == school.get('type'))][:3]
+
+    return render_template('school-profile.html',
+                         school=school,
+                         related_schools=related,
+                         title=school.get('name'),
+                         navigation=NAVIGATION,
+                         current_page='schools')
+
+
+# ============================================
+# ARTS & CULTURE
+# ============================================
+
+@app.route('/arts')
+@app.route('/arts/')
+def arts_page():
+    """Arts & Culture directory page"""
+    institutions = load_arts()
+
+    # Filter by type if provided
+    type_filter = request.args.get('type')
+    if type_filter:
+        institutions = [i for i in institutions if i.get('type') == type_filter]
+
+    # Sort: featured first, then alphabetically
+    institutions.sort(key=lambda x: (not x.get('featured', False), x.get('name', '')))
+
+    return render_template('arts.html',
+                         institutions=institutions,
+                         current_type=type_filter,
+                         title='Arts & Culture',
+                         navigation=NAVIGATION,
+                         current_page='arts')
+
+
+@app.route('/arts/<slug>')
+def arts_profile(slug):
+    """Individual arts venue profile page"""
+    institutions = load_arts()
+    venue = next((i for i in institutions if i.get('slug') == slug), None)
+
+    if not venue:
+        return render_template('404.html', navigation=NAVIGATION), 404
+
+    return render_template('arts-profile.html',
+                         venue=venue,
+                         title=venue.get('name'),
+                         navigation=NAVIGATION,
+                         current_page='arts')
+
+
+# ============================================
+# HOUSES OF WORSHIP
+# ============================================
+
+@app.route('/worship')
+@app.route('/worship/')
+def worship_page():
+    """Houses of Worship directory page"""
+    institutions = load_religious()
+
+    # Filter by type if provided
+    type_filter = request.args.get('type')
+    if type_filter:
+        institutions = [i for i in institutions if i.get('type') == type_filter]
+
+    # Sort: featured first, then alphabetically
+    institutions.sort(key=lambda x: (not x.get('featured', False), x.get('name', '')))
+
+    return render_template('worship.html',
+                         institutions=institutions,
+                         current_type=type_filter,
+                         title='Houses of Worship',
+                         navigation=NAVIGATION,
+                         current_page='worship')
+
+
+@app.route('/worship/<slug>')
+def worship_profile(slug):
+    """Individual house of worship profile page"""
+    institutions = load_religious()
+    institution = next((i for i in institutions if i.get('slug') == slug), None)
+
+    if not institution:
+        return render_template('404.html', navigation=NAVIGATION), 404
+
+    return render_template('worship-profile.html',
+                         institution=institution,
+                         title=institution.get('name'),
+                         navigation=NAVIGATION,
+                         current_page='worship')
+
+
+# ============================================
+# PUBLIC SERVICES
+# ============================================
+
+@app.route('/services')
+@app.route('/services/')
+def services_page():
+    """Public Services directory page"""
+    services = load_services()
+
+    # Filter by type if provided
+    type_filter = request.args.get('type')
+    if type_filter:
+        services = [s for s in services if s.get('type') == type_filter]
+
+    # Sort: featured first, then alphabetically
+    services.sort(key=lambda x: (not x.get('featured', False), x.get('name', '')))
+
+    return render_template('services.html',
+                         services=services,
+                         current_type=type_filter,
+                         title='Public Services',
+                         navigation=NAVIGATION,
+                         current_page='services')
+
+
+@app.route('/services/<slug>')
+def services_profile(slug):
+    """Individual public service profile page"""
+    services = load_services()
+    service = next((s for s in services if s.get('slug') == slug), None)
+
+    if not service:
+        return render_template('404.html', navigation=NAVIGATION), 404
+
+    return render_template('services-profile.html',
+                         service=service,
+                         title=service.get('name'),
+                         navigation=NAVIGATION,
+                         current_page='services')
+
+
+# ============================================
+# ADMIN - Event Review
+# ============================================
+
+@app.route('/admin/review/events')
+def admin_review_events():
+    """Admin page for reviewing scraped events"""
+    pending_events = load_pending_events()
+
+    return render_template('admin/review_events.html',
+                         pending_events=pending_events,
+                         title='Review Events',
+                         navigation=NAVIGATION,
+                         current_page='admin')
+
+
+@app.route('/admin/review/approve', methods=['POST'])
+def admin_approve_event():
+    """Approve a scraped event"""
+    event_id = request.form.get('event_id')
+    # In a real implementation, this would move the event from pending to approved
+    # For now, just redirect back
+    return redirect('/admin/review/events')
+
+
+@app.route('/admin/review/reject', methods=['POST'])
+def admin_reject_event():
+    """Reject a scraped event"""
+    event_id = request.form.get('event_id')
+    # In a real implementation, this would remove the event from pending
+    # For now, just redirect back
+    return redirect('/admin/review/events')
+
+
+@app.route('/admin/scraper-status')
+def admin_scraper_status():
+    """Admin page for scraper status"""
+    sources = load_event_sources()
+
+    # Add enabled flag to sources (default True)
+    for source in sources:
+        source['enabled'] = source.get('enabled', True)
+
+    return render_template('admin/scraper_status.html',
+                         sources=sources,
+                         title='Scraper Status',
+                         navigation=NAVIGATION,
+                         current_page='admin')
+
+
+@app.route('/admin/scrape/run', methods=['POST'])
+def admin_run_scrapers():
+    """Trigger manual scraper run"""
+    # In a real implementation, this would run the scrapers
+    return redirect('/admin/scraper-status')
+
+
+@app.route('/admin/scrape/run/<source_id>', methods=['POST'])
+def admin_run_single_scraper(source_id):
+    """Trigger single scraper run"""
+    # In a real implementation, this would run the specific scraper
+    return redirect('/admin/scraper-status')
+
+
+@app.route('/admin/scrape/toggle/<source_id>', methods=['POST'])
+def admin_toggle_source(source_id):
+    """Toggle a scraper source enabled/disabled"""
+    # In a real implementation, this would toggle the source
+    return redirect('/admin/scraper-status')
+
+
+# ============================================
 # SEARCH
 # ============================================
 
@@ -398,6 +716,20 @@ def interactive_map():
                          title='Interactive Map',
                          navigation=NAVIGATION,
                          current_page='map')
+
+
+@app.route('/about')
+def about():
+    """About page"""
+    content, title, toc = load_markdown_content('about')
+    if content is None:
+        abort(404)
+    return render_template('page.html',
+                         content=content,
+                         title=title,
+                         toc=toc,
+                         navigation=NAVIGATION,
+                         current_page='about')
 
 
 @app.errorhandler(404)

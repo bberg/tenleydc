@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if title %}{{ title }} | {% endif %}Tennally's Town</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>{% if title %}{{ title }} | {% endif %}Tennally's Almanac</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=9">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;450;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="layout">
@@ -17,13 +17,17 @@
             <div class="sidebar-header">
                 <a href="/" class="logo">
                     <div class="logo-icon">
-                        <i class="fas fa-map-pin"></i>
+                        <i class="fas fa-book-open"></i>
                     </div>
                     <div class="logo-text">
-                        <span class="logo-main">Tennally's Town</span>
-                        <span class="logo-sub">Est. 1790</span>
+                        <span class="logo-main">Tennally's Almanac</span>
+                        <span class="logo-sub">Upper Northwest DC</span>
                     </div>
                 </a>
+                <form action="/search" method="get" class="search-form">
+                    <input type="search" name="q" placeholder="Search..." aria-label="Search">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
             </div>
 
             <nav class="sidebar-nav">
@@ -45,7 +49,7 @@
                         {% set current_group.value = item.group %}
                     {% endif %}
                     <li>
-                        <a href="{% if item.slug == 'overview' %}/{% else %}/page/{{ item.slug }}{% endif %}"
+                        <a href="{% if item.slug == 'overview' %}/{% elif item.slug == 'businesses' %}/businesses{% elif item.slug == 'dining' %}/dining{% elif item.slug == 'events' %}/events{% elif item.slug == 'map' %}/map{% elif item.slug == 'schools' %}/schools{% elif item.slug == 'arts' %}/arts{% elif item.slug == 'worship' %}/worship{% elif item.slug == 'services' %}/services{% elif item.slug == 'about' %}/about{% else %}/page/{{ item.slug }}{% endif %}"
                            class="{% if current_page == item.slug %}active{% endif %}">
                             <i class="fas fa-{{ item.icon }}"></i>
                             <span>{{ item.title }}</span>
@@ -58,16 +62,6 @@
                 </ul>
             </nav>
 
-            <div class="sidebar-footer">
-                <a href="/map" class="map-link {% if current_page == 'map' %}active{% endif %}">
-                    <i class="fas fa-map-marked-alt"></i>
-                    <span>Explore the Map</span>
-                </a>
-                <form action="/search" method="get" class="search-form">
-                    <input type="search" name="q" placeholder="Search history..." aria-label="Search">
-                    <button type="submit"><i class="fas fa-search"></i></button>
-                </form>
-            </div>
         </aside>
 
         <!-- Mobile Header -->
@@ -75,7 +69,7 @@
             <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
                 <i class="fas fa-bars"></i>
             </button>
-            <a href="/" class="mobile-logo">Tennally's Town</a>
+            <a href="/" class="mobile-logo">Tennally's Almanac</a>
         </header>
 
         <!-- Main Content -->
@@ -87,11 +81,12 @@
             <footer class="page-footer">
                 <div class="footer-content">
                     <div class="footer-brand">
-                        <span class="footer-title">Tennally's Town</span>
-                        <span class="footer-tagline">Where the innkeeper couldn't spell his own name</span>
+                        <span class="footer-title">Tennally's Almanac</span>
+                        <span class="footer-tagline">History, culture, and news from Upper Northwest DC</span>
                     </div>
-                    <p class="footer-desc">Exploring the history of Tenleytown, AU Park, and the neighborhoods around the highest point in DC since someone decided to write it all down.</p>
+                    <p class="footer-desc">Documenting Tenleytown, AU Park, and the neighborhoods around the highest point in DC.</p>
                     <div class="footer-links">
+                        <a href="/about"><i class="fas fa-info-circle"></i> About</a>
                         <a href="/page/resources"><i class="fas fa-book"></i> Resources</a>
                         <a href="https://tenleytownhistoricalsociety.org" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Tenleytown Historical Society</a>
                     </div>

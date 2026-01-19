@@ -1,5 +1,5 @@
 /**
- * Tennally's Town - Local History Website
+ * Tennally's Almanac - Local History & Community Publication
  * Main JavaScript functionality
  */
 
@@ -57,14 +57,20 @@
     // Collapsible Navigation Groups
     // ==========================================
     function initNavGroups() {
-        const STORAGE_KEY = 'tennallys-nav-collapsed';
+        const STORAGE_KEY = 'tenley-ledger-nav-collapsed';
+        const DEFAULT_EXPANDED = ['Community']; // Groups to keep expanded by default
 
         // Get collapsed state from localStorage
         function getCollapsedGroups() {
             try {
-                return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (saved === null) {
+                    // First visit: collapse all except DEFAULT_EXPANDED
+                    return null; // Signal to use defaults
+                }
+                return JSON.parse(saved) || [];
             } catch {
-                return [];
+                return null;
             }
         }
 
@@ -74,14 +80,18 @@
         }
 
         const groupHeaders = document.querySelectorAll('.nav-group-header');
-        const collapsedGroups = getCollapsedGroups();
+        const savedCollapsed = getCollapsedGroups();
 
         groupHeaders.forEach(header => {
             const groupName = header.dataset.group;
             const groupItems = header.nextElementSibling;
 
-            // Apply saved state
-            if (collapsedGroups.includes(groupName)) {
+            // Apply state: if no saved state, collapse all except DEFAULT_EXPANDED
+            const shouldCollapse = savedCollapsed === null
+                ? !DEFAULT_EXPANDED.includes(groupName)
+                : savedCollapsed.includes(groupName);
+
+            if (shouldCollapse) {
                 header.classList.add('collapsed');
                 if (groupItems) groupItems.classList.add('collapsed');
             }
@@ -92,7 +102,16 @@
                 if (groupItems) groupItems.classList.toggle('collapsed');
 
                 // Update localStorage
-                const currentCollapsed = getCollapsedGroups();
+                let currentCollapsed = getCollapsedGroups();
+                // If first interaction, initialize with current visible state
+                if (currentCollapsed === null) {
+                    currentCollapsed = [];
+                    groupHeaders.forEach(h => {
+                        if (h.classList.contains('collapsed') && h !== header) {
+                            currentCollapsed.push(h.dataset.group);
+                        }
+                    });
+                }
                 if (isCollapsed) {
                     if (!currentCollapsed.includes(groupName)) {
                         currentCollapsed.push(groupName);
@@ -396,6 +415,6 @@
     };
 
     // Log initialization
-    console.log("Tennally's Town initialized");
+    console.log("Tennally's Almanac initialized");
 
 })();
