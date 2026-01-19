@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dining-page">
+    <div class="dining-header">
+        <h1><i class="fas fa-utensils"></i> Dining Guide</h1>
+        <p class="dining-intro">From neighborhood institutions to new favorites, discover where to eat and drink in Upper Northwest DC. Every restaurant has a story.</p>
+    </div>
+
+    <!-- Type Filters -->
+    <div class="dining-filters">
+        <div class="filter-pills">
+            <a href="/dining" class="filter-pill {% if not current_type %}active{% endif %}">All Dining</a>
+            {% for sub in subcategories %}
+            <a href="/dining?type={{ sub.id }}"
+               class="filter-pill {% if current_type == sub.id %}active{% endif %}">
+                {{ sub.name }}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Results count -->
+    <p class="results-count">
+        {{ businesses|length }} place{% if businesses|length != 1 %}s{% endif %} to eat
+        {% if current_type %} ({{ current_type | replace('-', ' ') | title }}){% endif %}
+    </p>
+
+    <!-- Restaurant Grid -->
+    {% if businesses %}
+    <div class="dining-grid">
+        {% for business in businesses %}
+        <a href="/business/{{ business.slug }}" class="dining-card {% if business.featured %}featured{% endif %}">
+            {% if business.featured %}
+            <span class="featured-badge"><i class="fas fa-star"></i> Featured</span>
+            {% endif %}
+            <div class="dining-card-content">
+                <div class="dining-card-header">
+                    <h3>{{ business.name }}</h3>
+                    <span class="dining-type">{{ business.subcategory | replace('-', ' ') | title }}</span>
+                </div>
+                <p class="dining-address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    {{ business.address }}
+                </p>
+                <p class="dining-description">{{ business.description[:140] }}{% if business.description|length > 140 %}...{% endif %}</p>
+
+                {% if business.history and business.history.opened %}
+                <div class="dining-history-teaser">
+                    <span class="year"><i class="fas fa-clock-rotate-left"></i> Since {{ business.history.opened }}</span>
+                    {% if business.history.what_was_here_before %}
+                    <span class="before-hint">See what was here before...</span>
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                <div class="dining-tags">
+                    {% for tag in business.tags[:4] %}
+                    <span class="tag">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-results">
+        <i class="fas fa-utensils"></i>
+        <h3>No restaurants found</h3>
+        <p>Try <a href="/dining">viewing all dining options</a>.</p>
+    </div>
+    {% endif %}
+
+    <!-- Neighborhood Tips -->
+    <div class="dining-tips">
+        <h2><i class="fas fa-lightbulb"></i> Neighborhood Dining Tips</h2>
+        <div class="tips-grid">
+            <div class="tip-card">
+                <h4>Tenleytown</h4>
+                <p>Wisconsin Ave near the Metro offers the most walkable dining options, from fast-casual to steakhouse.</p>
+            </div>
+            <div class="tip-card">
+                <h4>Van Ness/UDC</h4>
+                <p>Connecticut Ave has evolved into a destination dining corridor with upscale options.</p>
+            </div>
+            <div class="tip-card">
+                <h4>Spring Valley</h4>
+                <p>Limited but quality options near the historic Sears building on Massachusetts Ave.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="dining-cta">
+        <h3>Restaurant owner?</h3>
+        <p>Share your story and get featured in our dining guide.</p>
+        <a href="/page/advertise" class="btn">Get Listed</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="directory-page">
+    <div class="directory-header">
+        <h1><i class="fas fa-store"></i> Local Businesses</h1>
+        <p class="directory-intro">Discover the businesses that make our neighborhoods unique. Each listing includes the story behind the storefront.</p>
+    </div>
+
+    <!-- Filters -->
+    <div class="directory-filters">
+        <div class="filter-group">
+            <label>Category:</label>
+            <div class="filter-pills">
+                <a href="/businesses" class="filter-pill {% if not current_category %}active{% endif %}">All</a>
+                {% for category in categories %}
+                <a href="/businesses?category={{ category.id }}"
+                   class="filter-pill {% if current_category == category.id %}active{% endif %}">
+                    <i class="fas fa-{{ category.icon }}"></i>
+                    {{ category.name }}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Results count -->
+    <p class="results-count">
+        Showing {{ businesses|length }} business{% if businesses|length != 1 %}es{% endif %}
+        {% if current_category %} in {{ current_category }}{% endif %}
+    </p>
+
+    <!-- Business Grid -->
+    {% if businesses %}
+    <div class="business-grid">
+        {% for business in businesses %}
+        <a href="/business/{{ business.slug }}" class="business-card {% if business.featured %}featured{% endif %}">
+            {% if business.featured %}
+            <span class="featured-badge"><i class="fas fa-star"></i> Featured</span>
+            {% endif %}
+            <div class="business-card-header">
+                <h3>{{ business.name }}</h3>
+                <span class="business-category">{{ business.subcategory | replace('-', ' ') | title }}</span>
+            </div>
+            <p class="business-address">
+                <i class="fas fa-map-marker-alt"></i>
+                {{ business.address }}
+            </p>
+            <p class="business-description">{{ business.description[:120] }}{% if business.description|length > 120 %}...{% endif %}</p>
+            {% if business.history and business.history.opened %}
+            <div class="business-history-teaser">
+                <i class="fas fa-clock-rotate-left"></i>
+                Est. {{ business.history.opened }}
+            </div>
+            {% endif %}
+            <div class="business-tags">
+                {% for tag in business.tags[:3] %}
+                <span class="tag">{{ tag }}</span>
+                {% endfor %}
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-results">
+        <i class="fas fa-store-slash"></i>
+        <h3>No businesses found</h3>
+        <p>Try adjusting your filters or <a href="/businesses">view all businesses</a>.</p>
+    </div>
+    {% endif %}
+
+    <!-- Call to Action -->
+    <div class="directory-cta">
+        <h3>Own a local business?</h3>
+        <p>Get your business listed and share your story with the neighborhood.</p>
+        <a href="/page/advertise" class="btn">Learn About Featured Listings</a>
+    </div>
+</div>
+{% endblock %}

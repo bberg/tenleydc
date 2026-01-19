@@ -1,0 +1,304 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<div class="map-page">
+    <div class="map-header">
+        <h2>Interactive Map</h2>
+        <p>Explore historic sites in Upper Northwest Washington, DC</p>
+    </div>
+
+    <div class="map-container">
+        <div id="map" class="interactive-map"></div>
+    </div>
+
+    <div class="map-legend">
+        <h3>Historic Sites</h3>
+        <div class="legend-items">
+            <div class="legend-item" data-category="civil-war">
+                <span class="legend-marker civil-war"></span>
+                <span>Civil War Sites</span>
+            </div>
+            <div class="legend-item" data-category="landmark">
+                <span class="legend-marker landmark"></span>
+                <span>Landmarks</span>
+            </div>
+            <div class="legend-item" data-category="school">
+                <span class="legend-marker school"></span>
+                <span>Schools</span>
+            </div>
+            <div class="legend-item" data-category="transportation">
+                <span class="legend-marker transportation"></span>
+                <span>Transportation</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="sites-list">
+        <h3>Key Locations</h3>
+        <div class="sites-grid">
+            <div class="site-card" data-lat="38.9520" data-lng="-77.0759" onclick="panToLocation(38.9520, -77.0759, 'fort-reno')">
+                <h4><i class="fas fa-flag"></i> Fort Reno Park</h4>
+                <p>Highest point in DC (409 ft) and Civil War fortification</p>
+                <span class="site-address">4000 Chesapeake St NW</span>
+            </div>
+            <div class="site-card" data-lat="38.9501" data-lng="-77.0833" onclick="panToLocation(38.9501, -77.0833, 'au')">
+                <h4><i class="fas fa-graduation-cap"></i> American University</h4>
+                <p>Founded 1893, site of WWI chemical weapons research</p>
+                <span class="site-address">4400 Massachusetts Ave NW</span>
+            </div>
+            <div class="site-card" data-lat="38.9489" data-lng="-77.0792" onclick="panToLocation(38.9489, -77.0792, 'sears')">
+                <h4><i class="fas fa-store"></i> Former Sears Building</h4>
+                <p>Art Deco landmark (1941), National Register of Historic Places</p>
+                <span class="site-address">4500 Wisconsin Ave NW</span>
+            </div>
+            <div class="site-card" data-lat="38.9485" data-lng="-77.0795" onclick="panToLocation(38.9485, -77.0795, 'metro')">
+                <h4><i class="fas fa-subway"></i> Tenleytown-AU Metro</h4>
+                <p>Red Line station opened 1984</p>
+                <span class="site-address">4501 Wisconsin Ave NW</span>
+            </div>
+            <div class="site-card" data-lat="38.9507" data-lng="-77.0791" onclick="panToLocation(38.9507, -77.0791, 'janney')">
+                <h4><i class="fas fa-school"></i> Janney Elementary</h4>
+                <p>Colonial Revival school (1925), DC Historic Site</p>
+                <span class="site-address">4130 Albemarle St NW</span>
+            </div>
+            <div class="site-card" data-lat="38.9483" data-lng="-77.0808" onclick="panToLocation(38.9483, -77.0808, 'stanns')">
+                <h4><i class="fas fa-church"></i> St. Ann's Church</h4>
+                <p>Oldest Catholic parish west of Rock Creek (1866)</p>
+                <span class="site-address">4001 Yuma St NW</span>
+            </div>
+            <div class="site-card" data-lat="38.9467" data-lng="-77.0858" onclick="panToLocation(38.9467, -77.0858, 'wrc')">
+                <h4><i class="fas fa-broadcast-tower"></i> WRC-TV Studios</h4>
+                <p>NBC4 Washington, home of Sam and Friends</p>
+                <span class="site-address">4001 Nebraska Ave NW</span>
+            </div>
+            <div class="site-card" data-lat="38.9486" data-lng="-77.0792" onclick="panToLocation(38.9486, -77.0792, 'library')">
+                <h4><i class="fas fa-book"></i> Tenley-Friendship Library</h4>
+                <p>LEED Gold certified library (2011)</p>
+                <span class="site-address">4450 Wisconsin Ave NW</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="map-info">
+        <h3>About This Map</h3>
+        <p>This interactive map shows key historic sites in Tenleytown, AU Park, and surrounding neighborhoods. Click on markers or cards to learn more about each location.</p>
+        <a href="/page/landmarks" class="btn">View All Landmarks</a>
+    </div>
+</div>
+
+<style>
+.interactive-map {
+    width: 100%;
+    height: 450px;
+    border-radius: var(--radius-md);
+    z-index: 1;
+}
+
+.site-card {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.site-card:hover {
+    transform: translateY(-2px);
+}
+
+.site-card.active {
+    border-color: var(--rust);
+    box-shadow: 0 0 0 2px var(--rust-light);
+}
+
+/* Custom marker styles */
+.custom-marker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    color: white;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    border: 2px solid white;
+}
+
+.marker-civil-war { background: #8b4513; }
+.marker-landmark { background: #c45a3b; }
+.marker-school { background: #2d6a4f; }
+.marker-transportation { background: #4a5568; }
+.marker-church { background: #6b5b95; }
+.marker-media { background: #e07a5c; }
+
+.leaflet-popup-content-wrapper {
+    border-radius: 8px;
+}
+
+.leaflet-popup-content h4 {
+    margin: 0 0 8px 0;
+    color: var(--ink);
+    font-size: 1rem;
+}
+
+.leaflet-popup-content p {
+    margin: 0;
+    color: var(--ink-light);
+    font-size: 0.875rem;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize map centered on Tenleytown
+    const map = L.map('map').setView([38.9495, -77.0800], 15);
+
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Historic sites data
+    const sites = [
+        {
+            id: 'fort-reno',
+            name: 'Fort Reno Park',
+            lat: 38.9520,
+            lng: -77.0759,
+            category: 'civil-war',
+            icon: 'fa-flag',
+            description: 'Highest point in DC (409 ft). Civil War fortification built 1861, defended the capital during Early\'s Raid in 1864. Later home to Reno City, an African American community displaced in the 1920s.',
+            link: '/page/fort_reno'
+        },
+        {
+            id: 'au',
+            name: 'American University',
+            lat: 38.9501,
+            lng: -77.0833,
+            category: 'landmark',
+            icon: 'fa-graduation-cap',
+            description: 'Founded 1893 by Methodist bishop John Fletcher Hurst. During WWI, the campus housed the American University Experiment Station for chemical weapons development.',
+            link: '/page/american_university'
+        },
+        {
+            id: 'sears',
+            name: 'Former Sears Building',
+            lat: 38.9489,
+            lng: -77.0792,
+            category: 'landmark',
+            icon: 'fa-store',
+            description: 'Art Deco landmark opened 1941. Listed on the National Register of Historic Places. Now houses retail and offices.'
+        },
+        {
+            id: 'metro',
+            name: 'Tenleytown-AU Metro',
+            lat: 38.9485,
+            lng: -77.0795,
+            category: 'transportation',
+            icon: 'fa-subway',
+            description: 'Red Line station opened December 15, 1984. The station sits where the Georgetown-Tenallytown streetcar once ran.',
+            link: '/page/transportation'
+        },
+        {
+            id: 'janney',
+            name: 'Janney Elementary School',
+            lat: 38.9507,
+            lng: -77.0791,
+            category: 'school',
+            icon: 'fa-school',
+            description: 'Colonial Revival school opened 1925, designed by municipal architect Albert Harris. Named for Dr. Thomas Janney, local physician.',
+            link: '/page/schools'
+        },
+        {
+            id: 'stanns',
+            name: 'St. Ann\'s Church',
+            lat: 38.9483,
+            lng: -77.0808,
+            category: 'church',
+            icon: 'fa-church',
+            description: 'Oldest Catholic parish west of Rock Creek, founded 1866. The current church building dates to 1911.'
+        },
+        {
+            id: 'wrc',
+            name: 'WRC-TV Studios',
+            lat: 38.9467,
+            lng: -77.0858,
+            category: 'media',
+            icon: 'fa-broadcast-tower',
+            description: 'NBC4 Washington. Home of "Sam and Friends" (1955-1961), where Jim Henson created the Muppets. Site of the first televised presidential debate in 1960.',
+            link: '/page/broadcasting'
+        },
+        {
+            id: 'library',
+            name: 'Tenley-Friendship Library',
+            lat: 38.9486,
+            lng: -77.0792,
+            category: 'landmark',
+            icon: 'fa-book',
+            description: 'LEED Gold certified public library opened 2011, replacing the 1959 branch. Designed by Grimm + Parker Architects.'
+        }
+    ];
+
+    // Store markers for reference
+    window.markers = {};
+
+    // Create custom icon function
+    function createIcon(category) {
+        const colors = {
+            'civil-war': '#8b4513',
+            'landmark': '#c45a3b',
+            'school': '#2d6a4f',
+            'transportation': '#4a5568',
+            'church': '#6b5b95',
+            'media': '#e07a5c'
+        };
+
+        return L.divIcon({
+            className: 'custom-div-icon',
+            html: `<div class="custom-marker marker-${category}"><i class="fas ${sites.find(s => s.category === category)?.icon || 'fa-map-marker'}"></i></div>`,
+            iconSize: [32, 32],
+            iconAnchor: [16, 16],
+            popupAnchor: [0, -16]
+        });
+    }
+
+    // Add markers for each site
+    sites.forEach(site => {
+        const icon = L.divIcon({
+            className: 'custom-div-icon',
+            html: `<div class="custom-marker marker-${site.category}"><i class="fas ${site.icon}"></i></div>`,
+            iconSize: [32, 32],
+            iconAnchor: [16, 16],
+            popupAnchor: [0, -16]
+        });
+
+        const marker = L.marker([site.lat, site.lng], { icon: icon }).addTo(map);
+
+        let popupContent = `<h4>${site.name}</h4><p>${site.description}</p>`;
+        if (site.link) {
+            popupContent += `<p><a href="${site.link}" style="color: #c45a3b;">Learn more &rarr;</a></p>`;
+        }
+
+        marker.bindPopup(popupContent);
+        window.markers[site.id] = marker;
+    });
+
+    // Store map reference globally
+    window.historyMap = map;
+});
+
+// Pan to location and open popup
+function panToLocation(lat, lng, markerId) {
+    if (window.historyMap && window.markers[markerId]) {
+        window.historyMap.setView([lat, lng], 17, { animate: true });
+        window.markers[markerId].openPopup();
+
+        // Highlight active card
+        document.querySelectorAll('.site-card').forEach(card => card.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+    }
+}
+</script>
+{% endblock %}

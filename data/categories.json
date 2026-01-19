@@ -1,0 +1,60 @@
+{
+  "categories": [
+    {
+      "id": "dining",
+      "name": "Dining",
+      "icon": "utensils",
+      "subcategories": [
+        {"id": "restaurant", "name": "Restaurants"},
+        {"id": "cafe", "name": "Cafes & Coffee"},
+        {"id": "bar", "name": "Bars & Pubs"},
+        {"id": "bakery", "name": "Bakeries"},
+        {"id": "fast-casual", "name": "Fast Casual"}
+      ]
+    },
+    {
+      "id": "shopping",
+      "name": "Shopping",
+      "icon": "shopping-bag",
+      "subcategories": [
+        {"id": "bookstore", "name": "Bookstores"},
+        {"id": "grocery", "name": "Grocery & Markets"},
+        {"id": "clothing", "name": "Clothing & Accessories"},
+        {"id": "home", "name": "Home & Garden"},
+        {"id": "specialty", "name": "Specialty Shops"}
+      ]
+    },
+    {
+      "id": "services",
+      "name": "Services",
+      "icon": "concierge-bell",
+      "subcategories": [
+        {"id": "health", "name": "Health & Wellness"},
+        {"id": "beauty", "name": "Beauty & Spa"},
+        {"id": "fitness", "name": "Fitness"},
+        {"id": "professional", "name": "Professional Services"},
+        {"id": "automotive", "name": "Automotive"}
+      ]
+    },
+    {
+      "id": "entertainment",
+      "name": "Entertainment",
+      "icon": "ticket-alt",
+      "subcategories": [
+        {"id": "theater", "name": "Theater & Arts"},
+        {"id": "music", "name": "Music Venues"},
+        {"id": "recreation", "name": "Recreation"}
+      ]
+    },
+    {
+      "id": "education",
+      "name": "Education",
+      "icon": "graduation-cap",
+      "subcategories": [
+        {"id": "school", "name": "Schools"},
+        {"id": "tutoring", "name": "Tutoring & Learning"},
+        {"id": "arts", "name": "Arts & Music Education"}
+      ]
+    }
+  ]
+}

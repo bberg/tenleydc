@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="home-hero">
+    <div class="hero-content">
+        <h2>Welcome to Tennally's Town</h2>
+        <p>Where an illiterate innkeeper founded a neighborhood he couldn't spell. Explore the quirky, fascinating history of Tenleytown, AU Park, and the highest point in DC.</p>
+        <div class="hero-stats">
+            <div class="stat">
+                <span class="stat-number">1790</span>
+                <span class="stat-label">Tavern Opens</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">409'</span>
+                <span class="stat-label">Highest Point in DC</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">11</span>
+                <span class="stat-label">Spellings of "Tennally"</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Featured Businesses Section -->
+{% if featured_businesses %}
+<div class="featured-businesses">
+    <h3>Local Favorites</h3>
+    <p class="section-subtitle">Neighborhood businesses with stories to tell</p>
+    <div class="featured-business-grid">
+        {% for business in featured_businesses %}
+        <a href="/business/{{ business.slug }}" class="featured-business-card">
+            <div class="featured-business-header">
+                <h4>{{ business.name }}</h4>
+                <span class="category-tag">{{ business.subcategory | replace('-', ' ') | title }}</span>
+            </div>
+            <p class="featured-business-address"><i class="fas fa-map-marker-alt"></i> {{ business.address }}</p>
+            <p class="featured-business-desc">{{ business.description[:100] }}{% if business.description|length > 100 %}...{% endif %}</p>
+            {% if business.history and business.history.opened %}
+            <span class="featured-business-year"><i class="fas fa-clock-rotate-left"></i> Est. {{ business.history.opened }}</span>
+            {% endif %}
+        </a>
+        {% endfor %}
+    </div>
+    <div class="section-cta">
+        <a href="/businesses" class="btn-link">View All Local Businesses <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>
+{% endif %}
+
+<!-- Historical Photo Gallery -->
+<div class="photo-gallery">
+    <h3>From the Archives</h3>
+    <p class="gallery-subtitle">Historical photographs from the Library of Congress</p>
+    <div class="gallery-grid">
+        <div class="gallery-item">
+            <img src="/static/images/civil_war_camp_tenleytown.jpg" alt="Civil War Camp near Tenleytown, 1861-1865">
+            <div class="gallery-caption">
+                <strong>Civil War Camp</strong>
+                <span>55th New York Infantry near Tenallytown, 1861-1865</span>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="/static/images/american_university_1914.jpg" alt="American University College Buildings, 1914">
+            <div class="gallery-caption">
+                <strong>American University</strong>
+                <span>College Buildings, 1914 - Harris & Ewing</span>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="/static/images/wisconsin_ave_1942.jpg" alt="Wisconsin Avenue Gas Station, 1942">
+            <div class="gallery-caption">
+                <strong>Wisconsin Avenue</strong>
+                <span>Gas station during WWII rationing, June 1942</span>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="/static/images/civil_war_fort_construction.jpg" alt="Soldiers building fort to defend Washington, 1861">
+            <div class="gallery-caption">
+                <strong>Fort Construction</strong>
+                <span>Troops breaking ground for a fort, 1861</span>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="/static/images/water_tower_tenleytown.jpg" alt="Water Tower at Tenleytown">
+            <div class="gallery-caption">
+                <strong>Water Tower</strong>
+                <span>Tenleytown, ca. 1920-1950 - Horydczak</span>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="/static/images/fort_lincoln_dc.jpg" alt="Fort Lincoln, Defenses of Washington">
+            <div class="gallery-caption">
+                <strong>Fort Lincoln</strong>
+                <span>Brigade HQ, Civil War Defenses of Washington</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- What's Happening Section -->
+{% if featured_events %}
+<div class="whats-happening">
+    <h3>What's Happening</h3>
+    <p class="section-subtitle">Upcoming events in the neighborhood</p>
+    <div class="events-preview-list">
+        {% for event in featured_events %}
+        <div class="event-preview-card">
+            <div class="event-preview-date">
+                <span class="month">{{ event.date[5:7] | int | string }}</span>
+                <span class="day">{{ event.date[8:10] | int }}</span>
+            </div>
+            <div class="event-preview-content">
+                <h4>{{ event.title }}</h4>
+                <p class="event-preview-meta">
+                    <span><i class="fas fa-clock"></i> {{ event.time }}</span>
+                    <span><i class="fas fa-map-marker-alt"></i> {{ event.location }}</span>
+                </p>
+                {% if event.history_note %}
+                <p class="event-preview-history"><i class="fas fa-clock-rotate-left"></i> {{ event.history_note[:100] }}...</p>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="section-cta">
+        <a href="/events" class="btn-link">See All Events <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>
+{% endif %}
+
+<div class="quick-links">
+    <h3>Explore the Neighborhood</h3>
+    <div class="link-grid">
+        <a href="/page/tenleytown" class="link-card">
+            <i class="fas fa-beer"></i>
+            <h4>Tenleytown Origins</h4>
+            <p>The tavern that started it all (and the innkeeper who signed with an X)</p>
+        </a>
+        <a href="/page/fort_reno" class="link-card">
+            <i class="fas fa-flag"></i>
+            <h4>Fort Reno</h4>
+            <p>The highest point in DC and the fort that saved the capital</p>
+        </a>
+        <a href="/page/american_university" class="link-card">
+            <i class="fas fa-flask"></i>
+            <h4>American University</h4>
+            <p>From Methodist dreams to chemical weapons (really)</p>
+        </a>
+        <a href="/page/broadcasting" class="link-card">
+            <i class="fas fa-frog"></i>
+            <h4>Broadcasting</h4>
+            <p>Where Kermit the Frog was born at WRC-TV</p>
+        </a>
+        <a href="/dining" class="link-card">
+            <i class="fas fa-utensils"></i>
+            <h4>Dining Guide</h4>
+            <p>Where to eat, with the history behind each storefront</p>
+        </a>
+        <a href="/page/timeline" class="link-card">
+            <i class="fas fa-clock"></i>
+            <h4>Timeline</h4>
+            <p>10,000 years of history in one page</p>
+        </a>
+    </div>
+</div>
+
+<div class="featured-stories">
+    <h3>Stories You Won't Believe</h3>
+    <div class="story-grid">
+        <div class="story-card">
+            <div class="story-icon"><i class="fas fa-signature"></i></div>
+            <h4>The Man Who Couldn't Spell His Name</h4>
+            <p>John Tennally gave Tenleytown its name but signed documents with an X. His name was spelled 11 different ways in official records.</p>
+            <a href="/page/tenleytown">Read more</a>
+        </div>
+        <div class="story-card">
+            <div class="story-icon"><i class="fas fa-house-damage"></i></div>
+            <h4>Reno City: Erased from History</h4>
+            <p>A thriving African American community at Fort Reno was deliberately destroyed in the 1920s. The residents were given 60 days to leave.</p>
+            <a href="/page/fort_reno">Read more</a>
+        </div>
+        <div class="story-card">
+            <div class="story-icon"><i class="fas fa-skull-crossbones"></i></div>
+            <h4>The Poison in Spring Valley</h4>
+            <p>WWI chemical weapons are still being dug up in one of DC's wealthiest neighborhoods. They've found arsenic, mustard gas, and more.</p>
+            <a href="/page/american_university">Read more</a>
+        </div>
+        <div class="story-card">
+            <div class="story-icon"><i class="fas fa-temperature-low"></i></div>
+            <h4>The Debate That Changed Everything</h4>
+            <p>The Nixon-Kennedy debate was held at WRC-TV in Tenleytown. Nixon looked terrible because someone cranked the AC.</p>
+            <a href="/page/broadcasting">Read more</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
