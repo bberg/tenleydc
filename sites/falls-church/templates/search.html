@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="search-page">
+    <div class="search-header">
+        <h2>Search Results</h2>
+        <form action="/search" method="get" class="search-form-large">
+            <input type="search" name="q" value="{{ query }}" placeholder="Search the history..." aria-label="Search">
+            <button type="submit"><i class="fas fa-search"></i> Search</button>
+        </form>
+    </div>
+
+    {% if query %}
+    <div class="search-results">
+        {% if results %}
+        <p class="results-count">Found {{ results|length }} result{% if results|length != 1 %}s{% endif %} for "{{ query }}"</p>
+
+        <div class="results-list">
+            {% for result in results %}
+            <div class="result-item">
+                <h3><a href="/page/{{ result.slug }}">{{ result.title }}</a></h3>
+                <p class="result-snippet">...{{ result.snippet }}...</p>
+                <a href="/page/{{ result.slug }}" class="result-link">Read more <i class="fas fa-arrow-right"></i></a>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="no-results">
+            <i class="fas fa-search"></i>
+            <p>No results found for "{{ query }}"</p>
+            <p>Try different keywords or browse the topics below:</p>
+
+            <div class="browse-topics">
+                {% for item in navigation %}
+                <a href="{% if item.slug == 'overview' %}/{% else %}/page/{{ item.slug }}{% endif %}" class="topic-link">
+                    <i class="fas fa-{{ item.icon }}"></i>
+                    {{ item.title }}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    {% else %}
+    <div class="search-prompt">
+        <i class="fas fa-search"></i>
+        <p>Enter a search term to find content across all topics</p>
+
+        <h3>Popular Searches</h3>
+        <div class="popular-searches">
+            <a href="/search?q=tinner+hill">Tinner Hill</a>
+            <a href="/search?q=state+theatre">State Theatre</a>
+            <a href="/search?q=civil+war">Civil War</a>
+            <a href="/search?q=falls+church">The Falls Church</a>
+            <a href="/search?q=naacp">NAACP</a>
+            <a href="/search?q=downtown">Downtown</a>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

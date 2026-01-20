@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="home-hero">
+    <div class="hero-content">
+        <h1>Shepherd Park Almanac</h1>
+        <p class="hero-tagline">History, culture, and community in Washington, DC</p>
+    </div>
+</div>
+
+<div class="home-layout">
+    <!-- Main Article Column -->
+    <article class="home-article">
+        <p class="article-lead">
+            <strong>Shepherd Park</strong> occupies a unique place in American civil rights history. This Northwest Washington neighborhood, known informally as "The Garden of Diversity," achieved something remarkable in the 1950s and 1960s: it became and remained an integrated, middle-class community during an era when such neighborhoods were systematically destroyed by blockbusting and white flight.
+        </p>
+
+        <div class="article-infobox">
+            <h4>Shepherd Park</h4>
+            <dl>
+                <dt>Named For</dt>
+                <dd>Alexander Robey Shepherd</dd>
+                <dt>First Developed</dt>
+                <dd>1926 (Breuninger)</dd>
+                <dt>Key Organization</dt>
+                <dd>Neighbors, Inc. (1958)</dd>
+                <dt>Known As</dt>
+                <dd>"Garden of Diversity"</dd>
+            </dl>
+        </div>
+
+        <h2>History</h2>
+        <p>
+            Shepherd Park takes its name from Alexander Robey Shepherd (1835-1902), known as "Boss Shepherd," who transformed Washington through an ambitious public works program. Before his rise to power, Shepherd built a grand Victorian mansion on these heights, which he named "Bleak House" after the Dickens novel.
+        </p>
+        <p>
+            His plant nursery led to the wildflowers that still bloom in the neighborhood and to the streets named for flowers: Juniper, Hemlock, Holly, Iris.
+        </p>
+
+        <h2>Fighting Blockbusting</h2>
+        <p>
+            In 1958, an interracial group formed Neighbors, Inc. to oppose blockbusting and foster stable, integrated neighborhoods. Marvin Caplan, a Jewish journalist, joined with Warren Van Hook, a Black pharmacist, to organize approximately 50 residents. They fought blockbusting through direct action and succeeded: Shepherd Park is one of the only neighborhoods on the east side of Rock Creek Park where white flight was substantially stemmed.
+        </p>
+
+        <h2>The Jewish Community</h2>
+        <p>
+            Two major synagogues anchor Shepherd Park's Jewish community. Tifereth Israel Congregation dedicated its Shepherd Park building in 1957. Ohev Sholom Congregation, the oldest Orthodox congregation in Washington, dedicated its building in 1960.
+        </p>
+
+        <div class="article-see-also">
+            <h3>Explore More</h3>
+            <ul>
+                <li><a href="/page/history">Full History</a></li>
+                <li><a href="/page/timeline">Timeline</a></li>
+                <li><a href="/page/landmarks">Landmarks</a></li>
+                <li><a href="/about">About This Project</a></li>
+            </ul>
+        </div>
+    </article>
+
+    <!-- Sidebar Column -->
+    <aside class="home-sidebar">
+        <!-- What's Happening Section -->
+        {% if featured_events %}
+        <div class="sidebar-section">
+            <h3><i class="fas fa-calendar-alt"></i> What's Happening</h3>
+            <div class="sidebar-events">
+                {% for event in featured_events %}
+                <a href="/events" class="sidebar-event">
+                    <div class="event-date-compact">
+                        <span class="month">{{ event.date[5:7] | int }}</span>
+                        <span class="day">{{ event.date[8:10] | int }}</span>
+                    </div>
+                    <div class="event-info">
+                        <strong>{{ event.title }}</strong>
+                        <span class="event-location">{{ event.location }}</span>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            <a href="/events" class="sidebar-link">All Events <i class="fas fa-arrow-right"></i></a>
+        </div>
+        {% endif %}
+
+        <!-- Quick Links -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-compass"></i> Explore</h3>
+            <ul class="sidebar-quick-links">
+                <li><a href="/dining"><i class="fas fa-utensils"></i> Dining Guide</a></li>
+                <li><a href="/schools"><i class="fas fa-school"></i> Schools</a></li>
+                <li><a href="/arts"><i class="fas fa-palette"></i> Arts & Culture</a></li>
+                <li><a href="/worship"><i class="fas fa-church"></i> Houses of Worship</a></li>
+                <li><a href="/services"><i class="fas fa-building"></i> Public Services</a></li>
+                <li><a href="/map"><i class="fas fa-map"></i> Interactive Map</a></li>
+            </ul>
+        </div>
+
+        <!-- Historical Note -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-camera-retro"></i> From the Archives</h3>
+            <div class="sidebar-photo">
+                <p>Neighbors, Inc. successfully brought 60+ white families to Shepherd Park between 1960-1963, maintaining the integrated neighborhood during a time of widespread white flight.</p>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<!-- Notable Stories Section -->
+<div class="home-stories">
+    <h2>Notable Stories</h2>
+    <div class="story-grid">
+        <a href="/page/history" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-handshake"></i></div>
+            <h4>Neighbors, Inc.</h4>
+            <p>The interracial organization that fought blockbusting and preserved integration.</p>
+        </a>
+        <a href="/page/history" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-user-tie"></i></div>
+            <h4>Boss Shepherd</h4>
+            <p>The controversial figure who transformed DC and gave the neighborhood its name.</p>
+        </a>
+        <a href="/page/history" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-star-of-david"></i></div>
+            <h4>Jewish Community</h4>
+            <p>Two major synagogues anchor a vibrant community dating to the 1940s.</p>
+        </a>
+        <a href="/page/history" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-seedling"></i></div>
+            <h4>Bleak House</h4>
+            <p>Shepherd's Victorian mansion and nursery that gave the streets their floral names.</p>
+        </a>
+    </div>
+</div>
+{% endblock %}

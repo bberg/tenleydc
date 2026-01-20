@@ -3,7 +3,7 @@ Upper Northwest DC History Website
 A Flask application documenting the history of Tenleytown, AU Park, and surrounding neighborhoods
 """
 
-from flask import Flask, render_template, abort, request
+from flask import Flask, render_template, abort, request, redirect
 import markdown
 import json
 import os

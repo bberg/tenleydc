@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="business-profile">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <a href="/schools">Schools</a>
+        <span class="separator"><i class="fas fa-chevron-right"></i></span>
+        <span>{{ school.name }}</span>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="profile-hero {% if school.featured %}featured{% endif %}">
+        {% if school.featured %}
+        <span class="featured-badge"><i class="fas fa-star"></i> Featured School</span>
+        {% endif %}
+        <div class="profile-header">
+            <h1>{{ school.name }}</h1>
+            <span class="category-badge">
+                <i class="fas fa-{% if school.type == 'public' %}landmark{% elif school.type == 'private' %}graduation-cap{% else %}child{% endif %}"></i>
+                {% if school.type == 'public' %}DCPS Public School{% elif school.type == 'private' %}Private School{% else %}Preschool{% endif %}
+            </span>
+        </div>
+    </div>
+
+    <div class="profile-content">
+        <!-- Quick Info Sidebar -->
+        <aside class="profile-sidebar">
+            <div class="info-card">
+                <h3><i class="fas fa-info-circle"></i> Quick Info</h3>
+
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Address</strong>
+                        <p>{{ school.address }}</p>
+                    </div>
+                </div>
+
+                {% if school.grades %}
+                <div class="info-item">
+                    <i class="fas fa-users"></i>
+                    <div>
+                        <strong>Grades</strong>
+                        <p>{{ school.grades }}</p>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if school.phone %}
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <strong>Phone</strong>
+                        <p><a href="tel:{{ school.phone }}">{{ school.phone }}</a></p>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if school.website %}
+                <div class="info-item">
+                    <i class="fas fa-globe"></i>
+                    <div>
+                        <strong>Website</strong>
+                        <p><a href="{{ school.website }}" target="_blank" rel="noopener">Visit Website</a></p>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if school.dcps_profile %}
+                <div class="info-item">
+                    <i class="fas fa-chart-bar"></i>
+                    <div>
+                        <strong>DCPS Profile</strong>
+                        <p><a href="{{ school.dcps_profile }}" target="_blank" rel="noopener">View School Data</a></p>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Awards -->
+            {% if school.awards %}
+            <div class="info-card" style="margin-top: var(--space-lg);">
+                <h3><i class="fas fa-award"></i> Awards & Recognition</h3>
+                <ul class="awards-list">
+                    {% for award in school.awards %}
+                    <li><i class="fas fa-star"></i> {{ award }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            <!-- Neighborhood Context -->
+            <div class="neighborhood-card">
+                <h4><i class="fas fa-map"></i> Neighborhood</h4>
+                <p>{{ school.neighborhood | replace('-', ' ') | title }}</p>
+                <a href="/page/neighborhoods">Explore the area</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="profile-main">
+            <!-- Description -->
+            {% if school.description %}
+            <section class="profile-section">
+                <h2>About {{ school.name }}</h2>
+                <p class="description">{{ school.description }}</p>
+            </section>
+            {% endif %}
+
+            <!-- THE DIFFERENTIATOR: History Section -->
+            {% if school.history %}
+            <section class="profile-section history-section">
+                <div class="history-header">
+                    <h2><i class="fas fa-clock-rotate-left"></i> The Story</h2>
+                    <span class="history-tagline">The history of this institution</span>
+                </div>
+
+                <div class="history-content">
+                    {% if school.history.opened %}
+                    <div class="history-stat">
+                        <span class="stat-number">{{ school.history.opened }}</span>
+                        <span class="stat-label">Year Founded</span>
+                    </div>
+                    {% endif %}
+
+                    {% if school.history.named_after %}
+                    <div class="history-detail">
+                        <h4>Named After</h4>
+                        <p>{{ school.history.named_after }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if school.history.story %}
+                    <div class="history-detail">
+                        <h4>The Story</h4>
+                        <p>{{ school.history.story }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if school.history.notable_alumni %}
+                    <div class="history-detail">
+                        <h4><i class="fas fa-user-graduate"></i> Notable Alumni</h4>
+                        <p>{{ school.history.notable_alumni }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if school.history.neighborhood_context %}
+                    <div class="history-detail">
+                        <h4><i class="fas fa-compass"></i> Neighborhood Context</h4>
+                        <p>{{ school.history.neighborhood_context }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </section>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Related Schools -->
+    {% if related_schools %}
+    <section class="related-section">
+        <h2>Nearby Schools</h2>
+        <div class="related-grid">
+            {% for s in related_schools %}
+            <a href="/school/{{ s.slug }}" class="related-card">
+                <h4>{{ s.name }}</h4>
+                <p class="related-category">{{ s.type | title }} | {{ s.level | title if s.level else 'Preschool' }}</p>
+                <p class="related-address"><i class="fas fa-map-marker-alt"></i> {{ s.address }}</p>
+            </a>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Navigation -->
+    <div class="profile-nav">
+        <a href="/schools" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back to Schools</a>
+    </div>
+</div>
+{% endblock %}

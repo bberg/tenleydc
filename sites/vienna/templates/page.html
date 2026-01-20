@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<article class="content-article">
+    <div class="article-header">
+        <div class="page-navigation-top">
+            {% set current_index = namespace(value=None) %}
+            {% for item in navigation %}
+                {% if item.slug == current_page %}
+                    {% set current_index.value = loop.index0 %}
+                {% endif %}
+            {% endfor %}
+
+            {% if current_index.value is not none and current_index.value > 0 %}
+            <a href="{% if navigation[current_index.value - 1].slug == 'overview' %}/{% else %}/page/{{ navigation[current_index.value - 1].slug }}{% endif %}" class="nav-pill prev">
+                <i class="fas fa-arrow-left"></i>
+                {{ navigation[current_index.value - 1].title }}
+            </a>
+            {% endif %}
+
+            {% if current_index.value is not none and current_index.value < navigation|length - 1 %}
+            <a href="/page/{{ navigation[current_index.value + 1].slug }}" class="nav-pill next">
+                {{ navigation[current_index.value + 1].title }}
+                <i class="fas fa-arrow-right"></i>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="article-content">
+        {{ content | safe }}
+    </div>
+
+    <div class="page-navigation-bottom">
+        {% if current_index.value is not none and current_index.value > 0 %}
+        <a href="{% if navigation[current_index.value - 1].slug == 'overview' %}/{% else %}/page/{{ navigation[current_index.value - 1].slug }}{% endif %}" class="nav-card prev">
+            <span class="nav-label">Previous</span>
+            <span class="nav-title"><i class="fas fa-arrow-left"></i> {{ navigation[current_index.value - 1].title }}</span>
+        </a>
+        {% else %}
+        <span class="nav-card disabled"></span>
+        {% endif %}
+
+        {% if current_index.value is not none and current_index.value < navigation|length - 1 %}
+        <a href="/page/{{ navigation[current_index.value + 1].slug }}" class="nav-card next">
+            <span class="nav-label">Next</span>
+            <span class="nav-title">{{ navigation[current_index.value + 1].title }} <i class="fas fa-arrow-right"></i></span>
+        </a>
+        {% else %}
+        <span class="nav-card disabled"></span>
+        {% endif %}
+    </div>
+</article>
+{% endblock %}

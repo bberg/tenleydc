@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="home-hero">
+    <div class="hero-content">
+        <h1>College Park Almanac</h1>
+        <p class="hero-tagline">History, culture, and community in College Park, Maryland</p>
+    </div>
+</div>
+
+<div class="home-layout">
+    <!-- Main Article Column -->
+    <article class="home-article">
+        <p class="article-lead">
+            <strong>College Park, Maryland</strong> is a city in Prince George's County, home to the University of Maryland and the world's oldest continuously operating airport. The area's history spans from Native American settlements through its development as an agricultural community and eventual transformation into a vibrant college town.
+        </p>
+
+        <div class="article-infobox">
+            <h4>College Park</h4>
+            <dl>
+                <dt>Founded</dt>
+                <dd>1856</dd>
+                <dt>Incorporated</dt>
+                <dd>1945</dd>
+                <dt>Named For</dt>
+                <dd>Maryland Agricultural College</dd>
+                <dt>Key Landmarks</dt>
+                <dd>University of Maryland, College Park Airport, Lake Artemesia</dd>
+            </dl>
+        </div>
+
+        <h2>History</h2>
+        <p>
+            The area that would become College Park was originally inhabited by the Piscataway people. European settlement began in the 17th century as tobacco plantations. The community's modern history began in 1856 when the Maryland Agricultural College (now the University of Maryland) was established, giving the area its name.
+        </p>
+        <p>
+            College Park Airport, established in 1909, is the world's oldest continuously operating airport. Wilbur Wright trained military aviators here, and the facility has been in continuous operation ever since, witnessing many aviation firsts.
+        </p>
+
+        <h2>University of Maryland</h2>
+        <p>
+            The University of Maryland, College Park, is the state's flagship public research university. Founded as the Maryland Agricultural College in 1856, it has grown into one of the nation's leading research institutions with over 40,000 students and a sprawling campus that defines the character of the city.
+        </p>
+
+        <h2>Modern Era</h2>
+        <p>
+            Today, College Park is experiencing a renaissance with new development, the Purple Line transit project, and continued growth of the university. The city balances its historic character with modern urban amenities while maintaining its identity as a college town.
+        </p>
+
+        <div class="article-see-also">
+            <h3>Explore More</h3>
+            <ul>
+                <li><a href="/page/college-park">College Park History</a></li>
+                <li><a href="/page/university-of-maryland">University of Maryland</a></li>
+                <li><a href="/page/college-park-airport">College Park Airport</a></li>
+                <li><a href="/page/timeline">Full Timeline</a></li>
+            </ul>
+        </div>
+    </article>
+
+    <!-- Sidebar Column -->
+    <aside class="home-sidebar">
+        <!-- What's Happening Section -->
+        {% if featured_events %}
+        <div class="sidebar-section">
+            <h3><i class="fas fa-calendar-alt"></i> What's Happening</h3>
+            <div class="sidebar-events">
+                {% for event in featured_events %}
+                <a href="/events" class="sidebar-event">
+                    <div class="event-date-compact">
+                        <span class="month">{{ event.date[5:7] | int }}</span>
+                        <span class="day">{{ event.date[8:10] | int }}</span>
+                    </div>
+                    <div class="event-info">
+                        <strong>{{ event.title }}</strong>
+                        <span class="event-location">{{ event.location }}</span>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            <a href="/events" class="sidebar-link">All Events <i class="fas fa-arrow-right"></i></a>
+        </div>
+        {% endif %}
+
+        <!-- Quick Links -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-compass"></i> Explore</h3>
+            <ul class="sidebar-quick-links">
+                <li><a href="/dining"><i class="fas fa-utensils"></i> Dining Guide</a></li>
+                <li><a href="/schools"><i class="fas fa-school"></i> Schools</a></li>
+                <li><a href="/arts"><i class="fas fa-palette"></i> Arts & Culture</a></li>
+                <li><a href="/worship"><i class="fas fa-church"></i> Houses of Worship</a></li>
+                <li><a href="/services"><i class="fas fa-building"></i> Public Services</a></li>
+                <li><a href="/map"><i class="fas fa-map"></i> Interactive Map</a></li>
+            </ul>
+        </div>
+
+        <!-- From the Archives -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-camera-retro"></i> From the Archives</h3>
+            <div class="sidebar-photo">
+                <p>Historic photos coming soon</p>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<!-- Notable Stories Section -->
+<div class="home-stories">
+    <h2>Notable Stories</h2>
+    <div class="story-grid">
+        <a href="/page/college-park-airport" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-plane"></i></div>
+            <h4>World's Oldest Airport</h4>
+            <p>Where Wilbur Wright trained the first military pilots in 1909.</p>
+        </a>
+        <a href="/page/university-of-maryland" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-graduation-cap"></i></div>
+            <h4>Maryland's Flagship</h4>
+            <p>From agricultural college to major research university.</p>
+        </a>
+        <a href="/page/lake-artemesia" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-water"></i></div>
+            <h4>Lake Artemesia</h4>
+            <p>A man-made lake created during Metro construction.</p>
+        </a>
+        <a href="/page/timeline" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-clock"></i></div>
+            <h4>Timeline</h4>
+            <p>Key moments in College Park's history from 1856 to today.</p>
+        </a>
+    </div>
+</div>
+{% endblock %}

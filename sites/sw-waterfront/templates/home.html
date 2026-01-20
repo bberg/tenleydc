@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="home-hero">
+    <div class="hero-content">
+        <h1>Southwest Waterfront Almanac</h1>
+        <p class="hero-tagline">America's oldest fish market and the wound of urban renewal</p>
+    </div>
+</div>
+
+<div class="home-layout">
+    <!-- Main Article Column -->
+    <article class="home-article">
+        <p class="article-lead">
+            <strong>The Southwest Waterfront</strong> holds a paradoxical place in Washington, D.C.'s history. It is home to the nation's oldest continuously operating fish market, established in 1805, and to some of the city's most expensive new development at The Wharf. But between these bookends lies one of the most devastating urban renewal projects in American history.
+        </p>
+
+        <div class="article-infobox">
+            <h4>Southwest Waterfront</h4>
+            <dl>
+                <dt>Fish Market Founded</dt>
+                <dd>1805</dd>
+                <dt>Urban Renewal</dt>
+                <dd>1950s-1960s</dd>
+                <dt>Residents Displaced</dt>
+                <dd>23,000+</dd>
+                <dt>Buildings Demolished</dt>
+                <dd>99%</dd>
+            </dl>
+        </div>
+
+        <h2>The Island</h2>
+        <p>
+            In the early 19th century, the Southwest Waterfront was one of Washington's first privately developed areas. But the Washington City Canal proved too shallow and subject to unstable tides. When railroad tracks were built along Maryland Avenue SW, the isolation was complete. The area became known as "The Island."
+        </p>
+
+        <h2>Urban Renewal: The Destruction</h2>
+        <p>
+            In 1950, Congress passed the District of Columbia Redevelopment Act. What followed was among the most complete demolitions of an urban neighborhood in American history. <strong>560 acres</strong> were cleared. <strong>99% of buildings</strong> were leveled. <strong>23,000 residents</strong> were displaced. <strong>1,500 businesses</strong> were destroyed.
+        </p>
+
+        <h2>The Fish Market Survives</h2>
+        <p>
+            The Maine Avenue Fish Market, established in 1805, is the oldest continuously operating fish market in the United States - founded 17 years before New York's Fulton Fish Market. It survived everything: wars, economic depressions, the rise and fall of the neighborhood around it.
+        </p>
+
+        <div class="article-see-also">
+            <h3>Explore More</h3>
+            <ul>
+                <li><a href="/page/history">Full History</a></li>
+                <li><a href="/page/fish_market">Fish Market</a></li>
+                <li><a href="/page/urban_renewal">Urban Renewal</a></li>
+                <li><a href="/page/the_wharf">The Wharf</a></li>
+                <li><a href="/page/timeline">Timeline</a></li>
+            </ul>
+        </div>
+    </article>
+
+    <!-- Sidebar Column -->
+    <aside class="home-sidebar">
+        <!-- What's Happening Section -->
+        {% if featured_events %}
+        <div class="sidebar-section">
+            <h3><i class="fas fa-calendar-alt"></i> What's Happening</h3>
+            <div class="sidebar-events">
+                {% for event in featured_events %}
+                <a href="/events" class="sidebar-event">
+                    <div class="event-date-compact">
+                        <span class="month">{{ event.date[5:7] | int }}</span>
+                        <span class="day">{{ event.date[8:10] | int }}</span>
+                    </div>
+                    <div class="event-info">
+                        <strong>{{ event.title }}</strong>
+                        <span class="event-location">{{ event.location }}</span>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            <a href="/events" class="sidebar-link">All Events <i class="fas fa-arrow-right"></i></a>
+        </div>
+        {% endif %}
+
+        <!-- Quick Links -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-compass"></i> Explore</h3>
+            <ul class="sidebar-quick-links">
+                <li><a href="/page/fish_market"><i class="fas fa-fish"></i> Fish Market</a></li>
+                <li><a href="/page/the_wharf"><i class="fas fa-water"></i> The Wharf</a></li>
+                <li><a href="/page/urban_renewal"><i class="fas fa-building"></i> Urban Renewal</a></li>
+                <li><a href="/page/wheat_row"><i class="fas fa-monument"></i> Wheat Row</a></li>
+                <li><a href="/businesses"><i class="fas fa-store"></i> Local Businesses</a></li>
+                <li><a href="/map"><i class="fas fa-map"></i> Interactive Map</a></li>
+            </ul>
+        </div>
+
+        <!-- From the Archives -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-camera-retro"></i> From the Archives</h3>
+            <div class="sidebar-photo">
+                <p>The Maine Avenue Fish Market has operated continuously since 1805</p>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<!-- Notable Stories Section -->
+<div class="home-stories">
+    <h2>Notable Stories</h2>
+    <div class="story-grid">
+        <a href="/page/fish_market" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-fish"></i></div>
+            <h4>America's Oldest Fish Market</h4>
+            <p>Operating since 1805, 17 years before New York's Fulton Fish Market.</p>
+        </a>
+        <a href="/page/urban_renewal" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-house-damage"></i></div>
+            <h4>The Wound of Urban Renewal</h4>
+            <p>23,000 residents displaced, 99% of buildings demolished.</p>
+        </a>
+        <a href="/page/the_island" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-water"></i></div>
+            <h4>The Island</h4>
+            <p>How isolation shaped Southwest's unique character.</p>
+        </a>
+        <a href="/page/the_wharf" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-building"></i></div>
+            <h4>The Wharf</h4>
+            <p>$2.5 billion development built on the graves of community bonds.</p>
+        </a>
+    </div>
+</div>
+{% endblock %}

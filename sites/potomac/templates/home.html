@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="home-hero">
+    <div class="hero-content">
+        <h1>Potomac Almanac</h1>
+        <p class="hero-tagline">History, culture, and community in Potomac, Maryland</p>
+    </div>
+</div>
+
+<div class="home-layout">
+    <!-- Main Article Column -->
+    <article class="home-article">
+        <p class="article-lead">
+            <strong>Potomac, Maryland</strong> is an affluent unincorporated community in Montgomery County, known for its historic estates, proximity to Great Falls, and the C&O Canal. The area's rich history encompasses Native American settlements, colonial tobacco farms, and the canal era that shaped the region.
+        </p>
+
+        <div class="article-infobox">
+            <h4>Potomac</h4>
+            <dl>
+                <dt>Settlement</dt>
+                <dd>Early 1700s</dd>
+                <dt>Named For</dt>
+                <dd>Potomac River</dd>
+                <dt>County</dt>
+                <dd>Montgomery County, MD</dd>
+                <dt>Key Landmarks</dt>
+                <dd>Great Falls, C&O Canal, Potomac Village</dd>
+            </dl>
+        </div>
+
+        <h2>History</h2>
+        <p>
+            The Potomac area was originally home to the Piscataway and other Algonquian-speaking peoples. European settlers arrived in the early 18th century, establishing tobacco plantations along the Potomac River. The name "Potomac" derives from an Algonquian word meaning "river of swans" or "trading place."
+        </p>
+        <p>
+            The construction of the Chesapeake and Ohio Canal in the 1830s transformed the area, creating a vital transportation corridor for goods moving between the mountains and Georgetown. The canal operated until 1924 and is now preserved as a national historical park.
+        </p>
+
+        <h2>Great Falls</h2>
+        <p>
+            Great Falls of the Potomac is one of the most spectacular natural landmarks in the Washington region. The falls cascade over a series of jagged rocks, dropping 76 feet in less than a mile. The area has been a destination for visitors since the colonial era.
+        </p>
+
+        <h2>Modern Potomac</h2>
+        <p>
+            Today, Potomac is known as one of the wealthiest communities in the United States, with large estates, excellent schools, and a rural character that contrasts with nearby urban development. The community maintains strict zoning to preserve its open spaces and historic character.
+        </p>
+
+        <div class="article-see-also">
+            <h3>Explore More</h3>
+            <ul>
+                <li><a href="/page/potomac">Potomac History</a></li>
+                <li><a href="/page/great-falls">Great Falls</a></li>
+                <li><a href="/page/c-and-o-canal">C&O Canal</a></li>
+                <li><a href="/page/timeline">Full Timeline</a></li>
+            </ul>
+        </div>
+    </article>
+
+    <!-- Sidebar Column -->
+    <aside class="home-sidebar">
+        <!-- What's Happening Section -->
+        {% if featured_events %}
+        <div class="sidebar-section">
+            <h3><i class="fas fa-calendar-alt"></i> What's Happening</h3>
+            <div class="sidebar-events">
+                {% for event in featured_events %}
+                <a href="/events" class="sidebar-event">
+                    <div class="event-date-compact">
+                        <span class="month">{{ event.date[5:7] | int }}</span>
+                        <span class="day">{{ event.date[8:10] | int }}</span>
+                    </div>
+                    <div class="event-info">
+                        <strong>{{ event.title }}</strong>
+                        <span class="event-location">{{ event.location }}</span>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            <a href="/events" class="sidebar-link">All Events <i class="fas fa-arrow-right"></i></a>
+        </div>
+        {% endif %}
+
+        <!-- Quick Links -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-compass"></i> Explore</h3>
+            <ul class="sidebar-quick-links">
+                <li><a href="/dining"><i class="fas fa-utensils"></i> Dining Guide</a></li>
+                <li><a href="/schools"><i class="fas fa-school"></i> Schools</a></li>
+                <li><a href="/arts"><i class="fas fa-palette"></i> Arts & Culture</a></li>
+                <li><a href="/worship"><i class="fas fa-church"></i> Houses of Worship</a></li>
+                <li><a href="/services"><i class="fas fa-building"></i> Public Services</a></li>
+                <li><a href="/map"><i class="fas fa-map"></i> Interactive Map</a></li>
+            </ul>
+        </div>
+
+        <!-- From the Archives -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-camera-retro"></i> From the Archives</h3>
+            <div class="sidebar-photo">
+                <p>Historic photos coming soon</p>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<!-- Notable Stories Section -->
+<div class="home-stories">
+    <h2>Notable Stories</h2>
+    <div class="story-grid">
+        <a href="/page/great-falls" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-water"></i></div>
+            <h4>Great Falls</h4>
+            <p>One of the most spectacular waterfalls in the eastern United States.</p>
+        </a>
+        <a href="/page/c-and-o-canal" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-route"></i></div>
+            <h4>C&O Canal</h4>
+            <p>A 184-mile towpath from Georgetown to Cumberland.</p>
+        </a>
+        <a href="/page/estates" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-home"></i></div>
+            <h4>Historic Estates</h4>
+            <p>Grand homes and their stories from Potomac's past.</p>
+        </a>
+        <a href="/page/timeline" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-clock"></i></div>
+            <h4>Timeline</h4>
+            <p>Key moments in Potomac's history from colonial times to today.</p>
+        </a>
+    </div>
+</div>
+{% endblock %}

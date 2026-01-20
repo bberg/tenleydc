@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="directory-page">
+    <div class="directory-header">
+        <h1><i class="fas fa-place-of-worship"></i> Houses of Worship</h1>
+        <p class="directory-intro">Churches, synagogues, mosques, and other religious institutions serving Upper Northwest DC. Many have been community anchors for over a century.</p>
+    </div>
+
+    <!-- Filters -->
+    <div class="directory-filters">
+        <div class="filter-group">
+            <label>Type:</label>
+            <div class="filter-pills">
+                <a href="/worship" class="filter-pill {% if not current_type %}active{% endif %}">All</a>
+                <a href="/worship?type=church" class="filter-pill {% if current_type == 'church' %}active{% endif %}">
+                    <i class="fas fa-church"></i> Churches
+                </a>
+                <a href="/worship?type=synagogue" class="filter-pill {% if current_type == 'synagogue' %}active{% endif %}">
+                    <i class="fas fa-star-of-david"></i> Synagogues
+                </a>
+                <a href="/worship?type=mosque" class="filter-pill {% if current_type == 'mosque' %}active{% endif %}">
+                    <i class="fas fa-mosque"></i> Mosques
+                </a>
+                <a href="/worship?type=other" class="filter-pill {% if current_type == 'other' %}active{% endif %}">
+                    <i class="fas fa-hands-praying"></i> Other
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results count -->
+    <p class="results-count">
+        Showing {{ institutions|length }} institution{% if institutions|length != 1 %}s{% endif %}
+        {% if current_type %} ({{ current_type }}{% if current_type == 'church' %}es{% elif current_type == 'synagogue' %}s{% endif %}){% endif %}
+    </p>
+
+    <!-- Worship Grid -->
+    {% if institutions %}
+    <div class="business-grid">
+        {% for place in institutions %}
+        <a href="/worship/{{ place.slug }}" class="business-card {% if place.featured %}featured{% endif %}">
+            {% if place.featured %}
+            <span class="featured-badge"><i class="fas fa-star"></i> Featured</span>
+            {% endif %}
+            <div class="business-card-header">
+                <h3>{{ place.name }}</h3>
+                <span class="business-category">{{ place.denomination if place.denomination else place.type | title }}</span>
+            </div>
+            <p class="business-address">
+                <i class="fas fa-map-marker-alt"></i>
+                {{ place.address }}
+            </p>
+            {% if place.services %}
+            <p class="worship-services">
+                <i class="fas fa-clock"></i> {{ place.services }}
+            </p>
+            {% endif %}
+            {% if place.description %}
+            <p class="business-description">{{ place.description[:120] }}{% if place.description|length > 120 %}...{% endif %}</p>
+            {% endif %}
+            {% if place.history and place.history.founded %}
+            <div class="business-history-teaser">
+                <i class="fas fa-clock-rotate-left"></i>
+                Est. {{ place.history.founded }}
+            </div>
+            {% endif %}
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-results">
+        <i class="fas fa-place-of-worship"></i>
+        <h3>No institutions found</h3>
+        <p>Try adjusting your filters or <a href="/worship">view all institutions</a>.</p>
+    </div>
+    {% endif %}
+
+    <!-- Community Note -->
+    <div class="directory-note">
+        <h3>Know a house of worship we're missing?</h3>
+        <p>Help us document the neighborhood. <a href="/about">Get in touch</a> with additions or corrections.</p>
+    </div>
+</div>
+{% endblock %}

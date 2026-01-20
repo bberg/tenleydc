@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="home-hero">
+    <div class="hero-content">
+        <h1>Hyattsville Almanac</h1>
+        <p class="hero-tagline">History, culture, and community in Hyattsville, Maryland</p>
+    </div>
+</div>
+
+<div class="home-layout">
+    <!-- Main Article Column -->
+    <article class="home-article">
+        <p class="article-lead">
+            <strong>Hyattsville, Maryland</strong> is a city in Prince George's County with a rich history dating back to the 1840s. Known today for its vibrant Arts District, historic neighborhoods, and diverse community, Hyattsville has transformed from a railroad suburb to a thriving urban center.
+        </p>
+
+        <div class="article-infobox">
+            <h4>Hyattsville</h4>
+            <dl>
+                <dt>Founded</dt>
+                <dd>1845</dd>
+                <dt>Incorporated</dt>
+                <dd>1886</dd>
+                <dt>Named For</dt>
+                <dd>Christopher Clark Hyatt</dd>
+                <dt>Key Landmarks</dt>
+                <dd>Arts District, Historic District, Magruder Park</dd>
+            </dl>
+        </div>
+
+        <h2>History</h2>
+        <p>
+            Hyattsville was founded by Christopher Clark Hyatt, a merchant who established a store near the Baltimore and Ohio Railroad in 1845. The arrival of the railroad transformed the area from farmland into a thriving suburb, attracting residents from Washington who sought fresh air and open spaces.
+        </p>
+        <p>
+            The city was incorporated in 1886 and quickly developed a commercial center along Baltimore Avenue. Victorian-era homes and commercial buildings from this period still stand in the historic district, representing some of the finest architecture in Prince George's County.
+        </p>
+
+        <h2>Arts District</h2>
+        <p>
+            Today, Hyattsville is home to a thriving Arts District that has transformed the Route 1 corridor. Galleries, studios, restaurants, and creative businesses have revitalized historic buildings, making the area a destination for arts and culture in the region.
+        </p>
+
+        <h2>Modern Hyattsville</h2>
+        <p>
+            The city continues to evolve with new transit-oriented development, including the Prince George's Plaza Metro station area. Hyattsville balances preservation of its historic character with thoughtful development to serve its diverse, growing community.
+        </p>
+
+        <div class="article-see-also">
+            <h3>Explore More</h3>
+            <ul>
+                <li><a href="/page/hyattsville">Hyattsville History</a></li>
+                <li><a href="/page/arts-district">Arts District</a></li>
+                <li><a href="/page/historic-district">Historic District</a></li>
+                <li><a href="/page/timeline">Full Timeline</a></li>
+            </ul>
+        </div>
+    </article>
+
+    <!-- Sidebar Column -->
+    <aside class="home-sidebar">
+        <!-- What's Happening Section -->
+        {% if featured_events %}
+        <div class="sidebar-section">
+            <h3><i class="fas fa-calendar-alt"></i> What's Happening</h3>
+            <div class="sidebar-events">
+                {% for event in featured_events %}
+                <a href="/events" class="sidebar-event">
+                    <div class="event-date-compact">
+                        <span class="month">{{ event.date[5:7] | int }}</span>
+                        <span class="day">{{ event.date[8:10] | int }}</span>
+                    </div>
+                    <div class="event-info">
+                        <strong>{{ event.title }}</strong>
+                        <span class="event-location">{{ event.location }}</span>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            <a href="/events" class="sidebar-link">All Events <i class="fas fa-arrow-right"></i></a>
+        </div>
+        {% endif %}
+
+        <!-- Quick Links -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-compass"></i> Explore</h3>
+            <ul class="sidebar-quick-links">
+                <li><a href="/dining"><i class="fas fa-utensils"></i> Dining Guide</a></li>
+                <li><a href="/schools"><i class="fas fa-school"></i> Schools</a></li>
+                <li><a href="/arts"><i class="fas fa-palette"></i> Arts & Culture</a></li>
+                <li><a href="/worship"><i class="fas fa-church"></i> Houses of Worship</a></li>
+                <li><a href="/services"><i class="fas fa-building"></i> Public Services</a></li>
+                <li><a href="/map"><i class="fas fa-map"></i> Interactive Map</a></li>
+            </ul>
+        </div>
+
+        <!-- From the Archives -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-camera-retro"></i> From the Archives</h3>
+            <div class="sidebar-photo">
+                <p>Historic photos coming soon</p>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<!-- Notable Stories Section -->
+<div class="home-stories">
+    <h2>Notable Stories</h2>
+    <div class="story-grid">
+        <a href="/page/arts-district" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-palette"></i></div>
+            <h4>Arts District</h4>
+            <p>A creative renaissance along Route 1.</p>
+        </a>
+        <a href="/page/historic-district" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-landmark"></i></div>
+            <h4>Historic District</h4>
+            <p>Victorian architecture and the city's founding stories.</p>
+        </a>
+        <a href="/page/transportation" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-train"></i></div>
+            <h4>Railroad History</h4>
+            <p>How the B&O Railroad created a suburban community.</p>
+        </a>
+        <a href="/page/timeline" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-clock"></i></div>
+            <h4>Timeline</h4>
+            <p>Key moments in Hyattsville's history from 1845 to today.</p>
+        </a>
+    </div>
+</div>
+{% endblock %}

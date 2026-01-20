@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="home-hero">
+    <div class="hero-content">
+        <h1>Glover Park Almanac</h1>
+        <p class="hero-tagline">History, culture, and community in Washington, DC</p>
+    </div>
+</div>
+
+<div class="home-layout">
+    <!-- Main Article Column -->
+    <article class="home-article">
+        <p class="article-lead">
+            <strong>Glover Park</strong> occupies a distinctive place in Washington, D.C.'s geography and history. Perched on the heights about a half mile north of Georgetown, adjacent to the United States Naval Observatory and the Vice President's residence, this neighborhood emerged from an unlikely transformation: slaughterhouse land became a planned suburban community.
+        </p>
+
+        <div class="article-infobox">
+            <h4>Glover Park</h4>
+            <dl>
+                <dt>Named For</dt>
+                <dd>Charles Carroll Glover</dd>
+                <dt>First Developed</dt>
+                <dd>1910 (Hall Place)</dd>
+                <dt>Namesake Park</dt>
+                <dd>Glover-Archbold Park (1924)</dd>
+                <dt>Key School</dt>
+                <dd>Stoddert Elementary (1932)</dd>
+            </dl>
+        </div>
+
+        <h2>History</h2>
+        <p>
+            The neighborhood takes its name from Charles Carroll Glover (1846-1936), one of Washington's most influential banker-philanthropists. The parks he helped create represent approximately 3,200 acres, nearly half the total surface of the National Capital Parks. He played critical roles in establishing Rock Creek Park, the National Zoo, and Potomac Park.
+        </p>
+        <p>
+            In 1924, Glover and Anne Mills Archbold donated the land that became Glover-Archbold Park, forming the neighborhood's western boundary. The name "Glover Park" first appeared in advertisements in 1926.
+        </p>
+
+        <h2>An Unlikely Beginning</h2>
+        <p>
+            The neighborhood's origins involve two populations rarely associated with suburban development: free Black farmers and Georgetown's master butchers. The earliest recorded settlement appears in Georgetown tax assessments between 1808 and 1810 in the village of Wilberforce, a long-forgotten subdivision.
+        </p>
+
+        <h2>Holy Rood Cemetery</h2>
+        <p>
+            At the neighborhood's southern edge, Holy Rood Cemetery holds remains that connect Glover Park to the deepest currents of American history. Established in 1832, this 6.5-acre site contains approximately 7,000 burials, including as many as 1,000 free and enslaved African Americans.
+        </p>
+
+        <div class="article-see-also">
+            <h3>Explore More</h3>
+            <ul>
+                <li><a href="/page/history">Full History</a></li>
+                <li><a href="/page/timeline">Timeline</a></li>
+                <li><a href="/page/landmarks">Landmarks</a></li>
+                <li><a href="/about">About This Project</a></li>
+            </ul>
+        </div>
+    </article>
+
+    <!-- Sidebar Column -->
+    <aside class="home-sidebar">
+        <!-- What's Happening Section -->
+        {% if featured_events %}
+        <div class="sidebar-section">
+            <h3><i class="fas fa-calendar-alt"></i> What's Happening</h3>
+            <div class="sidebar-events">
+                {% for event in featured_events %}
+                <a href="/events" class="sidebar-event">
+                    <div class="event-date-compact">
+                        <span class="month">{{ event.date[5:7] | int }}</span>
+                        <span class="day">{{ event.date[8:10] | int }}</span>
+                    </div>
+                    <div class="event-info">
+                        <strong>{{ event.title }}</strong>
+                        <span class="event-location">{{ event.location }}</span>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            <a href="/events" class="sidebar-link">All Events <i class="fas fa-arrow-right"></i></a>
+        </div>
+        {% endif %}
+
+        <!-- Quick Links -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-compass"></i> Explore</h3>
+            <ul class="sidebar-quick-links">
+                <li><a href="/dining"><i class="fas fa-utensils"></i> Dining Guide</a></li>
+                <li><a href="/schools"><i class="fas fa-school"></i> Schools</a></li>
+                <li><a href="/arts"><i class="fas fa-palette"></i> Arts & Culture</a></li>
+                <li><a href="/worship"><i class="fas fa-church"></i> Houses of Worship</a></li>
+                <li><a href="/services"><i class="fas fa-building"></i> Public Services</a></li>
+                <li><a href="/map"><i class="fas fa-map"></i> Interactive Map</a></li>
+            </ul>
+        </div>
+
+        <!-- Historical Note -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-camera-retro"></i> From the Archives</h3>
+            <div class="sidebar-photo">
+                <p>Glover-Archbold Park was donated in 1924 by Charles Carroll Glover and Anne Mills Archbold, creating a green corridor connecting to Rock Creek Park.</p>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<!-- Notable Stories Section -->
+<div class="home-stories">
+    <h2>Notable Stories</h2>
+    <div class="story-grid">
+        <a href="/page/history" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-user-tie"></i></div>
+            <h4>Charles Carroll Glover</h4>
+            <p>The banker-philanthropist who shaped Washington's parks and gave the neighborhood its name.</p>
+        </a>
+        <a href="/page/history" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-cross"></i></div>
+            <h4>Holy Rood Cemetery</h4>
+            <p>Burial ground for 7,000 souls, including 1,000 enslaved and free African Americans.</p>
+        </a>
+        <a href="/page/history" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-tree"></i></div>
+            <h4>Glover-Archbold Park</h4>
+            <p>The 1924 gift that created a green corridor through Northwest DC.</p>
+        </a>
+        <a href="/page/history" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-home"></i></div>
+            <h4>Village of Wilberforce</h4>
+            <p>The forgotten community of free Black farmers and German immigrants.</p>
+        </a>
+    </div>
+</div>
+{% endblock %}

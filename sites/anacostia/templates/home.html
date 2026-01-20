@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="home-hero">
+    <div class="hero-content">
+        <h1>Anacostia Almanac</h1>
+        <p class="hero-tagline">History and culture of Washington's first suburb</p>
+    </div>
+</div>
+
+<div class="home-layout">
+    <!-- Main Article Column -->
+    <article class="home-article">
+        <p class="article-lead">
+            <strong>Anacostia</strong> stands as one of the most historically significant neighborhoods in Washington, D.C. Located east of the Anacostia River in Southeast Washington, this neighborhood holds a unique place in American history as both Washington's first planned suburb and the final home of Frederick Douglass.
+        </p>
+
+        <div class="article-infobox">
+            <h4>Anacostia</h4>
+            <dl>
+                <dt>Founded</dt>
+                <dd>1854 (as Uniontown)</dd>
+                <dt>Notable Resident</dt>
+                <dd>Frederick Douglass</dd>
+                <dt>Key Landmarks</dt>
+                <dd>Cedar Hill, Barry Farm, Anacostia Park</dd>
+                <dt>Historic District</dt>
+                <dd>Added to National Register 1978</dd>
+            </dl>
+        </div>
+
+        <h2>A Tale of Two Communities</h2>
+        <p>
+            The history of Anacostia cannot be told as a single narrative. <strong>Uniontown</strong>, founded in 1854, was Washington's first planned suburb, with restrictive covenants that barred sales to Black residents. Just thirteen years later, <strong>Barry Farm-Hillsdale</strong>, established by the Freedmen's Bureau in 1867, became home to formerly enslaved people who had fled to Washington during the Civil War.
+        </p>
+
+        <h2>Frederick Douglass: The Sage of Anacostia</h2>
+        <p>
+            In 1877, Frederick Douglass made his most profound statement about Anacostia's racial covenants: he ignored them. The formerly enslaved man who had become an internationally known writer, lecturer, and social reformer purchased Cedar Hill for $6,700, defying the whites-only restrictions. He would live there until his death in 1895, earning the title "the Sage of Anacostia."
+        </p>
+
+        <h2>Civil Rights Battleground</h2>
+        <p>
+            After World War II, Barry Farm-Hillsdale became a center of civil rights activism. In 1949, youth from the community helped desegregate the Anacostia swimming pool. Parents were at the forefront of the fight to desegregate schools, facing strikes and protests in 1954.
+        </p>
+
+        <div class="article-see-also">
+            <h3>Explore More</h3>
+            <ul>
+                <li><a href="/page/history">Full History</a></li>
+                <li><a href="/page/cedar_hill">Cedar Hill</a></li>
+                <li><a href="/page/barry_farm">Barry Farm</a></li>
+                <li><a href="/page/frederick_douglass">Frederick Douglass</a></li>
+                <li><a href="/page/timeline">Timeline</a></li>
+            </ul>
+        </div>
+    </article>
+
+    <!-- Sidebar Column -->
+    <aside class="home-sidebar">
+        <!-- What's Happening Section -->
+        {% if featured_events %}
+        <div class="sidebar-section">
+            <h3><i class="fas fa-calendar-alt"></i> What's Happening</h3>
+            <div class="sidebar-events">
+                {% for event in featured_events %}
+                <a href="/events" class="sidebar-event">
+                    <div class="event-date-compact">
+                        <span class="month">{{ event.date[5:7] | int }}</span>
+                        <span class="day">{{ event.date[8:10] | int }}</span>
+                    </div>
+                    <div class="event-info">
+                        <strong>{{ event.title }}</strong>
+                        <span class="event-location">{{ event.location }}</span>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            <a href="/events" class="sidebar-link">All Events <i class="fas fa-arrow-right"></i></a>
+        </div>
+        {% endif %}
+
+        <!-- Quick Links -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-compass"></i> Explore</h3>
+            <ul class="sidebar-quick-links">
+                <li><a href="/page/cedar_hill"><i class="fas fa-landmark"></i> Cedar Hill</a></li>
+                <li><a href="/page/barry_farm"><i class="fas fa-building"></i> Barry Farm</a></li>
+                <li><a href="/page/frederick_douglass"><i class="fas fa-user"></i> Frederick Douglass</a></li>
+                <li><a href="/page/civil_rights"><i class="fas fa-fist-raised"></i> Civil Rights Era</a></li>
+                <li><a href="/businesses"><i class="fas fa-store"></i> Local Businesses</a></li>
+                <li><a href="/map"><i class="fas fa-map"></i> Interactive Map</a></li>
+            </ul>
+        </div>
+
+        <!-- From the Archives -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-camera-retro"></i> From the Archives</h3>
+            <div class="sidebar-photo">
+                <p>Frederick Douglass at Cedar Hill, his home from 1877-1895</p>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<!-- Notable Stories Section -->
+<div class="home-stories">
+    <h2>Notable Stories</h2>
+    <div class="story-grid">
+        <a href="/page/frederick_douglass" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-signature"></i></div>
+            <h4>The Sage of Anacostia</h4>
+            <p>Frederick Douglass defied racial covenants to make Cedar Hill his home.</p>
+        </a>
+        <a href="/page/barry_farm" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-home"></i></div>
+            <h4>Barry Farm-Hillsdale</h4>
+            <p>Freedmen built a community by candlelight after working downtown all day.</p>
+        </a>
+        <a href="/page/civil_rights" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-fist-raised"></i></div>
+            <h4>Civil Rights Battleground</h4>
+            <p>Youth helped desegregate the Anacostia swimming pool in 1949.</p>
+        </a>
+        <a href="/page/historic_anacostia" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-building"></i></div>
+            <h4>Historic District</h4>
+            <p>550 buildings document working-class communities from 1854-1930.</p>
+        </a>
+    </div>
+</div>
+{% endblock %}

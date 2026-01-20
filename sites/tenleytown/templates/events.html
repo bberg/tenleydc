@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="events-page">
+    <div class="events-header">
+        <h1><i class="fas fa-calendar"></i> Events</h1>
+        <p class="events-intro">What's happening in our neighborhood. From historic traditions to new community gatherings.</p>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="events-filters">
+        <div class="filter-pills">
+            <a href="/events" class="filter-pill {% if not current_category %}active{% endif %}">All Events</a>
+            {% for cat in categories %}
+            <a href="/events?category={{ cat }}"
+               class="filter-pill {% if current_category == cat %}active{% endif %}">
+                {{ cat | title }}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Events List -->
+    {% if events %}
+    <div class="events-list">
+        {% for event in events %}
+        <div class="event-card {% if event.featured %}featured{% endif %}">
+            {% if event.featured %}
+            <span class="featured-badge"><i class="fas fa-star"></i> Featured</span>
+            {% endif %}
+
+            <div class="event-date">
+                <span class="event-month">{{ event.date[5:7] | int | string }}</span>
+                <span class="event-day">{{ event.date[8:10] | int }}</span>
+            </div>
+
+            <div class="event-content">
+                <div class="event-header">
+                    <h3>{{ event.title }}</h3>
+                    <span class="event-category">{{ event.category | title }}</span>
+                </div>
+
+                <div class="event-meta">
+                    <span class="event-time"><i class="fas fa-clock"></i> {{ event.time }}</span>
+                    <span class="event-location"><i class="fas fa-map-marker-alt"></i> {{ event.location }}</span>
+                    {% if event.free %}
+                    <span class="event-free"><i class="fas fa-ticket-alt"></i> Free</span>
+                    {% endif %}
+                </div>
+
+                <p class="event-description">{{ event.description }}</p>
+
+                {% if event.recurring %}
+                <p class="event-recurring">
+                    <i class="fas fa-repeat"></i> {{ event.recurrence_pattern }}
+                </p>
+                {% endif %}
+
+                {% if event.history_note %}
+                <div class="event-history">
+                    <h4><i class="fas fa-clock-rotate-left"></i> Historical Note</h4>
+                    <p>{{ event.history_note }}</p>
+                </div>
+                {% endif %}
+
+                {% if event.link %}
+                <a href="{{ event.link }}" target="_blank" rel="noopener" class="event-link">
+                    More Info <i class="fas fa-external-link-alt"></i>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-results">
+        <i class="fas fa-calendar-xmark"></i>
+        <h3>No upcoming events</h3>
+        <p>Check back soon for new events, or <a href="/events">view all event types</a>.</p>
+    </div>
+    {% endif %}
+
+    <!-- Submit Event -->
+    <div class="events-submit">
+        <h3>Know of a local event?</h3>
+        <p>Help us keep the community calendar current. <a href="mailto:hello@tennallysalmanac.com">Send us the details</a>.</p>
+    </div>
+
+    <!-- Historical Events Note -->
+    <div class="events-history-note">
+        <h3><i class="fas fa-book-open"></i> From the Archives</h3>
+        <p>Many of our neighborhood events have deep historical roots. The Fort Reno concerts date to 1968. The farmers market tradition stretches back to when this was farmland. Every gathering connects us to those who came before.</p>
+        <a href="/page/timeline">Explore the Timeline</a>
+    </div>
+</div>
+{% endblock %}

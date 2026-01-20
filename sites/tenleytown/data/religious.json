@@ -1,0 +1,342 @@
+{
+  "institutions": [
+    {
+      "id": "national-presbyterian",
+      "name": "National Presbyterian Church",
+      "slug": "national-presbyterian",
+      "denomination": "Presbyterian (PCUSA)",
+      "type": "church",
+      "address": "4101 Nebraska Ave NW",
+      "neighborhood": "tenleytown",
+      "website": "https://nationalpres.org",
+      "phone": "(202) 537-0800",
+      "services": "Sundays 8:30am, 11am",
+      "description": "Known as the 'National Church' for Presbyterians, this landmark features a 173-foot Tower of Faith and serves as a spiritual home for Presbyterians from across the nation.",
+      "history": {
+        "founded": 1795,
+        "building_built": 1969,
+        "story": "The congregation traces its roots to 1795, making it one of the oldest Presbyterian churches in Washington. Presidents Eisenhower and Reagan both worshipped here. The current modernist building on Nebraska Avenue was dedicated in 1969 and features stunning stained glass windows and a carillon of 61 bells."
+      },
+      "featured": true
+    },
+    {
+      "id": "cleveland-park-congregational",
+      "name": "Cleveland Park Congregational United Church of Christ",
+      "slug": "cleveland-park-congregational",
+      "denomination": "United Church of Christ (UCC)",
+      "type": "church",
+      "address": "3400 Lowell St NW",
+      "neighborhood": "cleveland-park",
+      "website": "https://cpcchurch.org",
+      "phone": "(202) 363-8225",
+      "services": "Sundays 10am",
+      "description": "A progressive, inclusive congregation in the heart of Cleveland Park known for its commitment to social justice and welcoming community.",
+      "history": {
+        "founded": 1916,
+        "building_built": 1922,
+        "story": "Founded as Cleveland Park was developing into a streetcar suburb, the church has been a neighborhood anchor for over a century. The congregation has a long history of social activism and was an early adopter of open and affirming policies welcoming LGBTQ+ members."
+      },
+      "featured": false
+    },
+    {
+      "id": "st-columbas-episcopal",
+      "name": "St. Columba's Episcopal Church",
+      "slug": "st-columbas-episcopal",
+      "denomination": "Episcopal",
+      "type": "church",
+      "address": "4201 Albemarle St NW",
+      "neighborhood": "tenleytown",
+      "website": "https://columba.org",
+      "phone": "(202) 363-4119",
+      "services": "Sundays 8am, 9am, 11:15am",
+      "description": "A vibrant Episcopal parish serving the Tenleytown and American University Park communities with traditional worship and active outreach programs.",
+      "history": {
+        "founded": 1874,
+        "building_built": 1955,
+        "story": "Named for the Irish monk who brought Christianity to Scotland, St. Columba's began as a mission church in the Tenleytown area. The current Gothic-inspired stone church was built in 1955 and features beautiful gardens and a columbarium."
+      },
+      "featured": false
+    },
+    {
+      "id": "all-souls-episcopal",
+      "name": "All Souls Episcopal Church",
+      "slug": "all-souls-episcopal",
+      "denomination": "Episcopal",
+      "type": "church",
+      "address": "2300 Cathedral Ave NW",
+      "neighborhood": "woodley-park",
+      "website": "https://allsoulsdc.org",
+      "phone": "(202) 232-4244",
+      "services": "Sundays 8:30am, 11am",
+      "description": "A welcoming Episcopal congregation in Woodley Park offering traditional liturgy and a strong commitment to community service.",
+      "history": {
+        "founded": 1911,
+        "building_built": 1924,
+        "story": "Established to serve the growing Woodley Park neighborhood in the early 20th century, All Souls has maintained its mission of inclusive worship and community engagement for over a century."
+      },
+      "featured": false
+    },
+    {
+      "id": "temple-sinai",
+      "name": "Temple Sinai",
+      "slug": "temple-sinai",
+      "denomination": "Reform Judaism",
+      "type": "synagogue",
+      "address": "3100 Military Rd NW",
+      "neighborhood": "chevy-chase",
+      "website": "https://templesinaidc.org",
+      "phone": "(202) 363-6394",
+      "services": "Shabbat Services Fridays 6:30pm, Saturdays 10:30am",
+      "description": "One of Washington's largest Reform Jewish congregations, known for its engaging worship, robust education programs, and commitment to social action.",
+      "history": {
+        "founded": 1951,
+        "building_built": 1959,
+        "story": "Founded in the post-World War II era to serve the growing Jewish community in upper Northwest DC, Temple Sinai quickly became one of the largest Reform congregations in the region. The synagogue has been a leader in interfaith dialogue and social justice initiatives."
+      },
+      "featured": true
+    },
+    {
+      "id": "washington-hebrew-congregation",
+      "name": "Washington Hebrew Congregation",
+      "slug": "washington-hebrew-congregation",
+      "denomination": "Reform Judaism",
+      "type": "synagogue",
+      "address": "3935 Macomb St NW",
+      "neighborhood": "cathedral-heights",
+      "website": "https://whctemple.org",
+      "phone": "(202) 362-7100",
+      "services": "Shabbat Services Fridays 6pm, Saturdays 10:30am",
+      "description": "The oldest Jewish congregation in Washington, DC, serving the community since 1852 with Reform Jewish worship and extensive educational programming.",
+      "history": {
+        "founded": 1852,
+        "building_built": 1955,
+        "story": "Washington Hebrew Congregation is the oldest Jewish congregation in the nation's capital, founded just four years after the city itself was established as the seat of government. The congregation moved to its current Macomb Street location in 1955. Presidents and dignitaries have attended services here, and the synagogue has played a central role in Washington's Jewish life for over 170 years."
+      },
+      "featured": true
+    },
+    {
+      "id": "adas-israel",
+      "name": "Adas Israel Congregation",
+      "slug": "adas-israel",
+      "denomination": "Conservative Judaism",
+      "type": "synagogue",
+      "address": "2850 Quebec St NW",
+      "neighborhood": "cleveland-park",
+      "website": "https://adasisrael.org",
+      "phone": "(202) 362-4433",
+      "services": "Shabbat Services Fridays 6pm, Saturdays 9:30am",
+      "description": "Washington's largest Conservative Jewish congregation, offering traditional egalitarian worship and a wide range of programs for all ages.",
+      "history": {
+        "founded": 1869,
+        "building_built": 1951,
+        "story": "Adas Israel was founded by a group that sought a more traditional worship experience than was available at Washington Hebrew Congregation. President Ulysses S. Grant attended the cornerstone laying of the original synagogue in 1876. The congregation moved to its current Cleveland Park location in 1951 and has grown to become the largest Conservative synagogue in the region."
+      },
+      "featured": true
+    },
+    {
+      "id": "temple-micah",
+      "name": "Temple Micah",
+      "slug": "temple-micah",
+      "denomination": "Reform Judaism",
+      "type": "synagogue",
+      "address": "2829 Wisconsin Ave NW",
+      "neighborhood": "glover-park",
+      "website": "https://templemicah.org",
+      "phone": "(202) 342-9175",
+      "services": "Shabbat Services Fridays 8pm, Saturdays 10am",
+      "description": "An intimate Reform congregation known for its warm community, musical worship traditions, and commitment to tikkun olam (repairing the world).",
+      "history": {
+        "founded": 1963,
+        "building_built": 1979,
+        "story": "Founded by families seeking a more intimate Reform congregation, Temple Micah has grown while maintaining its close-knit community feel. The synagogue is named for the prophet Micah, who taught to 'do justice, love kindness, and walk humbly.' This ethic guides the congregation's active social justice work."
+      },
+      "featured": false
+    },
+    {
+      "id": "american-fazl-mosque",
+      "name": "American Fazl Mosque",
+      "slug": "american-fazl-mosque",
+      "denomination": "Ahmadiyya Muslim Community",
+      "type": "mosque",
+      "address": "2141 Leroy Pl NW",
+      "neighborhood": "kalorama",
+      "website": "https://fazlmosque.org",
+      "phone": "(202) 232-3737",
+      "services": "Daily prayers; Jummah (Friday) prayers 1pm",
+      "description": "The first mosque built for Islamic worship in the United States, this historic landmark has served the Ahmadiyya Muslim Community since 1957.",
+      "history": {
+        "founded": 1950,
+        "building_built": 1957,
+        "story": "The American Fazl Mosque holds the distinction of being the first mosque purpose-built for Islamic worship in the United States. Constructed by the Ahmadiyya Muslim Community, the mosque was built on land purchased in 1950, with the building completed in 1957. Its name 'Fazl' means 'grace' in Arabic. The mosque features traditional Islamic architecture with a dome and minaret, and has been a center for interfaith dialogue and community service in Washington."
+      },
+      "featured": true
+    },
+    {
+      "id": "st-ann-catholic",
+      "name": "St. Ann Catholic Church",
+      "slug": "st-ann-catholic",
+      "denomination": "Roman Catholic",
+      "type": "church",
+      "address": "4001 Yuma St NW",
+      "neighborhood": "tenleytown",
+      "website": "https://stanndc.org",
+      "phone": "(202) 966-6288",
+      "services": "Sundays 7:30am, 11:00am, 7:00pm (Young Adult Mass)",
+      "description": "The oldest Catholic parish west of Rock Creek Park and north of Georgetown. Features one of 100 Vatican-sanctioned replicas of Michelangelo's Pieta.",
+      "history": {
+        "founded": 1875,
+        "building_built": 1966,
+        "story": "St. Ann's is one block south of the Tenleytown/AU Metro station. The parish has served the Tenleytown community since 1875, growing alongside the neighborhood's development. The current church building was designed by the same architect who designed the cathedral for the Archdiocese of Atlanta. The parish also hosts The Ark DC, a vibrant young adult Catholic ministry."
+      },
+      "featured": true
+    },
+    {
+      "id": "metropolitan-memorial-umc",
+      "name": "Metropolitan Memorial United Methodist Church",
+      "slug": "metropolitan-memorial-umc",
+      "denomination": "United Methodist",
+      "type": "church",
+      "address": "3401 Nebraska Ave NW",
+      "neighborhood": "cathedral-heights",
+      "website": "https://nationalchurch.org",
+      "phone": "(202) 363-4900",
+      "services": "Sundays 9:00am, 11:00am",
+      "description": "A historic Methodist church with land purchased with contributions including $100 from Abraham Lincoln.",
+      "history": {
+        "founded": 1852,
+        "building_built": 1932,
+        "story": "Metropolitan Memorial has been called the 'National Methodist Church' due to its location in the capital and historic significance. The church dates to 1852, and President Lincoln contributed to the purchase of the original land. The current sanctuary was dedicated on February 7, 1932, and features beautiful Gothic architecture."
+      },
+      "featured": false
+    },
+    {
+      "id": "st-pauls-lutheran",
+      "name": "St. Paul's Lutheran Church",
+      "slug": "st-pauls-lutheran",
+      "denomination": "Evangelical Lutheran Church in America (ELCA)",
+      "type": "church",
+      "address": "4900 Connecticut Ave NW",
+      "neighborhood": "chevy-chase",
+      "website": "https://www.stpaulslutherandc.org",
+      "phone": "(202) 966-5252",
+      "services": "Sundays 10:30am",
+      "description": "A Reconciling in Christ congregation welcoming all people. Worship includes communion every Sunday.",
+      "history": {
+        "founded": 1948,
+        "story": "St. Paul's Lutheran Church has served the Upper Northwest DC community for over 75 years. As a Reconciling in Christ congregation, the church welcomes people of all backgrounds, identities, and orientations."
+      },
+      "featured": false
+    },
+    {
+      "id": "friends-meeting-washington",
+      "name": "Friends Meeting of Washington",
+      "slug": "friends-meeting-washington",
+      "denomination": "Religious Society of Friends (Quaker)",
+      "type": "meetinghouse",
+      "address": "2111 Florida Ave NW",
+      "neighborhood": "dupont-circle",
+      "website": "https://www.quakersdc.org",
+      "phone": "(202) 483-3310",
+      "services": "Sundays 9:00am (First Day School), 10:30am (Meeting for Worship)",
+      "description": "Washington's largest Quaker community with over 300 members. Historic Colonial Revival building on the National Register of Historic Places.",
+      "history": {
+        "founded": 1930,
+        "building_built": 1930,
+        "story": "The Friends Meeting of Washington was established in 1930 and the historic meetinghouse was added to the National Register of Historic Places in 1990. The building includes timbers from the White House, salvaged during the 1814 repair after the British burning. President Herbert Hoover and Lou Henry Hoover began worshipping here on January 4, 1931. The Meeting is LGBTQ-affirming and accessible with an elevator."
+      },
+      "featured": true
+    },
+    {
+      "id": "all-souls-unitarian",
+      "name": "All Souls Church Unitarian",
+      "slug": "all-souls-unitarian",
+      "denomination": "Unitarian Universalist",
+      "type": "church",
+      "address": "1500 Harvard St NW",
+      "neighborhood": "columbia-heights",
+      "website": "https://www.all-souls.org",
+      "phone": "(202) 332-5266",
+      "services": "Sundays 10:00am",
+      "description": "Founded in 1821 as First Unitarian Church of Washington. President John Quincy Adams was a founding member.",
+      "history": {
+        "founded": 1821,
+        "building_built": 1924,
+        "story": "All Souls Church is one of the oldest Unitarian congregations in America, founded in 1821. President John Quincy Adams was among its founding members. The current building at 16th and Harvard Streets was completed in 1924. The church has 671 members and is recognized as an LGBTQ Welcoming Congregation and Green Sanctuary."
+      },
+      "featured": false
+    },
+    {
+      "id": "washington-buddhist-vihara",
+      "name": "Washington Buddhist Vihara",
+      "slug": "washington-buddhist-vihara",
+      "denomination": "Theravada Buddhism",
+      "type": "temple",
+      "address": "5017 16th St NW",
+      "neighborhood": "brightwood",
+      "website": "https://www.buddhistvihara.com",
+      "phone": "(202) 723-0773",
+      "services": "Sundays 9:00am meditation, 10:00am Dhamma talk",
+      "description": "One of the oldest Buddhist centers in the Washington DC area, offering meditation instruction and Buddhist teachings.",
+      "history": {
+        "founded": 1966,
+        "story": "The Washington Buddhist Vihara was established in 1966 and is one of the earliest Theravada Buddhist temples in the United States. The temple serves as a center for meditation practice, Buddhist education, and community gatherings. It welcomes practitioners of all backgrounds seeking to learn about Buddhism."
+      },
+      "featured": false
+    },
+    {
+      "id": "sgi-washington",
+      "name": "SGI-USA Washington DC Culture Center",
+      "slug": "sgi-washington",
+      "denomination": "Nichiren Buddhism",
+      "type": "center",
+      "address": "3417 Massachusetts Ave NW",
+      "neighborhood": "cleveland-park",
+      "website": "https://www.sgi-usa.org",
+      "phone": "(202) 686-7530",
+      "services": "Various meetings throughout the week",
+      "description": "A center for Nichiren Buddhist practice and SGI-USA activities in the Washington DC area.",
+      "history": {
+        "founded": null,
+        "story": "SGI-USA (Soka Gakkai International-USA) is a Buddhist community dedicated to world peace through personal transformation. The Washington DC Culture Center hosts regular meetings, study sessions, and Buddhist activities for members and visitors."
+      },
+      "featured": false
+    },
+    {
+      "id": "kadampa-meditation-center",
+      "name": "Kadampa Meditation Center Washington DC",
+      "slug": "kadampa-meditation-center",
+      "denomination": "Kadampa Buddhism",
+      "type": "center",
+      "address": "1201 4th St SW",
+      "neighborhood": "southwest",
+      "website": "https://kadampa.org/center/kmc-washington-dc",
+      "phone": "(202) 986-2257",
+      "services": "Daily meditations and classes; see website for schedule",
+      "description": "Offers meditation classes and modern Buddhist teachings. Features a 250-person meditation room.",
+      "history": {
+        "founded": 1994,
+        "story": "Kadampa Meditation Center Washington DC was founded on September 22, 1994 as Vajrayogini Buddhist Center. A church property was purchased in the Southwest Waterfront neighborhood to create a World Peace Temple in the US Capitol City. The upper floor has a beautiful 250-person meditation room, and the lower level includes a second meditation room, community area, bookstore, and dining area."
+      },
+      "featured": false
+    },
+    {
+      "id": "saint-sophia-greek-orthodox",
+      "name": "Saint Sophia Greek Orthodox Cathedral",
+      "slug": "saint-sophia-greek-orthodox",
+      "denomination": "Greek Orthodox",
+      "type": "cathedral",
+      "address": "2815 36th St NW",
+      "neighborhood": "glover-park",
+      "website": "https://www.saintsophiadc.org",
+      "phone": "(202) 333-4730",
+      "services": "Sundays Orthros 9:15am, Divine Liturgy 10:30am",
+      "description": "The Greek Orthodox Cathedral serving Washington DC and the surrounding region since 1904.",
+      "history": {
+        "founded": 1904,
+        "building_built": 1956,
+        "story": "Saint Sophia has served the Orthodox faithful in Washington DC since 1904, making it one of the oldest Greek Orthodox communities in America. The current Byzantine-style cathedral was built in 1956 and features beautiful iconography and traditional Orthodox architecture. The cathedral serves as the seat of the Greek Orthodox Metropolis of Atlanta."
+      },
+      "featured": false
+    }
+  ]
+}

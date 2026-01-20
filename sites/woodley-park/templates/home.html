@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="home-hero">
+    <div class="hero-content">
+        <h1>Woodley Park Almanac</h1>
+        <p class="hero-tagline">A Clearing in the Woods: Home to the National Zoo</p>
+    </div>
+</div>
+
+<div class="home-layout">
+    <!-- Main Article Column -->
+    <article class="home-article">
+        <p class="article-lead">
+            <strong>Woodley Park</strong> takes its name from a Federal-style mansion built in 1801 by Philip Barton Key, uncle of Francis Scott Key. The name itself means "a clearing in the woods," chosen after Key visited an English manor called Woodley Lodge in Berkshire. That sense of a civilized space carved from wilderness defines a neighborhood that combines urban convenience with a distinctly green, park-like character.
+        </p>
+
+        <div class="article-infobox">
+            <h4>Woodley Park</h4>
+            <dl>
+                <dt>Name Origin</dt>
+                <dd>"A clearing in the woods"</dd>
+                <dt>Established</dt>
+                <dd>1801 (Woodley House)</dd>
+                <dt>Key Landmarks</dt>
+                <dd>National Zoo, Kennedy-Warren</dd>
+                <dt>Developer</dt>
+                <dd>Harry Wardman</dd>
+            </dl>
+        </div>
+
+        <h2>History</h2>
+        <p>
+            The original Woodley Mansion served as a summer retreat for multiple U.S. presidents, including Martin Van Buren and Grover Cleveland, who sought escape from Washington's oppressive summer heat. The hilltop estate offered cooler breezes and distance from the miasmas believed to cause disease in the low-lying capital.
+        </p>
+        <p>
+            Development came with the completion of the Taft Bridge in 1907, which carried Connecticut Avenue over the deep ravines of Rock Creek Park. Harry Wardman, the District's most prolific developer, recognized Woodley Park's potential when others saw only inconvenient distance from downtown.
+        </p>
+
+        <h2>The National Zoo</h2>
+        <p>
+            The National Zoological Park, established in 1889 and designed by Frederick Law Olmsted, occupies 163 acres of Rock Creek Valley within Woodley Park's boundaries. Today it houses more than 2,100 animals and attracts millions of visitors annually, giving the neighborhood a character unlike any other in Washington.
+        </p>
+
+        <div class="article-see-also">
+            <h3>Explore More</h3>
+            <ul>
+                <li><a href="/page/woodley-park">Full Woodley Park History</a></li>
+                <li><a href="/page/timeline">Timeline</a></li>
+                <li><a href="/page/national_zoo">National Zoo</a></li>
+                <li><a href="/page/kennedy_warren">Kennedy-Warren</a></li>
+            </ul>
+        </div>
+    </article>
+
+    <!-- Sidebar Column -->
+    <aside class="home-sidebar">
+        <!-- What's Happening Section -->
+        {% if featured_events %}
+        <div class="sidebar-section">
+            <h3><i class="fas fa-calendar-alt"></i> What's Happening</h3>
+            <div class="sidebar-events">
+                {% for event in featured_events %}
+                <a href="/events" class="sidebar-event">
+                    <div class="event-date-compact">
+                        <span class="month">{{ event.date[5:7] | int }}</span>
+                        <span class="day">{{ event.date[8:10] | int }}</span>
+                    </div>
+                    <div class="event-info">
+                        <strong>{{ event.title }}</strong>
+                        <span class="event-location">{{ event.location }}</span>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            <a href="/events" class="sidebar-link">All Events <i class="fas fa-arrow-right"></i></a>
+        </div>
+        {% endif %}
+
+        <!-- Quick Links -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-compass"></i> Explore</h3>
+            <ul class="sidebar-quick-links">
+                <li><a href="/page/woodley-park"><i class="fas fa-map-marker-alt"></i> Woodley Park History</a></li>
+                <li><a href="/page/national_zoo"><i class="fas fa-paw"></i> National Zoo</a></li>
+                <li><a href="/page/kennedy_warren"><i class="fas fa-building"></i> Kennedy-Warren</a></li>
+                <li><a href="/page/wardman"><i class="fas fa-hard-hat"></i> Harry Wardman Era</a></li>
+            </ul>
+        </div>
+
+        <!-- From the Archives -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-camera-retro"></i> From the Archives</h3>
+            <div class="sidebar-photo">
+                <p>The Taft Bridge, completed in 1907, transformed Woodley Park from isolated heights to accessible suburb.</p>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<!-- Notable Stories Section -->
+<div class="home-stories">
+    <h2>Notable Stories</h2>
+    <div class="story-grid">
+        <a href="/page/woodley_house" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-home"></i></div>
+            <h4>Woodley House</h4>
+            <p>The presidential summer retreat that gave the neighborhood its name.</p>
+        </a>
+        <a href="/page/national_zoo" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-paw"></i></div>
+            <h4>National Zoo</h4>
+            <p>163 acres designed by Frederick Law Olmsted in Rock Creek Valley.</p>
+        </a>
+        <a href="/page/wardman" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-hard-hat"></i></div>
+            <h4>Wardman's Folly</h4>
+            <p>The visionary hotel that proved the skeptics wrong.</p>
+        </a>
+        <a href="/page/kennedy_warren" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-building"></i></div>
+            <h4>Kennedy-Warren</h4>
+            <p>Washington's finest Art Deco residential building.</p>
+        </a>
+    </div>
+</div>
+{% endblock %}

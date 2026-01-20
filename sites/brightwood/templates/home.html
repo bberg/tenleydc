@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="home-hero">
+    <div class="hero-content">
+        <h1>Brightwood Almanac</h1>
+        <p class="hero-tagline">History and community of Washington's first African American settlement</p>
+    </div>
+</div>
+
+<div class="home-layout">
+    <!-- Main Article Column -->
+    <article class="home-article">
+        <p class="article-lead">
+            <strong>Brightwood</strong> stands as one of Washington, D.C.'s most historically significant neighborhoods, with roots stretching back to the 1820s when free African Americans established the area's first permanent settlement at Vinegar Hill. Located in the northwestern quadrant of the city within Ward 4, this community witnessed the only Civil War battle where a sitting president came under enemy fire.
+        </p>
+
+        <div class="article-infobox">
+            <h4>Brightwood</h4>
+            <dl>
+                <dt>First Settlement</dt>
+                <dd>c. 1820s (Vinegar Hill)</dd>
+                <dt>Historic Significance</dt>
+                <dd>First African American settlement in DC</dd>
+                <dt>Key Landmarks</dt>
+                <dd>Fort Stevens, Battleground Cemetery</dd>
+                <dt>Ward</dt>
+                <dd>Ward 4</dd>
+            </dl>
+        </div>
+
+        <h2>History</h2>
+        <p>
+            In the 1820s, free African Americans began settling in the area then known as Vinegar Hill, making Brightwood Washington's first African American settlement. By 1837, Black families owned at least 25 acres of land around what would become Fort Stevens.
+        </p>
+        <p>
+            On July 11-12, 1864, Confederate General Jubal Early led approximately 20,000 soldiers in an attack on Fort Stevens, the only significant engagement of the Civil War fought within the District of Columbia. President Abraham Lincoln rode out from the White House to observe the battle and briefly came under enemy fire.
+        </p>
+
+        <h2>Transportation</h2>
+        <p>
+            Before 1889, Brightwood remained so isolated that the only transportation was a horse-drawn cart driven by an African American man known simply as Cherry. The Brightwood Railway Company, authorized in 1888, built a streetcar line on Georgia Avenue that transformed the neighborhood.
+        </p>
+
+        <div class="article-see-also">
+            <h3>Explore More</h3>
+            <ul>
+                <li><a href="/page/brightwood">Full Brightwood History</a></li>
+                <li><a href="/page/timeline">Timeline</a></li>
+                <li><a href="/page/fort_stevens">Fort Stevens</a></li>
+                <li><a href="/page/vinegar_hill">Vinegar Hill</a></li>
+            </ul>
+        </div>
+    </article>
+
+    <!-- Sidebar Column -->
+    <aside class="home-sidebar">
+        <!-- What's Happening Section -->
+        {% if featured_events %}
+        <div class="sidebar-section">
+            <h3><i class="fas fa-calendar-alt"></i> What's Happening</h3>
+            <div class="sidebar-events">
+                {% for event in featured_events %}
+                <a href="/events" class="sidebar-event">
+                    <div class="event-date-compact">
+                        <span class="month">{{ event.date[5:7] | int }}</span>
+                        <span class="day">{{ event.date[8:10] | int }}</span>
+                    </div>
+                    <div class="event-info">
+                        <strong>{{ event.title }}</strong>
+                        <span class="event-location">{{ event.location }}</span>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            <a href="/events" class="sidebar-link">All Events <i class="fas fa-arrow-right"></i></a>
+        </div>
+        {% endif %}
+
+        <!-- Quick Links -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-compass"></i> Explore</h3>
+            <ul class="sidebar-quick-links">
+                <li><a href="/page/brightwood"><i class="fas fa-map-marker-alt"></i> Brightwood History</a></li>
+                <li><a href="/page/fort_stevens"><i class="fas fa-flag"></i> Fort Stevens</a></li>
+                <li><a href="/page/timeline"><i class="fas fa-clock"></i> Timeline</a></li>
+                <li><a href="/page/african_american"><i class="fas fa-users"></i> African American Heritage</a></li>
+            </ul>
+        </div>
+
+        <!-- From the Archives -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-camera-retro"></i> From the Archives</h3>
+            <div class="sidebar-photo">
+                <p>Fort Stevens was the site of the only Civil War battle within the District of Columbia, July 1864.</p>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<!-- Notable Stories Section -->
+<div class="home-stories">
+    <h2>Notable Stories</h2>
+    <div class="story-grid">
+        <a href="/page/vinegar_hill" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-home"></i></div>
+            <h4>Vinegar Hill</h4>
+            <p>The 1820s settlement that made Brightwood DC's first African American community.</p>
+        </a>
+        <a href="/page/fort_stevens" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-flag"></i></div>
+            <h4>Fort Stevens</h4>
+            <p>Where President Lincoln came under Confederate fire in 1864.</p>
+        </a>
+        <a href="/page/transportation" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-train"></i></div>
+            <h4>The G.O.P. Streetcar</h4>
+            <p>The famously unreliable line that connected Brightwood to the city.</p>
+        </a>
+        <a href="/page/walter_reed" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-hospital"></i></div>
+            <h4>Walter Reed</h4>
+            <p>The Army medical center that shaped the neighborhood for a century.</p>
+        </a>
+    </div>
+</div>
+{% endblock %}

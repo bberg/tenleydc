@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<div class="map-page">
+    <div class="map-header">
+        <h2>Interactive Map</h2>
+        <p>Explore historic sites in Shepherd Park, Washington, DC</p>
+    </div>
+
+    <div class="map-container">
+        <div id="map" class="interactive-map"></div>
+    </div>
+
+    <div class="map-legend">
+        <h3>Historic Sites</h3>
+        <div class="legend-items">
+            <div class="legend-item" data-category="landmark">
+                <span class="legend-marker landmark"></span>
+                <span>Landmarks</span>
+            </div>
+            <div class="legend-item" data-category="worship">
+                <span class="legend-marker worship"></span>
+                <span>Houses of Worship</span>
+            </div>
+            <div class="legend-item" data-category="civil-rights">
+                <span class="legend-marker civil-rights"></span>
+                <span>Civil Rights Sites</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="sites-list">
+        <h3>Key Locations</h3>
+        <div class="sites-grid">
+            <div class="site-card" data-lat="38.9745" data-lng="-77.0285" onclick="panToLocation(38.9745, -77.0285, 'tifereth')">
+                <h4><i class="fas fa-star-of-david"></i> Tifereth Israel</h4>
+                <p>Conservative synagogue, building dedicated 1957</p>
+                <span class="site-address">7701 16th St NW</span>
+            </div>
+            <div class="site-card" data-lat="38.9765" data-lng="-77.0285" onclick="panToLocation(38.9765, -77.0285, 'ohevsholom')">
+                <h4><i class="fas fa-star-of-david"></i> Ohev Sholom</h4>
+                <p>Oldest Orthodox congregation in DC (1886), building 1960</p>
+                <span class="site-address">1600 Jonquil St NW</span>
+            </div>
+            <div class="site-card" data-lat="38.9730" data-lng="-77.0290" onclick="panToLocation(38.9730, -77.0290, 'caplan')">
+                <h4><i class="fas fa-leaf"></i> Marvin Caplan Park</h4>
+                <p>Named for civil rights leader and Neighbors, Inc. founder</p>
+                <span class="site-address">Alaska Ave & Holly St NW</span>
+            </div>
+            <div class="site-card" data-lat="38.9750" data-lng="-77.0320" onclick="panToLocation(38.9750, -77.0320, 'shepherdelem')">
+                <h4><i class="fas fa-school"></i> Shepherd Elementary</h4>
+                <p>DCPS neighborhood school serving Shepherd Park</p>
+                <span class="site-address">7800 14th St NW</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="map-info">
+        <h3>About This Map</h3>
+        <p>This interactive map shows key historic sites in Shepherd Park, the "Garden of Diversity." Click on markers or cards to learn more about each location.</p>
+        <a href="/page/landmarks" class="btn">View All Landmarks</a>
+    </div>
+</div>
+
+<style>
+.interactive-map {
+    width: 100%;
+    height: 450px;
+    border-radius: var(--radius-md);
+    z-index: 1;
+}
+
+.site-card {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.site-card:hover {
+    transform: translateY(-2px);
+}
+
+.site-card.active {
+    border-color: var(--rust);
+    box-shadow: 0 0 0 2px var(--rust-light);
+}
+
+.custom-marker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    color: white;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    border: 2px solid white;
+}
+
+.marker-landmark { background: #c45a3b; }
+.marker-worship { background: #6b5b95; }
+.marker-civil-rights { background: #2d6a4f; }
+.marker-school { background: #e07a5c; }
+.marker-park { background: #4a5568; }
+
+.leaflet-popup-content-wrapper {
+    border-radius: 8px;
+}
+
+.leaflet-popup-content h4 {
+    margin: 0 0 8px 0;
+    color: var(--ink);
+    font-size: 1rem;
+}
+
+.leaflet-popup-content p {
+    margin: 0;
+    color: var(--ink-light);
+    font-size: 0.875rem;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize map centered on Shepherd Park
+    const map = L.map('map').setView([38.9745, -77.0290], 15);
+
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Historic sites data
+    const sites = [
+        {
+            id: 'tifereth',
+            name: 'Tifereth Israel Congregation',
+            lat: 38.9745,
+            lng: -77.0285,
+            category: 'worship',
+            icon: 'fa-star-of-david',
+            description: 'Conservative synagogue founded in 1916 by Russian, Polish, and Austrian immigrants. This Shepherd Park building was dedicated in 1957.',
+            link: '/page/history'
+        },
+        {
+            id: 'ohevsholom',
+            name: 'Ohev Sholom Congregation',
+            lat: 38.9765,
+            lng: -77.0285,
+            category: 'worship',
+            icon: 'fa-star-of-david',
+            description: 'The oldest Orthodox congregation in Washington, dating to 1886. This building on upper Sixteenth Street was dedicated in 1960.',
+            link: '/page/history'
+        },
+        {
+            id: 'caplan',
+            name: 'Marvin Caplan Park',
+            lat: 38.9730,
+            lng: -77.0290,
+            category: 'civil-rights',
+            icon: 'fa-leaf',
+            description: 'Named for Marvin Caplan, co-founder of Neighbors, Inc. and Executive Director of the Leadership Conference on Civil Rights.',
+            link: '/page/history'
+        },
+        {
+            id: 'shepherdelem',
+            name: 'Shepherd Elementary School',
+            lat: 38.9750,
+            lng: -77.0320,
+            category: 'school',
+            icon: 'fa-school',
+            description: 'DCPS elementary school serving the Shepherd Park community.',
+            link: '/schools'
+        }
+    ];
+
+    // Store markers for reference
+    window.markers = {};
+
+    // Add markers for each site
+    sites.forEach(site => {
+        const icon = L.divIcon({
+            className: 'custom-div-icon',
+            html: `<div class="custom-marker marker-${site.category}"><i class="fas ${site.icon}"></i></div>`,
+            iconSize: [32, 32],
+            iconAnchor: [16, 16],
+            popupAnchor: [0, -16]
+        });
+
+        const marker = L.marker([site.lat, site.lng], { icon: icon }).addTo(map);
+
+        let popupContent = `<h4>${site.name}</h4><p>${site.description}</p>`;
+        if (site.link) {
+            popupContent += `<p><a href="${site.link}" style="color: #c45a3b;">Learn more &rarr;</a></p>`;
+        }
+
+        marker.bindPopup(popupContent);
+        window.markers[site.id] = marker;
+    });
+
+    // Store map reference globally
+    window.historyMap = map;
+});
+
+// Pan to location and open popup
+function panToLocation(lat, lng, markerId) {
+    if (window.historyMap && window.markers[markerId]) {
+        window.historyMap.setView([lat, lng], 17, { animate: true });
+        window.markers[markerId].openPopup();
+
+        // Highlight active card
+        document.querySelectorAll('.site-card').forEach(card => card.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+    }
+}
+</script>
+{% endblock %}

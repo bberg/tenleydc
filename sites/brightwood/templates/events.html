@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="events-page">
+    <div class="directory-header">
+        <h1 class="directory-title"><i class="fas fa-calendar-alt"></i> Events</h1>
+        <p class="directory-description">Upcoming events in and around Brightwood</p>
+    </div>
+
+    {% if categories %}
+    <div class="category-filters">
+        <label>Filter by category:</label>
+        <a href="/events" class="filter-btn {% if not current_category %}active{% endif %}">All</a>
+        {% for category in categories %}
+        <a href="/events?category={{ category }}" class="filter-btn {% if current_category == category %}active{% endif %}">{{ category }}</a>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if events %}
+    <div class="events-list">
+        {% for event in events %}
+        <div class="event-card">
+            <div class="event-date">
+                <span class="month">{{ event.date[5:7] | int }}</span>
+                <span class="day">{{ event.date[8:10] | int }}</span>
+            </div>
+            <div class="event-content">
+                <h3 class="event-title">{{ event.title }}</h3>
+                <div class="event-meta">
+                    {% if event.time %}<span><i class="fas fa-clock"></i> {{ event.time }}</span>{% endif %}
+                    {% if event.location %}<span><i class="fas fa-map-marker-alt"></i> {{ event.location }}</span>{% endif %}
+                </div>
+                {% if event.description %}
+                <p class="event-description">{{ event.description }}</p>
+                {% endif %}
+                {% if event.link %}
+                <a href="{{ event.link }}" class="event-link" target="_blank" rel="noopener">More Info <i class="fas fa-external-link-alt"></i></a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-results">
+        <i class="fas fa-calendar-times"></i>
+        <h3>No Upcoming Events</h3>
+        <p>Check back soon for community events in Brightwood.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

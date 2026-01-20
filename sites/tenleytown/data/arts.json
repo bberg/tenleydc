@@ -1,0 +1,384 @@
+{
+  "arts_institutions": [
+    {
+      "id": "katzen-arts-center",
+      "name": "Katzen Arts Center",
+      "slug": "katzen-arts-center",
+      "type": "gallery",
+      "subcategory": "museum",
+      "address": "4400 Massachusetts Ave NW",
+      "neighborhood": "tenleytown",
+      "website": "https://www.american.edu/cas/museum/",
+      "phone": "(202) 885-1300",
+      "admission": "free",
+      "hours": {
+        "tuesday": "11:00 AM - 4:00 PM",
+        "wednesday": "11:00 AM - 4:00 PM",
+        "thursday": "11:00 AM - 4:00 PM",
+        "friday": "11:00 AM - 4:00 PM",
+        "saturday": "12:00 PM - 4:00 PM",
+        "sunday": "12:00 PM - 4:00 PM",
+        "monday": "closed",
+        "notes": "Hours may vary during university breaks and summer"
+      },
+      "description": "The American University Museum at the Katzen Arts Center is one of the largest university art museums in the Washington, DC area, featuring contemporary and modern art exhibitions along with the Alper Initiative for Washington Art.",
+      "history": {
+        "opened": 2005,
+        "story": "The Katzen Arts Center opened in 2005 as a 130,000-square-foot facility designed by architect EYP. Named after donors Cyrus and Myrtle Katzen, the center houses the American University Museum, the Greenberg Theatre, studio spaces, and classrooms. The museum showcases rotating exhibitions of contemporary art and maintains the Alper Initiative, dedicated to Washington-area artists."
+      },
+      "featured": true
+    },
+    {
+      "id": "levine-school-of-music",
+      "name": "Levine School of Music",
+      "slug": "levine-school-of-music",
+      "type": "music-education",
+      "subcategory": "performing-arts",
+      "address": "2801 Upton St NW",
+      "neighborhood": "cleveland-park",
+      "website": "https://www.levineschool.org/",
+      "phone": "(202) 686-8000",
+      "admission": "varies",
+      "hours": {
+        "monday": "9:00 AM - 9:00 PM",
+        "tuesday": "9:00 AM - 9:00 PM",
+        "wednesday": "9:00 AM - 9:00 PM",
+        "thursday": "9:00 AM - 9:00 PM",
+        "friday": "9:00 AM - 9:00 PM",
+        "saturday": "9:00 AM - 5:00 PM",
+        "sunday": "varies",
+        "notes": "Hours vary by location and program"
+      },
+      "description": "The Levine School of Music is the largest community music school in the Washington, DC area, offering instruction in virtually every instrument and voice to students of all ages and skill levels.",
+      "history": {
+        "opened": 1976,
+        "story": "Founded in 1976 by pianist and educator Elaine Levine, the school began as a small neighborhood music program in Northwest DC. Over the decades, it has grown into a major regional institution with multiple campuses, serving thousands of students annually. The school is committed to making music education accessible to all, regardless of financial circumstances, through extensive scholarship programs."
+      },
+      "featured": true
+    },
+    {
+      "id": "politics-and-prose",
+      "name": "Politics and Prose Bookstore",
+      "slug": "politics-and-prose",
+      "type": "literary",
+      "subcategory": "bookstore-events",
+      "address": "5015 Connecticut Ave NW",
+      "neighborhood": "chevy-chase",
+      "website": "https://www.politics-prose.com/",
+      "phone": "(202) 364-1919",
+      "admission": "free",
+      "hours": {
+        "monday": "10:00 AM - 9:00 PM",
+        "tuesday": "10:00 AM - 9:00 PM",
+        "wednesday": "10:00 AM - 9:00 PM",
+        "thursday": "10:00 AM - 9:00 PM",
+        "friday": "10:00 AM - 9:00 PM",
+        "saturday": "10:00 AM - 9:00 PM",
+        "sunday": "10:00 AM - 8:00 PM",
+        "notes": "Event times vary; check website for author appearances"
+      },
+      "description": "Politics and Prose is an independent bookstore renowned for its author events, book discussions, and community programming. It serves as a vital cultural hub for literary life in Washington, DC, hosting hundreds of author readings and signings each year.",
+      "history": {
+        "opened": 1984,
+        "story": "Founded in 1984 by Carla Cohen and Barbara Meade, Politics and Prose quickly became a gathering place for book lovers, journalists, and policymakers. The store's name reflects the founders' belief in the power of books to engage civic life. After Cohen's passing in 2010, the store was purchased in 2011 by Bradley Graham and Lissa Muscatine, who have continued its tradition of literary excellence and community engagement. The store expanded to include a coffeehouse and additional locations."
+      },
+      "featured": true
+    },
+    {
+      "id": "studio-4903",
+      "name": "Studio 4903",
+      "slug": "studio-4903",
+      "type": "art-studio",
+      "subcategory": "visual-arts",
+      "address": "4903 Wisconsin Ave NW",
+      "neighborhood": "tenleytown",
+      "website": "",
+      "phone": "",
+      "admission": "varies",
+      "hours": {
+        "monday": "by appointment",
+        "tuesday": "by appointment",
+        "wednesday": "by appointment",
+        "thursday": "by appointment",
+        "friday": "by appointment",
+        "saturday": "by appointment",
+        "sunday": "by appointment",
+        "notes": "Contact studio for current schedule and class availability"
+      },
+      "description": "Studio 4903 is a neighborhood art studio offering classes, workshops, and creative space for visual artists in the Upper Northwest DC community.",
+      "history": {
+        "opened": null,
+        "story": "Studio 4903 serves the Tenleytown and surrounding neighborhoods as a community art space, providing instruction and studio facilities for aspiring and established artists."
+      },
+      "featured": false
+    },
+    {
+      "id": "edlavitch-dcjcc",
+      "name": "Edlavitch DC Jewish Community Center",
+      "slug": "edlavitch-dcjcc",
+      "type": "community-center",
+      "subcategory": "theater-events",
+      "address": "1529 16th St NW",
+      "neighborhood": "dupont-circle",
+      "website": "https://www.edcjcc.org/",
+      "phone": "(202) 518-9400",
+      "admission": "varies",
+      "hours": {
+        "monday": "6:00 AM - 10:00 PM",
+        "tuesday": "6:00 AM - 10:00 PM",
+        "wednesday": "6:00 AM - 10:00 PM",
+        "thursday": "6:00 AM - 10:00 PM",
+        "friday": "6:00 AM - 6:00 PM",
+        "saturday": "8:00 AM - 6:00 PM",
+        "sunday": "8:00 AM - 8:00 PM",
+        "notes": "Theater and event hours vary by performance"
+      },
+      "description": "The Edlavitch DC Jewish Community Center is a cultural hub offering theater productions, film festivals, art exhibitions, concerts, and educational programs. The Theater J resident company presents acclaimed productions exploring Jewish themes and universal human experiences.",
+      "history": {
+        "opened": 1926,
+        "story": "The DC Jewish Community Center traces its roots to 1926 when it was established to serve the Jewish community of Washington. The current facility on 16th Street NW, named for major benefactors Carole and Marcus Edlavitch, houses Theater J (founded 1990), one of the nation's largest and most respected Jewish theaters, along with fitness facilities, art galleries, and program spaces. The DCJCC serves as a bridge between Jewish and broader Washington communities through its diverse cultural programming."
+      },
+      "featured": true
+    },
+    {
+      "id": "sahara-dance",
+      "name": "Sahara Dance",
+      "slug": "sahara-dance",
+      "type": "dance-studio",
+      "subcategory": "middle-eastern-dance",
+      "address": "4433 Wisconsin Ave NW",
+      "neighborhood": "tenleytown",
+      "website": "https://saharadance.com",
+      "phone": "(202) 686-1480",
+      "admission": "varies",
+      "hours": {
+        "monday": "varies",
+        "tuesday": "varies",
+        "wednesday": "varies",
+        "thursday": "varies",
+        "friday": "varies",
+        "saturday": "varies",
+        "sunday": "varies",
+        "notes": "Class schedule varies; check website for current offerings"
+      },
+      "description": "Dance studio specializing in belly dance and Middle Eastern dance forms. Located at the Tenleytown-AU Metro station, offering both in-person and online classes.",
+      "history": {
+        "opened": null,
+        "story": "Sahara Dance has become a hub for Middle Eastern dance in the DC area, offering classes in belly dance, folkloric styles, and related art forms. The studio is conveniently located at the Tenleytown-AU Metro station on the Red Line."
+      },
+      "featured": false
+    },
+    {
+      "id": "dance-flamenco-dc",
+      "name": "Dance Flamenco DC",
+      "slug": "dance-flamenco-dc",
+      "type": "dance-studio",
+      "subcategory": "flamenco",
+      "address": "4545 42nd St NW",
+      "neighborhood": "tenleytown",
+      "website": "https://www.danceflamencodc.com",
+      "phone": "(202) 486-3624",
+      "admission": "varies",
+      "hours": {
+        "monday": "varies",
+        "tuesday": "varies",
+        "wednesday": "varies",
+        "thursday": "varies",
+        "friday": "varies",
+        "saturday": "varies",
+        "sunday": "varies",
+        "notes": "Class schedule varies; check website"
+      },
+      "description": "DC's only studio dedicated exclusively to flamenco dance. Offers children's program 'Flamenco 4 Kids' along with adult classes.",
+      "history": {
+        "opened": 1995,
+        "story": "Dance Flamenco DC is the home of Flamenco con Magdalena, founded in NYC in 1995 and now located in the Tenleytown neighborhood. The studio offers children and adult dance classes, performance opportunities, cultural experiences, and community events throughout the greater Washington DC area."
+      },
+      "featured": false
+    },
+    {
+      "id": "circle-yoga",
+      "name": "Circle Yoga Cooperative",
+      "slug": "circle-yoga",
+      "type": "yoga-studio",
+      "subcategory": "wellness",
+      "address": "5360 44th St NW",
+      "neighborhood": "chevy-chase",
+      "website": "https://circleyoga.com",
+      "phone": "(202) 686-1104",
+      "admission": "sliding scale",
+      "hours": {
+        "monday": "varies",
+        "tuesday": "varies",
+        "wednesday": "varies",
+        "thursday": "varies",
+        "friday": "varies",
+        "saturday": "varies",
+        "sunday": "varies",
+        "notes": "Check website for class schedule"
+      },
+      "description": "Community-based yoga cooperative serving Upper Northwest DC with sliding scale pricing and partial scholarships. Offers yoga, mindfulness, and Pilates for all ages.",
+      "history": {
+        "opened": null,
+        "story": "Circle Yoga Cooperative operates as a community-based studio serving neighborhoods including Chevy Chase, Friendship Heights, Tenleytown, Cleveland Park, Woodley Park, Cathedral Heights, Spring Valley, AU Park, Wesley Heights, Palisades, and Glover Park. The cooperative model keeps classes accessible through sliding scale pricing."
+      },
+      "featured": false
+    },
+    {
+      "id": "theatre-lab",
+      "name": "The Theatre Lab",
+      "slug": "theatre-lab",
+      "type": "performing-arts",
+      "subcategory": "theater-education",
+      "address": "733 8th St NW",
+      "neighborhood": "downtown",
+      "website": "https://theatrelab.org",
+      "phone": "(202) 824-0449",
+      "admission": "varies",
+      "hours": {
+        "monday": "varies",
+        "tuesday": "varies",
+        "wednesday": "varies",
+        "thursday": "varies",
+        "friday": "varies",
+        "saturday": "varies",
+        "sunday": "varies",
+        "notes": "Class times vary; check website for schedule"
+      },
+      "description": "Washington DC's largest and most comprehensive independent nonprofit school for the dramatic arts. Enrolls over 2,800 adults, teens, and children annually.",
+      "history": {
+        "opened": null,
+        "story": "Named by Backstage as one of DC's top training programs, The Theatre Lab offers classes for every skill and experience level. Programs include Saturday acting classes, summer camps for kids, public speaking for professionals, the rigorous Honors Acting Conservatory, the Life Stories program, and workforce development training."
+      },
+      "featured": true
+    },
+    {
+      "id": "studio-acting-conservatory",
+      "name": "Studio Acting Conservatory",
+      "slug": "studio-acting-conservatory",
+      "type": "performing-arts",
+      "subcategory": "theater-education",
+      "address": "3423 Holmead Place NW",
+      "neighborhood": "columbia-heights",
+      "website": "https://studioactingconservatory.org",
+      "phone": "(202) 232-1073",
+      "admission": "$305-$505 per class",
+      "hours": {
+        "monday": "varies",
+        "tuesday": "varies",
+        "wednesday": "varies",
+        "thursday": "varies",
+        "friday": "varies",
+        "saturday": "varies",
+        "sunday": "varies",
+        "notes": "Class schedule varies by session"
+      },
+      "description": "The premier training institution for actors and directors in Washington DC, providing rigorous professional training for 50 years.",
+      "history": {
+        "opened": 1974,
+        "story": "For over 50 years, Studio Acting Conservatory has provided rigorous, professional training in realism, classics, styles, and directing to over 12,000 actors and directors. The curriculum is grounded in realism with study of classical technique and various styles, supplemented by voice and body classes."
+      },
+      "featured": false
+    },
+    {
+      "id": "ncda",
+      "name": "National Conservatory of Dramatic Arts",
+      "slug": "ncda",
+      "type": "performing-arts",
+      "subcategory": "theater-education",
+      "address": "1556 Wisconsin Ave NW",
+      "neighborhood": "georgetown",
+      "website": "https://theconservatory.org",
+      "phone": "(202) 333-2202",
+      "admission": "varies",
+      "hours": {
+        "monday": "varies",
+        "tuesday": "varies",
+        "wednesday": "varies",
+        "thursday": "varies",
+        "friday": "varies",
+        "saturday": "varies",
+        "sunday": "varies",
+        "notes": "See website for program schedules"
+      },
+      "description": "DC's only accredited actor training studio program, offering acting classes since 1975.",
+      "history": {
+        "opened": 1975,
+        "story": "The National Conservatory of Dramatic Arts offers DC's only accredited actor training program. Their immersive training ensures graduates enter the job market with a strong foundation in acting craft, business skills, and professional contacts. Students work with faculty of professional actors, directors, producers, and screenwriters working in theater, film, and television."
+      },
+      "featured": false
+    },
+    {
+      "id": "highlife-studios",
+      "name": "HighLife Studios DC",
+      "slug": "highlife-studios",
+      "type": "recording-studio",
+      "subcategory": "music-production",
+      "address": "3520 Connecticut Ave NW",
+      "neighborhood": "cleveland-park",
+      "website": "https://www.highlifedmv.com",
+      "phone": null,
+      "admission": "varies",
+      "hours": {
+        "monday": "by appointment",
+        "tuesday": "by appointment",
+        "wednesday": "by appointment",
+        "thursday": "by appointment",
+        "friday": "by appointment",
+        "saturday": "by appointment",
+        "sunday": "by appointment",
+        "notes": "Contact for booking"
+      },
+      "description": "Premier recording, mixing, and production studio located near Cleveland Park Station and the National Zoo. Has collaborated with over 500 artists.",
+      "history": {
+        "opened": null,
+        "story": "HighLife Studios has proudly served the Uptown area for over two years, collaborating with over 500 artists in the DMV area. The studio provides premier recording, mixing, and production services with top-tier equipment and expert engineers."
+      },
+      "featured": false
+    },
+    {
+      "id": "artsy-beast",
+      "name": "Artsy Beast",
+      "slug": "artsy-beast",
+      "type": "art-studio",
+      "subcategory": "ceramics",
+      "address": "5504 Connecticut Ave NW",
+      "neighborhood": "chevy-chase",
+      "website": "https://www.artsybeast.com",
+      "phone": "(202) 244-4545",
+      "admission": "varies",
+      "hours": {
+        "monday": "varies",
+        "tuesday": "varies",
+        "wednesday": "varies",
+        "thursday": "varies",
+        "friday": "varies",
+        "saturday": "varies",
+        "sunday": "varies",
+        "notes": "Check website for class schedule and open studio hours"
+      },
+      "description": "Boutique ceramics studio offering pottery classes, workshops, and creative experiences for all ages and skill levels.",
+      "history": {
+        "opened": null,
+        "story": "Artsy Beast is a boutique studio in Chevy Chase specializing in ceramics and creative experiences. The studio welcomes students of all ages and skill levels for pottery classes, workshops, and special events."
+      },
+      "featured": false
+    }
+  ],
+  "metadata": {
+    "last_updated": "2026-01-19",
+    "total_institutions": 13,
+    "coverage_area": "Upper Northwest DC and surrounding areas",
+    "categories": [
+      "gallery",
+      "music-education",
+      "literary",
+      "art-studio",
+      "community-center",
+      "dance-studio",
+      "yoga-studio",
+      "performing-arts",
+      "recording-studio"
+    ]
+  }
+}

@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="home-hero">
+    <div class="hero-content">
+        <h1>Vienna Almanac</h1>
+        <p class="hero-tagline">History, culture, and community in Vienna, Virginia</p>
+    </div>
+</div>
+
+<div class="home-layout">
+    <!-- Main Article Column -->
+    <article class="home-article">
+        <p class="article-lead">
+            <strong>Vienna, Virginia</strong> is a historic town in Fairfax County known for its charming downtown, excellent schools, and proximity to Wolf Trap National Park for the Performing Arts. From its origins as a railroad stop to its vibrant present-day community, Vienna maintains its small-town character within the greater Washington metropolitan area.
+        </p>
+
+        <div class="article-infobox">
+            <h4>Vienna</h4>
+            <dl>
+                <dt>Incorporated</dt>
+                <dd>1890</dd>
+                <dt>Area</dt>
+                <dd>4.4 square miles</dd>
+                <dt>Named For</dt>
+                <dd>Vienna, Austria (or Dr. William Hendrick's hometown)</dd>
+                <dt>Key Landmarks</dt>
+                <dd>Church Street, Wolf Trap, Freeman House, W&OD Trail</dd>
+            </dl>
+        </div>
+
+        <h2>History</h2>
+        <p>
+            Vienna's history dates to the early 19th century when the area was farmland. The town grew around the Washington and Old Dominion Railroad, which connected the region to Washington, DC. Incorporated in 1890, Vienna developed as a quiet residential community that attracted families seeking a small-town atmosphere near the capital.
+        </p>
+        <p>
+            During the Civil War, Vienna was the site of a minor but notable engagement in June 1861, when Confederate forces ambushed a Union reconnaissance train - one of the war's first hostile actions in Virginia.
+        </p>
+
+        <h2>Church Street</h2>
+        <p>
+            Historic Church Street forms the heart of downtown Vienna, lined with locally-owned shops, restaurants, and the beloved Caffe Amouri. The street hosts community events including the annual Oktoberfest, Halloween Parade, and holiday festivities. Recent revitalization efforts have strengthened Church Street's role as a walkable town center.
+        </p>
+
+        <h2>Vienna Today</h2>
+        <p>
+            Today, Vienna is known for its highly-rated schools, safe neighborhoods, and engaged community. The W&OD Trail, built on the former railroad right-of-way, provides recreation and commuting opportunities. Wolf Trap, just outside town, draws visitors from across the region for concerts and performances in its unique open-air venue.
+        </p>
+
+        <div class="article-see-also">
+            <h3>Explore More</h3>
+            <ul>
+                <li><a href="/page/history">Full History</a></li>
+                <li><a href="/page/church_street">Church Street</a></li>
+                <li><a href="/page/wolf_trap">Wolf Trap</a></li>
+                <li><a href="/page/timeline">Timeline</a></li>
+            </ul>
+        </div>
+    </article>
+
+    <!-- Sidebar Column -->
+    <aside class="home-sidebar">
+        <!-- What's Happening Section -->
+        {% if featured_events %}
+        <div class="sidebar-section">
+            <h3><i class="fas fa-calendar-alt"></i> What's Happening</h3>
+            <div class="sidebar-events">
+                {% for event in featured_events %}
+                <a href="/events" class="sidebar-event">
+                    <div class="event-date-compact">
+                        <span class="month">{{ event.date[5:7] | int }}</span>
+                        <span class="day">{{ event.date[8:10] | int }}</span>
+                    </div>
+                    <div class="event-info">
+                        <strong>{{ event.title }}</strong>
+                        <span class="event-location">{{ event.location }}</span>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            <a href="/events" class="sidebar-link">All Events <i class="fas fa-arrow-right"></i></a>
+        </div>
+        {% endif %}
+
+        <!-- Quick Links -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-compass"></i> Explore</h3>
+            <ul class="sidebar-quick-links">
+                <li><a href="/dining"><i class="fas fa-utensils"></i> Dining Guide</a></li>
+                <li><a href="/schools"><i class="fas fa-school"></i> Schools</a></li>
+                <li><a href="/arts"><i class="fas fa-palette"></i> Arts & Culture</a></li>
+                <li><a href="/worship"><i class="fas fa-church"></i> Houses of Worship</a></li>
+                <li><a href="/services"><i class="fas fa-building"></i> Public Services</a></li>
+                <li><a href="/map"><i class="fas fa-map"></i> Interactive Map</a></li>
+            </ul>
+        </div>
+
+        <!-- From the Archives -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-camera-retro"></i> From the Archives</h3>
+            <div class="sidebar-photo">
+                <p>The Washington and Old Dominion Railroad once ran through Vienna, shaping the town's development. Today the W&OD Trail follows this historic route.</p>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<!-- Notable Stories Section -->
+<div class="home-stories">
+    <h2>Notable Stories</h2>
+    <div class="story-grid">
+        <a href="/page/church_street" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-road"></i></div>
+            <h4>Church Street</h4>
+            <p>The heart of downtown Vienna with local shops, restaurants, and community events.</p>
+        </a>
+        <a href="/page/wolf_trap" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-music"></i></div>
+            <h4>Wolf Trap</h4>
+            <p>America's only National Park dedicated to the performing arts.</p>
+        </a>
+        <a href="/page/railroad" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-train"></i></div>
+            <h4>Railroad Era</h4>
+            <p>How the W&OD Railroad shaped Vienna's development and character.</p>
+        </a>
+        <a href="/page/civil_war" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-flag"></i></div>
+            <h4>Civil War History</h4>
+            <p>The 1861 skirmish that brought the war to Vienna's doorstep.</p>
+        </a>
+    </div>
+</div>
+{% endblock %}

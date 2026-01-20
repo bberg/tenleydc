@@ -1,0 +1,441 @@
+{
+  "schools": [
+    {
+      "id": "janney-elementary",
+      "name": "Janney Elementary School",
+      "slug": "janney-elementary",
+      "type": "public",
+      "level": "elementary",
+      "grades": "PK-5",
+      "address": "4130 Albemarle St NW",
+      "neighborhood": "tenleytown",
+      "phone": "202-282-0110",
+      "website": "https://www.janneyschool.org",
+      "dcps_profile": "https://profiles.dcps.dc.gov/Janney+Elementary+School",
+      "history": {
+        "opened": 1925,
+        "named_after": "Stuart Janney",
+        "story": "Janney Elementary School opened in 1925, named after Stuart Janney, a prominent Baltimore attorney and civic leader who served on the DC Board of Education. The original building was designed in the Colonial Revival style typical of DC public schools of that era. The school has undergone several renovations and expansions over the decades to accommodate the growing Tenleytown community. Today, Janney is known for its strong academic programs and active parent community."
+      },
+      "awards": [
+        "National Blue Ribbon School (2019)",
+        "DC High-Performing School"
+      ],
+      "enrollment": 650,
+      "featured": true
+    },
+    {
+      "id": "murch-elementary",
+      "name": "Murch Elementary School",
+      "slug": "murch-elementary",
+      "type": "public",
+      "level": "elementary",
+      "grades": "PK-5",
+      "address": "4810 36th St NW",
+      "neighborhood": "chevy-chase",
+      "phone": "202-282-0130",
+      "website": "https://www.murchschool.org",
+      "dcps_profile": "https://profiles.dcps.dc.gov/Murch+Elementary+School",
+      "history": {
+        "opened": 1929,
+        "named_after": "Thompson Murch",
+        "story": "Murch Elementary School was established in 1929 and named after Thompson Murch, a labor leader and congressman who represented Massachusetts. The school was built to serve the rapidly developing Chevy Chase DC neighborhood. The distinctive brick building features Georgian architectural elements and has been a cornerstone of the community for nearly a century. Murch has consistently been recognized as one of the top-performing elementary schools in the District."
+      },
+      "awards": [
+        "National Blue Ribbon School",
+        "DC High-Performing School"
+      ],
+      "enrollment": 580,
+      "featured": true
+    },
+    {
+      "id": "hearst-elementary",
+      "name": "Hearst Elementary School",
+      "slug": "hearst-elementary",
+      "type": "public",
+      "level": "elementary",
+      "grades": "PK-5",
+      "address": "3950 37th St NW",
+      "neighborhood": "cleveland-park",
+      "phone": "202-282-0106",
+      "website": "https://www.hearstschool.org",
+      "dcps_profile": "https://profiles.dcps.dc.gov/Hearst+Elementary+School",
+      "history": {
+        "opened": 1932,
+        "named_after": "Phoebe Apperson Hearst",
+        "story": "Hearst Elementary opened in 1932 and was named after Phoebe Apperson Hearst, a philanthropist and advocate for education who funded numerous schools and educational programs. She was the mother of newspaper publisher William Randolph Hearst. The school serves the Cleveland Park and Cathedral Heights communities and has maintained a strong reputation for academic excellence and community involvement throughout its history."
+      },
+      "awards": [
+        "DC High-Performing School"
+      ],
+      "enrollment": 420,
+      "featured": true
+    },
+    {
+      "id": "eaton-elementary",
+      "name": "Eaton Elementary School",
+      "slug": "eaton-elementary",
+      "type": "public",
+      "level": "elementary",
+      "grades": "PK-5",
+      "address": "3301 Lowell St NW",
+      "neighborhood": "cleveland-park",
+      "phone": "202-282-0103",
+      "website": "https://www.eatonschool.org",
+      "dcps_profile": "https://profiles.dcps.dc.gov/Eaton+Elementary+School",
+      "history": {
+        "opened": 1911,
+        "named_after": "John Eaton Jr.",
+        "story": "Eaton Elementary School is one of the oldest schools in Upper Northwest, opening in 1911. It was named after John Eaton Jr., who served as the United States Commissioner of Education from 1870 to 1886. Under his leadership, the federal education office expanded significantly. The school has served the Cleveland Park community for over a century, with multiple building additions and renovations preserving its historic character while modernizing facilities."
+      },
+      "awards": [
+        "DC High-Performing School"
+      ],
+      "enrollment": 480,
+      "featured": true
+    },
+    {
+      "id": "deal-middle-school",
+      "name": "Alice Deal Middle School",
+      "slug": "deal-middle-school",
+      "type": "public",
+      "level": "middle",
+      "grades": "6-8",
+      "address": "3815 Fort Drive NW",
+      "neighborhood": "forest-hills",
+      "phone": "202-939-2010",
+      "website": "https://www.alicedeal.org",
+      "dcps_profile": "https://profiles.dcps.dc.gov/Alice+Deal+Middle+School",
+      "history": {
+        "opened": 1931,
+        "named_after": "Alice Deal",
+        "story": "Alice Deal Middle School opened in 1931 and was named after Alice Deal, a longtime DC educator who served as a teacher and principal in the DC public school system for over 40 years. The school was built in the Colonial Revival style and sits on a prominent hilltop site in Forest Hills. Deal has grown to become one of the largest and most sought-after middle schools in the District, serving students from across Upper Northwest. A major renovation and expansion was completed in 2017."
+      },
+      "awards": [
+        "DC High-Performing School",
+        "National Blue Ribbon School"
+      ],
+      "enrollment": 1650,
+      "featured": true
+    },
+    {
+      "id": "jackson-reed-high-school",
+      "name": "Jackson-Reed High School",
+      "slug": "jackson-reed-high-school",
+      "type": "public",
+      "level": "high",
+      "grades": "9-12",
+      "address": "3950 Chesapeake St NW",
+      "neighborhood": "spring-valley",
+      "phone": "202-282-0120",
+      "website": "https://www.jacksonreedhs.org",
+      "dcps_profile": "https://profiles.dcps.dc.gov/Jackson-Reed+High+School",
+      "history": {
+        "opened": 1935,
+        "former_name": "Woodrow Wilson High School",
+        "renamed": 2022,
+        "named_after": "Edna Burke Jackson and Vincent Reed",
+        "story": "The school opened in 1935 as Woodrow Wilson High School, serving the rapidly growing neighborhoods of Upper Northwest DC. In 2022, the school was renamed Jackson-Reed High School to honor Edna Burke Jackson, a longtime DC educator and civil rights advocate who taught at the school, and Vincent Reed, who was the first Black principal in DC to lead a predominantly white high school and later served as DC schools superintendent. The campus features distinctive Art Deco architecture and extensive athletic facilities. Jackson-Reed is known for its diverse student body, strong academics, and championship athletics programs."
+      },
+      "awards": [
+        "US News Best High Schools",
+        "DC High-Performing School"
+      ],
+      "enrollment": 1850,
+      "featured": true
+    },
+    {
+      "id": "georgetown-day-school",
+      "name": "Georgetown Day School",
+      "slug": "georgetown-day-school",
+      "type": "private",
+      "level": "k12",
+      "grades": "PK-12",
+      "address": "4200 Davenport St NW",
+      "neighborhood": "tenleytown",
+      "phone": "202-295-1100",
+      "website": "https://www.gds.org",
+      "history": {
+        "founded": 1945,
+        "story": "Georgetown Day School was founded in 1945 as the first integrated school in Washington, DC, at a time when segregation was still the law. Seven families, both Black and white, came together to create a school where children of all backgrounds could learn together. The school began in a small building in Georgetown and has grown into one of the most respected independent schools in the nation. In 2020, GDS opened its unified campus on Davenport Street, bringing together students from all grades on one site for the first time."
+      },
+      "tuition_range": "$45,000 - $50,000",
+      "religious_affiliation": null,
+      "enrollment": 1075,
+      "featured": true
+    },
+    {
+      "id": "sidwell-friends",
+      "name": "Sidwell Friends School",
+      "slug": "sidwell-friends",
+      "type": "private",
+      "level": "k12",
+      "grades": "PK-12",
+      "address": "3825 Wisconsin Ave NW",
+      "neighborhood": "tenleytown",
+      "phone": "202-537-8100",
+      "website": "https://www.sidwell.edu",
+      "history": {
+        "founded": 1883,
+        "story": "Sidwell Friends School was founded in 1883 by Thomas Sidwell, a Quaker educator from Wilmington, Delaware. Originally called the T.W. Sidwell's Friends Select School, it began in a row house on I Street NW. The school moved to its current Wisconsin Avenue campus in 1957. Sidwell Friends is known for educating the children of many prominent Washington families, including multiple presidential children. The school maintains its Quaker values of integrity, equality, and service while providing a rigorous academic program."
+      },
+      "tuition_range": "$48,000 - $52,000",
+      "religious_affiliation": "Quaker (Society of Friends)",
+      "enrollment": 1150,
+      "featured": true
+    },
+    {
+      "id": "national-presbyterian-school",
+      "name": "National Presbyterian School",
+      "slug": "national-presbyterian-school",
+      "type": "private",
+      "level": "elementary",
+      "grades": "PK-6",
+      "address": "4121 Nebraska Ave NW",
+      "neighborhood": "tenleytown",
+      "phone": "202-537-7500",
+      "website": "https://www.nps-dc.org",
+      "history": {
+        "founded": 1969,
+        "story": "National Presbyterian School was founded in 1969 as the elementary school of National Presbyterian Church. The school is located on the church's campus along Nebraska Avenue, adjacent to American University. While affiliated with the Presbyterian Church, NPS welcomes students of all faiths and backgrounds. The school emphasizes character development alongside academics and is known for its nurturing community atmosphere and strong elementary education program."
+      },
+      "tuition_range": "$35,000 - $38,000",
+      "religious_affiliation": "Presbyterian",
+      "enrollment": 300,
+      "featured": false
+    },
+    {
+      "id": "edmund-burke-school",
+      "name": "Edmund Burke School",
+      "slug": "edmund-burke-school",
+      "type": "private",
+      "level": "secondary",
+      "grades": "6-12",
+      "address": "4101 Connecticut Ave NW",
+      "neighborhood": "van-ness",
+      "phone": "202-362-8882",
+      "website": "https://www.eburke.org",
+      "history": {
+        "founded": 1968,
+        "named_after": "Edmund Burke",
+        "story": "Edmund Burke School was founded in 1968, named after the 18th-century Irish-British statesman and philosopher Edmund Burke, known for his writings on political thought and aesthetics. The school was established during a period of educational innovation in America and has maintained a progressive approach to education. Located in the Van Ness neighborhood, Burke emphasizes student voice, experiential learning, and democratic values. The school is known for its strong arts programs and student-centered approach."
+      },
+      "tuition_range": "$44,000 - $48,000",
+      "religious_affiliation": null,
+      "enrollment": 310,
+      "featured": false
+    },
+    {
+      "id": "palisades-community-preschool",
+      "name": "The Community Preschool of the Palisades",
+      "slug": "palisades-community-preschool",
+      "type": "private",
+      "level": "preschool",
+      "grades": "Preschool",
+      "age_range": "2-5 years",
+      "address": "5200 Cathedral Ave NW",
+      "neighborhood": "palisades",
+      "phone": "202-966-7114",
+      "website": "https://www.palisadespreschool.org",
+      "history": {
+        "founded": 1962,
+        "story": "The Community Preschool of the Palisades was founded in 1962 as a parent cooperative preschool serving the Palisades neighborhood. Operating out of Palisades Community Church, the school has provided early childhood education to generations of neighborhood children. The cooperative model involves parents in classroom activities and school governance, fostering a strong sense of community. The school emphasizes play-based learning and social-emotional development."
+      },
+      "tuition_range": "$12,000 - $18,000",
+      "religious_affiliation": null,
+      "enrollment": 60,
+      "featured": false
+    },
+    {
+      "id": "edlavitch-tyser-early-childhood",
+      "name": "Edlavitch Tyser Early Childhood Center",
+      "slug": "edlavitch-tyser-early-childhood",
+      "type": "private",
+      "level": "preschool",
+      "grades": "Preschool",
+      "age_range": "2-5 years",
+      "address": "3935 Macomb St NW",
+      "neighborhood": "cleveland-park",
+      "phone": "202-362-3606",
+      "website": "https://www.washingtonhebrewcongregation.org/early-childhood",
+      "history": {
+        "founded": 1958,
+        "story": "The Edlavitch Tyser Early Childhood Center is part of Washington Hebrew Congregation, one of the oldest and largest Reform Jewish congregations in the Washington area. The early childhood program was established to provide quality Jewish early childhood education while welcoming families of all backgrounds. The center offers a play-based curriculum infused with Jewish values, culture, and traditions, preparing children for kindergarten in a nurturing environment."
+      },
+      "tuition_range": "$18,000 - $24,000",
+      "religious_affiliation": "Jewish (Reform)",
+      "enrollment": 120,
+      "featured": false
+    },
+    {
+      "id": "kindercare-tenleytown",
+      "name": "KinderCare Tenleytown",
+      "slug": "kindercare-tenleytown",
+      "type": "private",
+      "level": "preschool",
+      "grades": "Infant - Pre-K",
+      "age_range": "6 weeks - 5 years",
+      "address": "15 Ridge Square NW",
+      "neighborhood": "tenleytown",
+      "phone": "202-362-1919",
+      "website": "https://www.kindercare.com",
+      "history": {
+        "opened": 1998,
+        "story": "KinderCare Tenleytown is part of KinderCare Learning Companies, one of the largest early childhood education providers in the United States. The Tenleytown location opened in 1998 to serve the growing number of families in Upper Northwest seeking quality childcare. The center offers full-day programs for infants through pre-kindergarten, with a curriculum designed to prepare children for school while supporting their social and emotional development."
+      },
+      "tuition_range": "$24,000 - $32,000",
+      "religious_affiliation": null,
+      "enrollment": 90,
+      "featured": false
+    },
+    {
+      "id": "temple-sinai-nursery-school",
+      "name": "Temple Sinai Nursery School",
+      "slug": "temple-sinai-nursery-school",
+      "type": "private",
+      "level": "preschool",
+      "grades": "Preschool",
+      "age_range": "2-5 years",
+      "address": "3100 Military Rd NW",
+      "neighborhood": "forest-hills",
+      "phone": "202-363-1803",
+      "website": "https://www.templesinaidc.org/nursery-school",
+      "history": {
+        "founded": 1965,
+        "story": "Temple Sinai Nursery School was established in 1965 as part of Temple Sinai, a Reform Jewish congregation founded in 1952. The nursery school provides early childhood education rooted in Jewish values while welcoming families of all faiths. Located on the temple's campus at the intersection of Military Road and Oregon Avenue, the school offers a play-based curriculum that emphasizes social development, creativity, and preparation for elementary school."
+      },
+      "tuition_range": "$15,000 - $22,000",
+      "religious_affiliation": "Jewish (Reform)",
+      "enrollment": 100,
+      "featured": false
+    },
+    {
+      "id": "two-birds-tenleytown",
+      "name": "Two Birds Tenleytown",
+      "slug": "two-birds-tenleytown",
+      "type": "private",
+      "level": "preschool",
+      "grades": "Infant - Preschool",
+      "age_range": "6 weeks - 5 years",
+      "address": "4115 Wisconsin Ave NW",
+      "neighborhood": "tenleytown",
+      "phone": "(202) 795-1818",
+      "website": "https://www.twobirdsinc.com/locations/tenleytown",
+      "history": {
+        "opened": 2020,
+        "story": "Two Birds is a modern childcare concept combining high-quality early childhood education with parent amenities. The Tenleytown location is across from Jackson-Reed High School and offers Reggio-inspired, play-based programming with included diapers, wipes, and three daily meals."
+      },
+      "tuition_range": "$30,000 - $38,000",
+      "religious_affiliation": null,
+      "enrollment": null,
+      "featured": false
+    },
+    {
+      "id": "communikids-tenleytown",
+      "name": "CommuniKids Bilingual Preschool",
+      "slug": "communikids-tenleytown",
+      "type": "private",
+      "level": "preschool",
+      "grades": "Preschool - Pre-K",
+      "age_range": "18 months - 5 years",
+      "address": "3900 Wisconsin Ave NW",
+      "neighborhood": "tenleytown",
+      "phone": "(202) 362-0400",
+      "website": "https://communikids.com",
+      "history": {
+        "opened": null,
+        "story": "CommuniKids offers bilingual immersion programs in Spanish, French, and Mandarin at their Cathedral Commons location in Tenleytown. The school participates in DC's free Pre-K program and offers after-school programs for children in Pre-K 4 through second grade."
+      },
+      "tuition_range": "Free Pre-K available; other programs vary",
+      "religious_affiliation": null,
+      "enrollment": null,
+      "featured": true
+    },
+    {
+      "id": "bcdc",
+      "name": "Broadcasters' Child Development Center",
+      "slug": "bcdc",
+      "type": "private",
+      "level": "preschool",
+      "grades": "Infant - Preschool",
+      "age_range": "6 weeks - 5 years",
+      "address": "4350 Wisconsin Ave NW",
+      "neighborhood": "tenleytown",
+      "phone": "(202) 364-5700",
+      "website": "https://bcdconline.org",
+      "history": {
+        "founded": 1984,
+        "story": "The Broadcasters' Child Development Center has provided quality early childhood education in Tenleytown for over 40 years. With a staff-to-child ratio of 1:4 or better, BCDC emphasizes individualized care and developmentally appropriate learning."
+      },
+      "tuition_range": "$25,000 - $35,000",
+      "religious_affiliation": null,
+      "enrollment": null,
+      "featured": false
+    },
+    {
+      "id": "aidan-montessori",
+      "name": "Aidan Montessori School",
+      "slug": "aidan-montessori",
+      "type": "private",
+      "level": "elementary",
+      "grades": "Toddler - Grade 6",
+      "age_range": "18 months - 12 years",
+      "address": "2700 27th St NW",
+      "neighborhood": "woodley-park",
+      "phone": "(202) 387-2700",
+      "website": "https://www.aidanschool.org",
+      "history": {
+        "founded": 1961,
+        "story": "Aidan Montessori School has provided authentic Montessori education in Washington DC for over 60 years. With a 5:1 student-teacher ratio and 144 students, Aidan maintains the small school environment that allows for personalized attention and community."
+      },
+      "tuition_range": "$28,000 - $35,000",
+      "religious_affiliation": null,
+      "enrollment": 144,
+      "featured": false
+    },
+    {
+      "id": "mathnasium-cathedral-heights",
+      "name": "Mathnasium of Cathedral Heights",
+      "slug": "mathnasium-cathedral-heights",
+      "type": "tutoring",
+      "level": "tutoring",
+      "grades": "K-12",
+      "address": "3706 Macomb St NW",
+      "neighborhood": "cathedral-heights",
+      "phone": "(202) 600-3155",
+      "website": "https://www.mathnasium.com/math-centers/cathedralheights",
+      "history": {
+        "opened": null,
+        "story": "Mathnasium provides personalized math tutoring and test preparation for students K-12. The Cathedral Heights location offers ACT, SAT, and standardized test prep along with individualized learning plans."
+      },
+      "tuition_range": "Varies",
+      "religious_affiliation": null,
+      "enrollment": null,
+      "featured": false
+    }
+  ],
+  "metadata": {
+    "last_updated": "2026-01-19",
+    "total_schools": 21,
+    "categories": {
+      "public": 6,
+      "private": 14,
+      "tutoring": 1
+    },
+    "levels": {
+      "elementary": 6,
+      "middle": 1,
+      "high": 1,
+      "k12": 2,
+      "secondary": 1,
+      "preschool": 9,
+      "tutoring": 1
+    },
+    "data_sources": [
+      "DC Public Schools",
+      "Individual school websites",
+      "National Center for Education Statistics",
+      "Web search results"
+    ]
+  }
+}

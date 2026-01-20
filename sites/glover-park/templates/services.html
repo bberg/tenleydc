@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="directory-page">
+    <div class="directory-header">
+        <h1><i class="fas fa-building-columns"></i> Public Services</h1>
+        <p class="directory-intro">Libraries, recreation centers, post offices, and other public facilities serving Columbia Heights residents.</p>
+    </div>
+
+    <!-- Filters -->
+    <div class="directory-filters">
+        <div class="filter-group">
+            <label>Type:</label>
+            <div class="filter-pills">
+                <a href="/services" class="filter-pill {% if not current_type %}active{% endif %}">All</a>
+                <a href="/services?type=library" class="filter-pill {% if current_type == 'library' %}active{% endif %}">
+                    <i class="fas fa-book-open"></i> Libraries
+                </a>
+                <a href="/services?type=recreation" class="filter-pill {% if current_type == 'recreation' %}active{% endif %}">
+                    <i class="fas fa-basketball"></i> Recreation
+                </a>
+                <a href="/services?type=post-office" class="filter-pill {% if current_type == 'post-office' %}active{% endif %}">
+                    <i class="fas fa-envelope"></i> Post Offices
+                </a>
+                <a href="/services?type=safety" class="filter-pill {% if current_type == 'safety' %}active{% endif %}">
+                    <i class="fas fa-shield-halved"></i> Public Safety
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results count -->
+    <p class="results-count">
+        Showing {{ services|length }} service{% if services|length != 1 %}s{% endif %}
+        {% if current_type %} ({{ current_type | replace('-', ' ') | title }}){% endif %}
+    </p>
+
+    <!-- Services Grid -->
+    {% if services %}
+    <div class="business-grid">
+        {% for service in services %}
+        <a href="/services/{{ service.slug }}" class="business-card {% if service.featured %}featured{% endif %}">
+            {% if service.featured %}
+            <span class="featured-badge"><i class="fas fa-star"></i> Featured</span>
+            {% endif %}
+            <div class="business-card-header">
+                <h3>{{ service.name }}</h3>
+                <span class="business-category">{{ service.type | replace('-', ' ') | title }}</span>
+            </div>
+            <p class="business-address">
+                <i class="fas fa-map-marker-alt"></i>
+                {{ service.address }}
+            </p>
+            {% if service.description %}
+            <p class="business-description">{{ service.description[:120] }}{% if service.description|length > 120 %}...{% endif %}</p>
+            {% endif %}
+            {% if service.history and service.history.opened %}
+            <div class="business-history-teaser">
+                <i class="fas fa-clock-rotate-left"></i>
+                Est. {{ service.history.opened }}
+            </div>
+            {% endif %}
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-results">
+        <i class="fas fa-building-columns"></i>
+        <h3>No services found</h3>
+        <p>Try adjusting your filters or <a href="/services">view all services</a>.</p>
+    </div>
+    {% endif %}
+
+    <!-- Community Note -->
+    <div class="directory-note">
+        <h3>Know a public service we're missing?</h3>
+        <p>Help us document the neighborhood. <a href="/about">Get in touch</a> with additions or corrections.</p>
+    </div>
+</div>
+{% endblock %}

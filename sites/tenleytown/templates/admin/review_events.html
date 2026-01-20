@@ -1,0 +1,400 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="admin-page">
+    <div class="admin-header">
+        <h1><i class="fas fa-clipboard-check"></i> Review Scraped Events</h1>
+        <p class="admin-intro">Events collected from external sources awaiting review. Approve to add to the calendar, reject to discard.</p>
+    </div>
+
+    <!-- Stats -->
+    <div class="admin-stats">
+        <div class="stat-card">
+            <span class="stat-number">{{ pending_events|length }}</span>
+            <span class="stat-label">Pending Review</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">{{ approved_today|default(0) }}</span>
+            <span class="stat-label">Approved Today</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">{{ last_scrape|default('Never') }}</span>
+            <span class="stat-label">Last Scrape</span>
+        </div>
+    </div>
+
+    <!-- Action buttons -->
+    <div class="admin-actions">
+        <form action="/admin/scrape/run" method="post" style="display: inline;">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-sync"></i> Run Scrapers Now
+            </button>
+        </form>
+        <a href="/admin/scraper-status" class="btn btn-secondary">
+            <i class="fas fa-chart-line"></i> Scraper Status
+        </a>
+    </div>
+
+    <!-- Pending Events -->
+    {% if pending_events %}
+    <div class="events-review-list">
+        {% for event in pending_events %}
+        <div class="event-review-card" data-event-id="{{ event.id }}">
+            <div class="event-review-header">
+                <div class="event-source">
+                    <span class="source-badge">{{ event.source }}</span>
+                    <span class="scraped-date">Scraped {{ event.scraped_at[:10] }}</span>
+                </div>
+                <div class="event-review-actions">
+                    <form action="/admin/review/approve" method="post" style="display: inline;">
+                        <input type="hidden" name="event_id" value="{{ event.id }}">
+                        <button type="submit" class="btn btn-approve">
+                            <i class="fas fa-check"></i> Approve
+                        </button>
+                    </form>
+                    <form action="/admin/review/reject" method="post" style="display: inline;">
+                        <input type="hidden" name="event_id" value="{{ event.id }}">
+                        <button type="submit" class="btn btn-reject">
+                            <i class="fas fa-times"></i> Reject
+                        </button>
+                    </form>
+                    <button type="button" class="btn btn-edit" onclick="toggleEdit('{{ event.id }}')">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                </div>
+            </div>
+
+            <div class="event-review-content">
+                <h3>{{ event.title }}</h3>
+                <div class="event-review-meta">
+                    <span><i class="fas fa-calendar"></i> {{ event.date }}</span>
+                    {% if event.time %}
+                    <span><i class="fas fa-clock"></i> {{ event.time }}</span>
+                    {% endif %}
+                    <span><i class="fas fa-map-marker-alt"></i> {{ event.location }}</span>
+                    <span><i class="fas fa-tag"></i> {{ event.category }}</span>
+                </div>
+                {% if event.description %}
+                <p class="event-description">{{ event.description[:300] }}{% if event.description|length > 300 %}...{% endif %}</p>
+                {% endif %}
+                {% if event.link %}
+                <a href="{{ event.link }}" target="_blank" rel="noopener" class="event-link">
+                    <i class="fas fa-external-link-alt"></i> View Original
+                </a>
+                {% endif %}
+            </div>
+
+            <!-- Edit Form (hidden by default) -->
+            <div class="event-edit-form" id="edit-{{ event.id }}" style="display: none;">
+                <form action="/admin/review/approve" method="post">
+                    <input type="hidden" name="event_id" value="{{ event.id }}">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" name="title" value="{{ event.title }}" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" name="date" value="{{ event.date }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Time</label>
+                            <input type="text" name="time" value="{{ event.time }}">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Location</label>
+                            <input type="text" name="location" value="{{ event.location }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select name="category">
+                                <option value="community" {% if event.category == 'community' %}selected{% endif %}>Community</option>
+                                <option value="literary" {% if event.category == 'literary' %}selected{% endif %}>Literary</option>
+                                <option value="music" {% if event.category == 'music' %}selected{% endif %}>Music</option>
+                                <option value="family" {% if event.category == 'family' %}selected{% endif %}>Family</option>
+                                <option value="civic" {% if event.category == 'civic' %}selected{% endif %}>Civic</option>
+                                <option value="education" {% if event.category == 'education' %}selected{% endif %}>Education</option>
+                                <option value="market" {% if event.category == 'market' %}selected{% endif %}>Market</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea name="description" rows="3">{{ event.description }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label><input type="checkbox" name="featured"> Feature this event</label>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-approve">
+                            <i class="fas fa-check"></i> Save & Approve
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="toggleEdit('{{ event.id }}')">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-results">
+        <i class="fas fa-check-circle"></i>
+        <h3>All caught up!</h3>
+        <p>No pending events to review. Run the scrapers to fetch new events.</p>
+    </div>
+    {% endif %}
+</div>
+
+<style>
+.admin-page {
+    max-width: 900px;
+}
+
+.admin-header {
+    margin-bottom: var(--space-xl);
+    border-bottom: var(--rule-double);
+    padding-bottom: var(--space-lg);
+}
+
+.admin-header h1 {
+    font-family: var(--font-headline);
+    font-size: 2rem;
+    margin-bottom: var(--space-sm);
+}
+
+.admin-intro {
+    color: var(--ink-faded);
+    font-style: italic;
+}
+
+.admin-stats {
+    display: flex;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+}
+
+.stat-card {
+    background: var(--paper-aged);
+    border: var(--rule-thin);
+    padding: var(--space-lg);
+    text-align: center;
+    flex: 1;
+}
+
+.stat-card .stat-number {
+    font-family: var(--font-headline);
+    font-size: 2rem;
+    font-weight: 700;
+    display: block;
+}
+
+.stat-card .stat-label {
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    color: var(--ink-faded);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.admin-actions {
+    margin-bottom: var(--space-xl);
+    display: flex;
+    gap: var(--space-md);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-sm) var(--space-md);
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    text-decoration: none;
+    border: var(--rule-thin);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.btn-primary {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+}
+
+.btn-primary:hover {
+    background: var(--accent-red);
+    border-color: var(--accent-red);
+}
+
+.btn-secondary {
+    background: var(--paper);
+    color: var(--ink);
+}
+
+.btn-secondary:hover {
+    background: var(--paper-dark);
+}
+
+.btn-approve {
+    background: #2e7d32;
+    color: white;
+    border-color: #2e7d32;
+}
+
+.btn-approve:hover {
+    background: #1b5e20;
+}
+
+.btn-reject {
+    background: #c62828;
+    color: white;
+    border-color: #c62828;
+}
+
+.btn-reject:hover {
+    background: #b71c1c;
+}
+
+.btn-edit {
+    background: var(--paper);
+    color: var(--ink);
+}
+
+.events-review-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.event-review-card {
+    border: var(--rule-thin);
+    background: var(--paper);
+    padding: var(--space-lg);
+}
+
+.event-review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-sm);
+    border-bottom: var(--rule-thin);
+}
+
+.source-badge {
+    background: var(--paper-dark);
+    padding: 2px 8px;
+    font-family: var(--font-ui);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+}
+
+.scraped-date {
+    font-size: 0.8rem;
+    color: var(--ink-faded);
+    margin-left: var(--space-sm);
+}
+
+.event-review-actions {
+    display: flex;
+    gap: var(--space-xs);
+}
+
+.event-review-content h3 {
+    font-family: var(--font-headline);
+    font-size: 1.2rem;
+    margin-bottom: var(--space-sm);
+}
+
+.event-review-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    color: var(--ink-faded);
+    margin-bottom: var(--space-sm);
+}
+
+.event-review-meta i {
+    color: var(--accent-sepia);
+    margin-right: 4px;
+}
+
+.event-description {
+    color: var(--ink-light);
+    line-height: 1.6;
+    margin-bottom: var(--space-sm);
+}
+
+.event-link {
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    color: var(--accent-red);
+    text-decoration: none;
+}
+
+.event-link:hover {
+    text-decoration: underline;
+}
+
+.event-edit-form {
+    margin-top: var(--space-lg);
+    padding-top: var(--space-lg);
+    border-top: var(--rule-thin);
+}
+
+.form-group {
+    margin-bottom: var(--space-md);
+}
+
+.form-group label {
+    display: block;
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: var(--space-sm);
+    border: var(--rule-thin);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+}
+
+.form-row {
+    display: flex;
+    gap: var(--space-md);
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.form-actions {
+    display: flex;
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+}
+</style>
+
+<script>
+function toggleEdit(eventId) {
+    const editForm = document.getElementById('edit-' + eventId);
+    if (editForm.style.display === 'none') {
+        editForm.style.display = 'block';
+    } else {
+        editForm.style.display = 'none';
+    }
+}
+</script>
+{% endblock %}

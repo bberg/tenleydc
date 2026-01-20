@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="business-profile">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <a href="/arts">Arts & Culture</a>
+        <span class="separator"><i class="fas fa-chevron-right"></i></span>
+        <span>{{ venue.name }}</span>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="profile-hero {% if venue.featured %}featured{% endif %}">
+        {% if venue.featured %}
+        <span class="featured-badge"><i class="fas fa-star"></i> Featured Venue</span>
+        {% endif %}
+        <div class="profile-header">
+            <h1>{{ venue.name }}</h1>
+            <span class="category-badge">
+                <i class="fas fa-{% if venue.type == 'gallery' %}image{% elif venue.type == 'music' %}music{% elif venue.type == 'theater' %}masks-theater{% else %}book{% endif %}"></i>
+                {{ venue.type | title }}{% if venue.subcategory %} - {{ venue.subcategory | title }}{% endif %}
+            </span>
+        </div>
+    </div>
+
+    <div class="profile-content">
+        <!-- Quick Info Sidebar -->
+        <aside class="profile-sidebar">
+            <div class="info-card">
+                <h3><i class="fas fa-info-circle"></i> Quick Info</h3>
+
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Address</strong>
+                        <p>{{ venue.address }}</p>
+                    </div>
+                </div>
+
+                {% if venue.admission %}
+                <div class="info-item">
+                    <i class="fas fa-ticket"></i>
+                    <div>
+                        <strong>Admission</strong>
+                        <p>{% if venue.admission == 'free' %}Free{% else %}{{ venue.admission }}{% endif %}</p>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if venue.phone %}
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <strong>Phone</strong>
+                        <p><a href="tel:{{ venue.phone }}">{{ venue.phone }}</a></p>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if venue.website %}
+                <div class="info-item">
+                    <i class="fas fa-globe"></i>
+                    <div>
+                        <strong>Website</strong>
+                        <p><a href="{{ venue.website }}" target="_blank" rel="noopener">Visit Website</a></p>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if venue.hours %}
+                <div class="info-item hours">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <strong>Hours</strong>
+                        <ul class="hours-list">
+                            {% for day, hours in venue.hours.items() %}
+                            <li><span class="day">{{ day | title }}</span> <span class="time">{{ hours }}</span></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Neighborhood Context -->
+            <div class="neighborhood-card">
+                <h4><i class="fas fa-map"></i> Neighborhood</h4>
+                <p>{{ venue.neighborhood | replace('-', ' ') | title }}</p>
+                <a href="/page/neighborhoods">Explore the area</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="profile-main">
+            <!-- Description -->
+            {% if venue.description %}
+            <section class="profile-section">
+                <h2>About {{ venue.name }}</h2>
+                <p class="description">{{ venue.description }}</p>
+            </section>
+            {% endif %}
+
+            <!-- History Section -->
+            {% if venue.history %}
+            <section class="profile-section history-section">
+                <div class="history-header">
+                    <h2><i class="fas fa-clock-rotate-left"></i> The Story</h2>
+                    <span class="history-tagline">The history of this cultural space</span>
+                </div>
+
+                <div class="history-content">
+                    {% if venue.history.opened %}
+                    <div class="history-stat">
+                        <span class="stat-number">{{ venue.history.opened }}</span>
+                        <span class="stat-label">Year Established</span>
+                    </div>
+                    {% endif %}
+
+                    {% if venue.history.story %}
+                    <div class="history-detail">
+                        <h4>The Story</h4>
+                        <p>{{ venue.history.story }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if venue.history.notable_events %}
+                    <div class="history-detail">
+                        <h4><i class="fas fa-calendar-star"></i> Notable Events</h4>
+                        <p>{{ venue.history.notable_events }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </section>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="profile-nav">
+        <a href="/arts" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back to Arts & Culture</a>
+    </div>
+</div>
+{% endblock %}

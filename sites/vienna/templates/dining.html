@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dining-page">
+    <div class="dining-header">
+        <h1><i class="fas fa-utensils"></i> Dining Guide</h1>
+        <p class="dining-intro">From Church Street favorites to hidden gems, discover where to eat and drink in Vienna. Every restaurant has a story.</p>
+    </div>
+
+    <!-- Type Filters -->
+    <div class="dining-filters">
+        <div class="filter-pills">
+            <a href="/dining" class="filter-pill {% if not current_type %}active{% endif %}">All Dining</a>
+            {% for sub in subcategories %}
+            <a href="/dining?type={{ sub.id }}"
+               class="filter-pill {% if current_type == sub.id %}active{% endif %}">
+                {{ sub.name }}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Results count -->
+    <p class="results-count">
+        {{ businesses|length }} place{% if businesses|length != 1 %}s{% endif %} to eat
+        {% if current_type %} ({{ current_type | replace('-', ' ') | title }}){% endif %}
+    </p>
+
+    <!-- Restaurant Grid -->
+    {% if businesses %}
+    <div class="dining-grid">
+        {% for business in businesses %}
+        <a href="/business/{{ business.slug }}" class="dining-card {% if business.featured %}featured{% endif %}">
+            {% if business.featured %}
+            <span class="featured-badge"><i class="fas fa-star"></i> Featured</span>
+            {% endif %}
+            <div class="dining-card-content">
+                <div class="dining-card-header">
+                    <h3>{{ business.name }}</h3>
+                    <span class="dining-type">{{ business.subcategory | replace('-', ' ') | title }}</span>
+                </div>
+                <p class="dining-address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    {{ business.address }}
+                </p>
+                <p class="dining-description">{{ business.description[:140] }}{% if business.description|length > 140 %}...{% endif %}</p>
+
+                {% if business.history and business.history.opened %}
+                <div class="dining-history-teaser">
+                    <span class="year"><i class="fas fa-clock-rotate-left"></i> Since {{ business.history.opened }}</span>
+                    {% if business.history.what_was_here_before %}
+                    <span class="before-hint">See what was here before...</span>
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                <div class="dining-tags">
+                    {% for tag in business.tags[:4] %}
+                    <span class="tag">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-results">
+        <i class="fas fa-utensils"></i>
+        <h3>No restaurants found</h3>
+        <p>Try <a href="/dining">viewing all dining options</a>.</p>
+    </div>
+    {% endif %}
+
+    <!-- Neighborhood Tips -->
+    <div class="dining-tips">
+        <h2><i class="fas fa-lightbulb"></i> Vienna Dining Tips</h2>
+        <div class="tips-grid">
+            <div class="tip-card">
+                <h4>Church Street</h4>
+                <p>Historic downtown Vienna's main street offers walkable dining from coffee shops to full-service restaurants.</p>
+            </div>
+            <div class="tip-card">
+                <h4>Maple Avenue</h4>
+                <p>Vienna's main commercial corridor features diverse cuisines and larger restaurant spaces.</p>
+            </div>
+            <div class="tip-card">
+                <h4>Pre-Wolf Trap</h4>
+                <p>Many Vienna restaurants fill up before Wolf Trap performances - reservations recommended on concert nights.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Community Note -->
+    <div class="dining-note">
+        <h3>Missing your favorite spot?</h3>
+        <p>Help us build a complete guide to Vienna dining. <a href="/about">Send us a tip</a>.</p>
+    </div>
+</div>
+{% endblock %}

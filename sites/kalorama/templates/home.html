@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="home-hero">
+    <div class="hero-content">
+        <h1>Kalorama Almanac</h1>
+        <p class="hero-tagline">The Beautiful View: Washington's most prestigious address</p>
+    </div>
+</div>
+
+<div class="home-layout">
+    <!-- Main Article Column -->
+    <article class="home-article">
+        <p class="article-lead">
+            <strong>Kalorama</strong> takes its name from the Greek word meaning "beautiful view," chosen by poet and diplomat Joel Barlow in 1807. That view, and the elegance it suggested, has defined the neighborhood ever since. Today Kalorama is one of Washington's most prestigious addresses, home to embassies, former presidents, and some of the finest examples of early twentieth-century residential architecture in the United States.
+        </p>
+
+        <div class="article-infobox">
+            <h4>Kalorama</h4>
+            <dl>
+                <dt>Name Origin</dt>
+                <dd>Greek for "beautiful view"</dd>
+                <dt>Named By</dt>
+                <dd>Joel Barlow (1807)</dd>
+                <dt>Presidential Residents</dt>
+                <dd>6 U.S. Presidents</dd>
+                <dt>Key Landmarks</dt>
+                <dd>Wilson House, Phillips Collection</dd>
+            </dl>
+        </div>
+
+        <h2>History</h2>
+        <p>
+            Kalorama's transformation from rural estate to urban neighborhood took place over more than a century. The original Kalorama mansion, built around 1750 and renamed by Joel Barlow, anchored a property that passed through the hands of some of early America's most prominent figures.
+        </p>
+        <p>
+            The Great Depression brought an unexpected transformation. Wealthy families sold their mansions to foreign governments seeking diplomatic residences. France was the first nation to purchase property for an embassy. Today Kalorama contains dozens of embassies, earning its place on Embassy Row.
+        </p>
+
+        <h2>Presidential Connections</h2>
+        <p>
+            Six U.S. presidents have lived in Sheridan-Kalorama: William Howard Taft, Woodrow Wilson, Warren G. Harding, Herbert Hoover, Franklin D. Roosevelt (as a young man), and Barack Obama. Woodrow Wilson's S Street house is now Washington's only presidential residence open to the public.
+        </p>
+
+        <div class="article-see-also">
+            <h3>Explore More</h3>
+            <ul>
+                <li><a href="/page/kalorama">Full Kalorama History</a></li>
+                <li><a href="/page/timeline">Timeline</a></li>
+                <li><a href="/page/wilson_house">Woodrow Wilson House</a></li>
+                <li><a href="/page/embassy_row">Embassy Row</a></li>
+            </ul>
+        </div>
+    </article>
+
+    <!-- Sidebar Column -->
+    <aside class="home-sidebar">
+        <!-- What's Happening Section -->
+        {% if featured_events %}
+        <div class="sidebar-section">
+            <h3><i class="fas fa-calendar-alt"></i> What's Happening</h3>
+            <div class="sidebar-events">
+                {% for event in featured_events %}
+                <a href="/events" class="sidebar-event">
+                    <div class="event-date-compact">
+                        <span class="month">{{ event.date[5:7] | int }}</span>
+                        <span class="day">{{ event.date[8:10] | int }}</span>
+                    </div>
+                    <div class="event-info">
+                        <strong>{{ event.title }}</strong>
+                        <span class="event-location">{{ event.location }}</span>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            <a href="/events" class="sidebar-link">All Events <i class="fas fa-arrow-right"></i></a>
+        </div>
+        {% endif %}
+
+        <!-- Quick Links -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-compass"></i> Explore</h3>
+            <ul class="sidebar-quick-links">
+                <li><a href="/page/kalorama"><i class="fas fa-map-marker-alt"></i> Kalorama History</a></li>
+                <li><a href="/page/wilson_house"><i class="fas fa-university"></i> Woodrow Wilson House</a></li>
+                <li><a href="/page/phillips_collection"><i class="fas fa-palette"></i> Phillips Collection</a></li>
+                <li><a href="/page/presidents"><i class="fas fa-user-tie"></i> Presidential Residents</a></li>
+            </ul>
+        </div>
+
+        <!-- From the Archives -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-camera-retro"></i> From the Archives</h3>
+            <div class="sidebar-photo">
+                <p>Six U.S. presidents have called Kalorama home, from William Howard Taft to Barack Obama.</p>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<!-- Notable Stories Section -->
+<div class="home-stories">
+    <h2>Notable Stories</h2>
+    <div class="story-grid">
+        <a href="/page/joel_barlow" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-scroll"></i></div>
+            <h4>Joel Barlow's Estate</h4>
+            <p>The poet who named this land "beautiful view" in 1807.</p>
+        </a>
+        <a href="/page/wilson_house" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-university"></i></div>
+            <h4>Woodrow Wilson House</h4>
+            <p>Washington's only presidential museum open to the public.</p>
+        </a>
+        <a href="/page/embassy_row" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-globe"></i></div>
+            <h4>Embassy Row</h4>
+            <p>How the Depression transformed mansions into embassies.</p>
+        </a>
+        <a href="/page/phillips_collection" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-palette"></i></div>
+            <h4>Phillips Collection</h4>
+            <p>America's first museum of modern art, founded in 1921.</p>
+        </a>
+    </div>
+</div>
+{% endblock %}

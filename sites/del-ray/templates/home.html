@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="home-hero">
+    <div class="hero-content">
+        <h1>Del Ray Almanac</h1>
+        <p class="hero-tagline">History, culture, and community along The Avenue</p>
+    </div>
+</div>
+
+<div class="home-layout">
+    <!-- Main Article Column -->
+    <article class="home-article">
+        <p class="article-lead">
+            <strong>Del Ray</strong> is a walkable, eclectic neighborhood in Alexandria, Virginia, centered on Mount Vernon Avenue - affectionately known as "The Avenue." Once an industrial streetcar suburb, Del Ray has evolved into one of the region's most vibrant small-town-feel communities.
+        </p>
+
+        <div class="article-infobox">
+            <h4>Del Ray</h4>
+            <dl>
+                <dt>Established</dt>
+                <dd>Early 1900s as streetcar suburb</dd>
+                <dt>Heart of the Neighborhood</dt>
+                <dd>Mount Vernon Avenue</dd>
+                <dt>Known For</dt>
+                <dd>Farmers Market, local shops, Art on the Avenue</dd>
+                <dt>Part of</dt>
+                <dd>City of Alexandria, Virginia</dd>
+            </dl>
+        </div>
+
+        <h2>History</h2>
+        <p>
+            Del Ray began as a streetcar suburb in the early 1900s, developed to provide affordable housing for workers in nearby Alexandria and Washington, DC. The neighborhood was built along the Washington, Alexandria and Mount Vernon Electric Railway line, which ran down what is now Mount Vernon Avenue.
+        </p>
+        <p>
+            The name "Del Ray" comes from the Spanish words for "of the king," chosen by early developers. The neighborhood was originally outside Alexandria's city limits and developed its own distinct identity as a working-class community with small businesses serving local residents.
+        </p>
+
+        <h2>The Avenue</h2>
+        <p>
+            Mount Vernon Avenue, "The Avenue," forms the spine of Del Ray. Once home to industrial businesses and modest shops, it has transformed into a destination for dining, shopping, and community gathering. The Saturday morning farmers market has operated continuously since 1995 and anchors the community's weekend rhythms.
+        </p>
+
+        <h2>Del Ray Today</h2>
+        <p>
+            Today, Del Ray is known for its independent businesses, family-friendly atmosphere, and strong community involvement. Events like Art on the Avenue, the Halloween Parade, and First Thursday festivals bring neighbors together throughout the year. Despite gentrification pressures, Del Ray maintains its character as a neighborhood where people know their neighbors.
+        </p>
+
+        <div class="article-see-also">
+            <h3>Explore More</h3>
+            <ul>
+                <li><a href="/page/history">Full History</a></li>
+                <li><a href="/page/mount_vernon_ave">Mount Vernon Avenue</a></li>
+                <li><a href="/page/streetcar">Streetcar Era</a></li>
+                <li><a href="/page/timeline">Timeline</a></li>
+            </ul>
+        </div>
+    </article>
+
+    <!-- Sidebar Column -->
+    <aside class="home-sidebar">
+        <!-- What's Happening Section -->
+        {% if featured_events %}
+        <div class="sidebar-section">
+            <h3><i class="fas fa-calendar-alt"></i> What's Happening</h3>
+            <div class="sidebar-events">
+                {% for event in featured_events %}
+                <a href="/events" class="sidebar-event">
+                    <div class="event-date-compact">
+                        <span class="month">{{ event.date[5:7] | int }}</span>
+                        <span class="day">{{ event.date[8:10] | int }}</span>
+                    </div>
+                    <div class="event-info">
+                        <strong>{{ event.title }}</strong>
+                        <span class="event-location">{{ event.location }}</span>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            <a href="/events" class="sidebar-link">All Events <i class="fas fa-arrow-right"></i></a>
+        </div>
+        {% endif %}
+
+        <!-- Quick Links -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-compass"></i> Explore</h3>
+            <ul class="sidebar-quick-links">
+                <li><a href="/dining"><i class="fas fa-utensils"></i> Dining Guide</a></li>
+                <li><a href="/schools"><i class="fas fa-school"></i> Schools</a></li>
+                <li><a href="/arts"><i class="fas fa-palette"></i> Arts & Culture</a></li>
+                <li><a href="/worship"><i class="fas fa-church"></i> Houses of Worship</a></li>
+                <li><a href="/services"><i class="fas fa-building"></i> Public Services</a></li>
+                <li><a href="/map"><i class="fas fa-map"></i> Interactive Map</a></li>
+            </ul>
+        </div>
+
+        <!-- From the Archives -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-camera-retro"></i> From the Archives</h3>
+            <div class="sidebar-photo">
+                <p>The streetcars that once ran down Mount Vernon Avenue shaped Del Ray's development and created the walkable neighborhood residents cherish today.</p>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<!-- Notable Stories Section -->
+<div class="home-stories">
+    <h2>Notable Stories</h2>
+    <div class="story-grid">
+        <a href="/page/mount_vernon_ave" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-road"></i></div>
+            <h4>The Avenue</h4>
+            <p>How Mount Vernon Avenue evolved from streetcar route to beloved main street.</p>
+        </a>
+        <a href="/page/farmers_market" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-store-alt"></i></div>
+            <h4>Farmers Market</h4>
+            <p>Saturday morning tradition connecting neighbors since 1995.</p>
+        </a>
+        <a href="/page/streetcar" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-train-tram"></i></div>
+            <h4>Streetcar Era</h4>
+            <p>The electric railway that shaped Del Ray's development.</p>
+        </a>
+        <a href="/page/industry" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-industry"></i></div>
+            <h4>Industrial Heritage</h4>
+            <p>From lumber yards to local boutiques - transformation of The Avenue.</p>
+        </a>
+    </div>
+</div>
+{% endblock %}

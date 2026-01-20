@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="home-hero">
+    <div class="hero-content">
+        <h1>Columbia Heights Almanac</h1>
+        <p class="hero-tagline">History, culture, and community in Washington, DC</p>
+    </div>
+</div>
+
+<div class="home-layout">
+    <!-- Main Article Column -->
+    <article class="home-article">
+        <p class="article-lead">
+            <strong>Columbia Heights</strong> stands as one of Washington, D.C.'s most dramatically transformed neighborhoods, its story arcing from colonial farmland through Gilded Age affluence, devastating upheaval, and remarkable rebirth. Located in the Northwest quadrant, this neighborhood has witnessed virtually every chapter of the American urban experience.
+        </p>
+
+        <div class="article-infobox">
+            <h4>Columbia Heights</h4>
+            <dl>
+                <dt>Established</dt>
+                <dd>1821 (Columbian College)</dd>
+                <dt>Key Landmark</dt>
+                <dd>Tivoli Theatre (1924)</dd>
+                <dt>Metro Station</dt>
+                <dd>Columbia Heights (1999)</dd>
+                <dt>Named For</dt>
+                <dd>Columbian College (now GWU)</dd>
+            </dl>
+        </div>
+
+        <h2>History</h2>
+        <p>
+            The neighborhood's most consequential early development came in 1821 when Columbian College opened on College Hill between 14th and 15th Streets, fulfilling George Washington's dream of a national university. That institution would eventually become George Washington University, relocating downtown but leaving an indelible mark on the neighborhood's identity.
+        </p>
+        <p>
+            The pivotal year was 1892, when the Washington and Georgetown Railroad Company began running electric streetcars up 14th Street to Park Road. This streetcar connection catalyzed Columbia Heights' metamorphosis from countryside to urban neighborhood.
+        </p>
+
+        <h2>Cultural Hub</h2>
+        <p>
+            The magnificent Tivoli Theatre opened on April 4, 1924, with over 2,000 seats making it Washington's largest theater. Designed in Italian Renaissance Revival style by Thomas W. Lamb, the Tivoli became the neighborhood's cultural anchor. Today it houses GALA Hispanic Theatre.
+        </p>
+
+        <h2>Black Broadway</h2>
+        <p>
+            Beginning in the 1940s, Columbia Heights became predominantly African American. The neighborhood, along with the U Street corridor, evolved into the heart of Black Washington, known as "Black Broadway" - a world of theaters, jazz clubs, newspapers, and civil rights organizations. Duke Ellington lived here; Marvin Gaye attended Cardozo High School.
+        </p>
+
+        <div class="article-see-also">
+            <h3>Explore More</h3>
+            <ul>
+                <li><a href="/page/history">Full History</a></li>
+                <li><a href="/page/timeline">Timeline</a></li>
+                <li><a href="/page/landmarks">Landmarks</a></li>
+                <li><a href="/about">About This Project</a></li>
+            </ul>
+        </div>
+    </article>
+
+    <!-- Sidebar Column -->
+    <aside class="home-sidebar">
+        <!-- What's Happening Section -->
+        {% if featured_events %}
+        <div class="sidebar-section">
+            <h3><i class="fas fa-calendar-alt"></i> What's Happening</h3>
+            <div class="sidebar-events">
+                {% for event in featured_events %}
+                <a href="/events" class="sidebar-event">
+                    <div class="event-date-compact">
+                        <span class="month">{{ event.date[5:7] | int }}</span>
+                        <span class="day">{{ event.date[8:10] | int }}</span>
+                    </div>
+                    <div class="event-info">
+                        <strong>{{ event.title }}</strong>
+                        <span class="event-location">{{ event.location }}</span>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            <a href="/events" class="sidebar-link">All Events <i class="fas fa-arrow-right"></i></a>
+        </div>
+        {% endif %}
+
+        <!-- Quick Links -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-compass"></i> Explore</h3>
+            <ul class="sidebar-quick-links">
+                <li><a href="/dining"><i class="fas fa-utensils"></i> Dining Guide</a></li>
+                <li><a href="/schools"><i class="fas fa-school"></i> Schools</a></li>
+                <li><a href="/arts"><i class="fas fa-palette"></i> Arts & Culture</a></li>
+                <li><a href="/worship"><i class="fas fa-church"></i> Houses of Worship</a></li>
+                <li><a href="/services"><i class="fas fa-building"></i> Public Services</a></li>
+                <li><a href="/map"><i class="fas fa-map"></i> Interactive Map</a></li>
+            </ul>
+        </div>
+
+        <!-- Historical Note -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-camera-retro"></i> From the Archives</h3>
+            <div class="sidebar-photo">
+                <p>The Tivoli Theatre opened in 1924 as Washington's largest movie palace, seating over 2,000 patrons in Italian Renaissance splendor.</p>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<!-- Notable Stories Section -->
+<div class="home-stories">
+    <h2>Notable Stories</h2>
+    <div class="story-grid">
+        <a href="/page/history" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-university"></i></div>
+            <h4>College Hill</h4>
+            <p>Columbian College opened here in 1821, later becoming George Washington University.</p>
+        </a>
+        <a href="/page/history" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-theater-masks"></i></div>
+            <h4>The Tivoli</h4>
+            <p>The 1924 movie palace remains a neighborhood landmark, now home to GALA Theatre.</p>
+        </a>
+        <a href="/page/history" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-music"></i></div>
+            <h4>Black Broadway</h4>
+            <p>Duke Ellington and Marvin Gaye called Columbia Heights home.</p>
+        </a>
+        <a href="/page/history" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-subway"></i></div>
+            <h4>Metro Opens</h4>
+            <p>The 1999 Columbia Heights station sparked neighborhood transformation.</p>
+        </a>
+    </div>
+</div>
+{% endblock %}

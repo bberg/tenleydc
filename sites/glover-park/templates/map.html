@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<div class="map-page">
+    <div class="map-header">
+        <h2>Interactive Map</h2>
+        <p>Explore historic sites in Glover Park, Washington, DC</p>
+    </div>
+
+    <div class="map-container">
+        <div id="map" class="interactive-map"></div>
+    </div>
+
+    <div class="map-legend">
+        <h3>Historic Sites</h3>
+        <div class="legend-items">
+            <div class="legend-item" data-category="landmark">
+                <span class="legend-marker landmark"></span>
+                <span>Landmarks</span>
+            </div>
+            <div class="legend-item" data-category="park">
+                <span class="legend-marker park"></span>
+                <span>Parks</span>
+            </div>
+            <div class="legend-item" data-category="cemetery">
+                <span class="legend-marker cemetery"></span>
+                <span>Historic Sites</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="sites-list">
+        <h3>Key Locations</h3>
+        <div class="sites-grid">
+            <div class="site-card" data-lat="38.9252" data-lng="-77.0720" onclick="panToLocation(38.9252, -77.0720, 'holyrood')">
+                <h4><i class="fas fa-cross"></i> Holy Rood Cemetery</h4>
+                <p>1832 cemetery with 7,000 burials including enslaved persons</p>
+                <span class="site-address">2126 Wisconsin Ave NW</span>
+            </div>
+            <div class="site-card" data-lat="38.9320" data-lng="-77.0780" onclick="panToLocation(38.9320, -77.0780, 'archbold')">
+                <h4><i class="fas fa-tree"></i> Glover-Archbold Park</h4>
+                <p>183-acre park donated in 1924</p>
+                <span class="site-address">Western boundary of neighborhood</span>
+            </div>
+            <div class="site-card" data-lat="38.9285" data-lng="-77.0665" onclick="panToLocation(38.9285, -77.0665, 'guymason')">
+                <h4><i class="fas fa-basketball"></i> Guy Mason Recreation Center</h4>
+                <p>1902 schoolhouse, formerly Industrial Home School</p>
+                <span class="site-address">3600 Calvert St NW</span>
+            </div>
+            <div class="site-card" data-lat="38.9295" data-lng="-77.0690" onclick="panToLocation(38.9295, -77.0690, 'stoddert')">
+                <h4><i class="fas fa-school"></i> Stoddert Elementary</h4>
+                <p>Opened 1932, named for first Secretary of the Navy</p>
+                <span class="site-address">4001 Calvert St NW</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="map-info">
+        <h3>About This Map</h3>
+        <p>This interactive map shows key historic sites in Glover Park. Click on markers or cards to learn more about each location.</p>
+        <a href="/page/landmarks" class="btn">View All Landmarks</a>
+    </div>
+</div>
+
+<style>
+.interactive-map {
+    width: 100%;
+    height: 450px;
+    border-radius: var(--radius-md);
+    z-index: 1;
+}
+
+.site-card {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.site-card:hover {
+    transform: translateY(-2px);
+}
+
+.site-card.active {
+    border-color: var(--rust);
+    box-shadow: 0 0 0 2px var(--rust-light);
+}
+
+.custom-marker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    color: white;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    border: 2px solid white;
+}
+
+.marker-landmark { background: #c45a3b; }
+.marker-park { background: #2d6a4f; }
+.marker-cemetery { background: #6b5b95; }
+.marker-school { background: #e07a5c; }
+.marker-recreation { background: #4a5568; }
+
+.leaflet-popup-content-wrapper {
+    border-radius: 8px;
+}
+
+.leaflet-popup-content h4 {
+    margin: 0 0 8px 0;
+    color: var(--ink);
+    font-size: 1rem;
+}
+
+.leaflet-popup-content p {
+    margin: 0;
+    color: var(--ink-light);
+    font-size: 0.875rem;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize map centered on Glover Park
+    const map = L.map('map').setView([38.9285, -77.0700], 15);
+
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Historic sites data
+    const sites = [
+        {
+            id: 'holyrood',
+            name: 'Holy Rood Cemetery',
+            lat: 38.9252,
+            lng: -77.0720,
+            category: 'cemetery',
+            icon: 'fa-cross',
+            description: 'Established in 1832 as Holy Trinity Catholic Church\'s parish cemetery. Contains approximately 7,000 burials including as many as 1,000 free and enslaved African Americans.',
+            link: '/page/history'
+        },
+        {
+            id: 'archbold',
+            name: 'Glover-Archbold Park',
+            lat: 38.9320,
+            lng: -77.0780,
+            category: 'park',
+            icon: 'fa-tree',
+            description: 'Donated in 1924 by Charles Carroll Glover and Anne Mills Archbold. This 183-acre park forms the neighborhood\'s western boundary and connects to Rock Creek Park.',
+            link: '/page/history'
+        },
+        {
+            id: 'guymason',
+            name: 'Guy Mason Recreation Center',
+            lat: 38.9285,
+            lng: -77.0665,
+            category: 'recreation',
+            icon: 'fa-basketball',
+            description: 'The 1902 schoolhouse, formerly part of the Industrial Home School for homeless newsboys. The main building was razed in 1954 but this structure was preserved.',
+            link: '/page/history'
+        },
+        {
+            id: 'stoddert',
+            name: 'Stoddert Elementary School',
+            lat: 38.9295,
+            lng: -77.0690,
+            category: 'school',
+            icon: 'fa-school',
+            description: 'Opened in 1932 and named for Benjamin Stoddert, the first Secretary of the Navy. Anchors the Glover Park community.',
+            link: '/page/history'
+        }
+    ];
+
+    // Store markers for reference
+    window.markers = {};
+
+    // Add markers for each site
+    sites.forEach(site => {
+        const icon = L.divIcon({
+            className: 'custom-div-icon',
+            html: `<div class="custom-marker marker-${site.category}"><i class="fas ${site.icon}"></i></div>`,
+            iconSize: [32, 32],
+            iconAnchor: [16, 16],
+            popupAnchor: [0, -16]
+        });
+
+        const marker = L.marker([site.lat, site.lng], { icon: icon }).addTo(map);
+
+        let popupContent = `<h4>${site.name}</h4><p>${site.description}</p>`;
+        if (site.link) {
+            popupContent += `<p><a href="${site.link}" style="color: #c45a3b;">Learn more &rarr;</a></p>`;
+        }
+
+        marker.bindPopup(popupContent);
+        window.markers[site.id] = marker;
+    });
+
+    // Store map reference globally
+    window.historyMap = map;
+});
+
+// Pan to location and open popup
+function panToLocation(lat, lng, markerId) {
+    if (window.historyMap && window.markers[markerId]) {
+        window.historyMap.setView([lat, lng], 17, { animate: true });
+        window.markers[markerId].openPopup();
+
+        // Highlight active card
+        document.querySelectorAll('.site-card').forEach(card => card.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+    }
+}
+</script>
+{% endblock %}

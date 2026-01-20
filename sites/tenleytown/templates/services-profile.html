@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="business-profile">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <a href="/services">Public Services</a>
+        <span class="separator"><i class="fas fa-chevron-right"></i></span>
+        <span>{{ service.name }}</span>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="profile-hero {% if service.featured %}featured{% endif %}">
+        {% if service.featured %}
+        <span class="featured-badge"><i class="fas fa-star"></i> Featured</span>
+        {% endif %}
+        <div class="profile-header">
+            <h1>{{ service.name }}</h1>
+            <span class="category-badge">
+                <i class="fas fa-{% if service.type == 'library' %}book-open{% elif service.type == 'recreation' %}basketball{% elif service.type == 'post-office' %}envelope{% else %}building-columns{% endif %}"></i>
+                {{ service.type | replace('-', ' ') | title }}
+            </span>
+        </div>
+    </div>
+
+    <div class="profile-content">
+        <!-- Quick Info Sidebar -->
+        <aside class="profile-sidebar">
+            <div class="info-card">
+                <h3><i class="fas fa-info-circle"></i> Quick Info</h3>
+
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Address</strong>
+                        <p>{{ service.address }}</p>
+                    </div>
+                </div>
+
+                {% if service.phone %}
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <strong>Phone</strong>
+                        <p><a href="tel:{{ service.phone }}">{{ service.phone }}</a></p>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if service.website %}
+                <div class="info-item">
+                    <i class="fas fa-globe"></i>
+                    <div>
+                        <strong>Website</strong>
+                        <p><a href="{{ service.website }}" target="_blank" rel="noopener">Visit Website</a></p>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if service.hours %}
+                <div class="info-item hours">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <strong>Hours</strong>
+                        <ul class="hours-list">
+                            {% for day, hours in service.hours.items() %}
+                            <li><span class="day">{{ day | title }}</span> <span class="time">{{ hours }}</span></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Neighborhood Context -->
+            <div class="neighborhood-card">
+                <h4><i class="fas fa-map"></i> Neighborhood</h4>
+                <p>{{ service.neighborhood | replace('-', ' ') | title }}</p>
+                <a href="/page/neighborhoods">Explore the area</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="profile-main">
+            <!-- Description -->
+            {% if service.description %}
+            <section class="profile-section">
+                <h2>About {{ service.name }}</h2>
+                <p class="description">{{ service.description }}</p>
+            </section>
+            {% endif %}
+
+            <!-- Amenities -->
+            {% if service.amenities %}
+            <section class="profile-section">
+                <h2><i class="fas fa-list-check"></i> Amenities & Services</h2>
+                <ul class="amenities-list">
+                    {% for amenity in service.amenities %}
+                    <li><i class="fas fa-check"></i> {{ amenity }}</li>
+                    {% endfor %}
+                </ul>
+            </section>
+            {% endif %}
+
+            <!-- History Section -->
+            {% if service.history %}
+            <section class="profile-section history-section">
+                <div class="history-header">
+                    <h2><i class="fas fa-clock-rotate-left"></i> The Story</h2>
+                    <span class="history-tagline">Serving the community</span>
+                </div>
+
+                <div class="history-content">
+                    {% if service.history.opened %}
+                    <div class="history-stat">
+                        <span class="stat-number">{{ service.history.opened }}</span>
+                        <span class="stat-label">Year Opened</span>
+                    </div>
+                    {% endif %}
+
+                    {% if service.history.current_building %}
+                    <div class="history-detail">
+                        <h4>Current Building</h4>
+                        <p>Built in {{ service.history.current_building }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if service.history.story %}
+                    <div class="history-detail">
+                        <h4>The Story</h4>
+                        <p>{{ service.history.story }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </section>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="profile-nav">
+        <a href="/services" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back to Public Services</a>
+    </div>
+</div>
+{% endblock %}

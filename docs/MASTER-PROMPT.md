@@ -35,6 +35,26 @@ docs/processes/
 
 **This documentation phase is NON-NEGOTIABLE.** Do not proceed to building new sites until this is complete and thorough.
 
+## Flexibility Principle: Each Neighborhood Is Unique
+
+**Important:** While we want consistency in infrastructure and quality, each neighborhood site should reflect its unique character:
+
+### Content Flexibility
+- **Different sections for different neighborhoods** - Not every neighborhood has the same story. One might have rich military history (Fort Reno), another might be defined by its university (AU Park), another by its commercial district or architecture.
+- **Navigation varies by relevance** - If a neighborhood doesn't have notable broadcasting history, don't include that nav item. If it has a famous cemetery or park, add that section.
+- **Depth varies by available content** - Some neighborhoods have extensive archives; others don't. Quality over forced quantity.
+
+### Style Flexibility (Subtle)
+- **Color accents can reflect neighborhood vibe** - A historic Georgetown might feel different than an artsy Adams Morgan. Adjust accent colors, not wholesale redesigns.
+- **Keep core layout consistent** - Same basic structure, typography system, and UX patterns across all sites.
+- **Don't go overboard** - Subtle variations, not completely different designs. They should feel like a family of sites.
+
+### What This Means for Process Documentation
+When documenting the content structure in `docs/processes/content-structure.md`, document:
+- **Required sections** (every site needs these)
+- **Optional sections** (include if relevant to the neighborhood)
+- **How to decide** what sections a neighborhood needs based on research
+
 ## Infrastructure Workflow
 
 For all technical/infrastructure tasks, follow the documentation in `docs/workflow/`:
@@ -162,28 +182,39 @@ Launch agent: "For all 15 neighborhoods, generate domain name candidates and che
 
 ### Phase 5: Content Generation (Parallel Content Creation)
 
-Once research is complete, generate content in parallel:
+Once research is complete, generate content in parallel. **Each neighborhood gets tailored content based on its unique story:**
 
 ```
 For neighborhoods with completed research, launch parallel agents:
 
-Agent 1: "Using the content template from docs/processes/content-structure.md and
-         the research in research/[neighborhood]/raw-research.md, generate all
-         content files for [Neighborhood] following the AU Park pattern"
+Agent 1: "Using docs/processes/content-structure.md as a guide (not rigid template),
+         and the research in research/[neighborhood]/:
+         1. Determine which sections are relevant for THIS neighborhood based on research
+         2. Generate content files for sections that matter here
+         3. Skip sections that aren't relevant (don't force content that doesn't exist)
+         4. Add unique sections if this neighborhood has something special
+         5. Note any style/vibe considerations for this neighborhood
+         Output: content files + a site-plan.md noting which sections and why"
 
 Agent 2: (same for different neighborhood)
 Agent 3: (same for different neighborhood)
 Agent 4: (same for different neighborhood)
 ```
 
+**Remember:** Georgetown's nav might include "Historic Estates" while Adams Morgan's includes "Music Scene." Don't force uniformity.
+
 ### Phase 6: Site Scaffolding (Parallel Site Creation)
 
 ```
 Launch parallel agents to create site directories:
 
-Agent 1: "Create the full site structure for [neighborhood-1] based on the
-         site-template pattern. Set up app.py, templates, static files,
-         railway.toml, requirements.txt"
+Agent 1: "Create the full site structure for [neighborhood-1]:
+         1. Start from site-template base
+         2. Customize navigation based on site-plan.md (which sections exist)
+         3. Apply subtle style variations if noted (accent colors, etc.)
+         4. Set up app.py with routes for THIS site's sections
+         5. Configure templates, static files, railway.toml, requirements.txt
+         The site should feel part of the family but reflect its neighborhood's character"
 
 Agent 2-N: (same pattern for other neighborhoods)
 ```

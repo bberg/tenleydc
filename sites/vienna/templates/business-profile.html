@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="business-profile">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <a href="/businesses">Local Businesses</a>
+        <span class="separator"><i class="fas fa-chevron-right"></i></span>
+        <span>{{ business.name }}</span>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="profile-hero {% if business.featured %}featured{% endif %}">
+        {% if business.featured %}
+        <span class="featured-badge"><i class="fas fa-star"></i> Featured Business</span>
+        {% endif %}
+        <div class="profile-header">
+            <h1>{{ business.name }}</h1>
+            <span class="category-badge">
+                <i class="fas fa-{% if business.category == 'dining' %}utensils{% elif business.category == 'shopping' %}shopping-bag{% elif business.category == 'services' %}concierge-bell{% else %}store{% endif %}"></i>
+                {{ business.subcategory | replace('-', ' ') | title }}
+            </span>
+        </div>
+    </div>
+
+    <div class="profile-content">
+        <!-- Quick Info Sidebar -->
+        <aside class="profile-sidebar">
+            <div class="info-card">
+                <h3><i class="fas fa-info-circle"></i> Quick Info</h3>
+
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Address</strong>
+                        <p>{{ business.address }}</p>
+                    </div>
+                </div>
+
+                {% if business.phone %}
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <strong>Phone</strong>
+                        <p><a href="tel:{{ business.phone }}">{{ business.phone }}</a></p>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if business.website %}
+                <div class="info-item">
+                    <i class="fas fa-globe"></i>
+                    <div>
+                        <strong>Website</strong>
+                        <p><a href="{{ business.website }}" target="_blank" rel="noopener">Visit Website</a></p>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if business.hours %}
+                <div class="info-item hours">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <strong>Hours</strong>
+                        <ul class="hours-list">
+                            {% for day, hours in business.hours.items() %}
+                            <li><span class="day">{{ day | title }}</span> <span class="time">{{ hours }}</span></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Neighborhood Context -->
+            <div class="neighborhood-card">
+                <h4><i class="fas fa-map"></i> Neighborhood</h4>
+                <p>{{ business.neighborhood | replace('-', ' ') | title }}</p>
+                <a href="/page/neighborhoods">Explore the area</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="profile-main">
+            <!-- Description -->
+            <section class="profile-section">
+                <h2>About {{ business.name }}</h2>
+                <p class="description">{{ business.description }}</p>
+
+                {% if business.tags %}
+                <div class="business-tags">
+                    {% for tag in business.tags %}
+                    <span class="tag">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </section>
+
+            <!-- THE DIFFERENTIATOR: History Section -->
+            {% if business.history %}
+            <section class="profile-section history-section">
+                <div class="history-header">
+                    <h2><i class="fas fa-clock-rotate-left"></i> The Story</h2>
+                    <span class="history-tagline">The history behind the storefront</span>
+                </div>
+
+                <div class="history-content">
+                    {% if business.history.opened %}
+                    <div class="history-stat">
+                        <span class="stat-number">{{ business.history.opened }}</span>
+                        <span class="stat-label">Year Established</span>
+                    </div>
+                    {% endif %}
+
+                    {% if business.history.founded_by %}
+                    <div class="history-detail">
+                        <h4>Founded By</h4>
+                        <p>{{ business.history.founded_by }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if business.history.story %}
+                    <div class="history-detail">
+                        <h4>The Story</h4>
+                        <p>{{ business.history.story }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if business.history.what_was_here_before %}
+                    <div class="history-detail what-was-here">
+                        <h4><i class="fas fa-building"></i> What Was Here Before</h4>
+                        <p>{{ business.history.what_was_here_before }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if business.history.neighborhood_context %}
+                    <div class="history-detail">
+                        <h4><i class="fas fa-compass"></i> Neighborhood Context</h4>
+                        <p>{{ business.history.neighborhood_context }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </section>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Related Businesses -->
+    {% if related_businesses %}
+    <section class="related-section">
+        <h2>Similar Businesses Nearby</h2>
+        <div class="related-grid">
+            {% for biz in related_businesses %}
+            <a href="/business/{{ biz.slug }}" class="related-card">
+                <h4>{{ biz.name }}</h4>
+                <p class="related-category">{{ biz.subcategory | replace('-', ' ') | title }}</p>
+                <p class="related-address"><i class="fas fa-map-marker-alt"></i> {{ biz.address }}</p>
+            </a>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Navigation -->
+    <div class="profile-nav">
+        <a href="/businesses" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back to Directory</a>
+        {% if business.category == 'dining' %}
+        <a href="/dining" class="btn btn-secondary"><i class="fas fa-utensils"></i> Dining Guide</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

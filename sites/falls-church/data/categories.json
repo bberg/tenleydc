@@ -1,0 +1,35 @@
+{
+  "categories": [
+    {
+      "id": "dining",
+      "name": "Dining",
+      "icon": "utensils",
+      "subcategories": [
+        {"id": "restaurant", "name": "Restaurant"},
+        {"id": "cafe", "name": "Cafe"},
+        {"id": "bakery", "name": "Bakery"},
+        {"id": "bar", "name": "Bar"}
+      ]
+    },
+    {
+      "id": "shopping",
+      "name": "Shopping",
+      "icon": "shopping-bag",
+      "subcategories": [
+        {"id": "retail", "name": "Retail"},
+        {"id": "boutique", "name": "Boutique"},
+        {"id": "grocery", "name": "Grocery"}
+      ]
+    },
+    {
+      "id": "services",
+      "name": "Services",
+      "icon": "concierge-bell",
+      "subcategories": [
+        {"id": "professional", "name": "Professional Services"},
+        {"id": "health", "name": "Health & Wellness"},
+        {"id": "personal", "name": "Personal Services"}
+      ]
+    }
+  ]
+}

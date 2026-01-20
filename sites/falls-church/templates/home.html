@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="home-hero">
+    <div class="hero-content">
+        <h1>Falls Church Almanac</h1>
+        <p class="hero-tagline">History, culture, and community in The Little City</p>
+    </div>
+</div>
+
+<div class="home-layout">
+    <!-- Main Article Column -->
+    <article class="home-article">
+        <p class="article-lead">
+            <strong>Falls Church, Virginia</strong> is one of the smallest independent cities in the United States, covering just 2.2 square miles in Northern Virginia. Known as "The Little City," it has a rich history spanning from colonial times through the Civil War to its modern role as a vibrant urban community.
+        </p>
+
+        <div class="article-infobox">
+            <h4>Falls Church</h4>
+            <dl>
+                <dt>Incorporated</dt>
+                <dd>1875 (Town), 1948 (City)</dd>
+                <dt>Area</dt>
+                <dd>2.2 square miles</dd>
+                <dt>Named For</dt>
+                <dd>The Falls Church (1733)</dd>
+                <dt>Key Landmarks</dt>
+                <dd>State Theatre, Tinner Hill, Cherry Hill Park</dd>
+            </dl>
+        </div>
+
+        <h2>History</h2>
+        <p>
+            Falls Church takes its name from The Falls Church, an Episcopal church established in 1733 near the falls of the Potomac River. The original wooden church was replaced by the current brick structure in 1769. George Washington and George Mason both served as vestrymen here.
+        </p>
+        <p>
+            During the Civil War, Falls Church was occupied by Union forces and the historic church was used as a hospital and later a stable. The town was largely destroyed during the conflict and spent decades rebuilding.
+        </p>
+
+        <h2>Civil Rights Legacy</h2>
+        <p>
+            Falls Church played a significant role in civil rights history. In 1915, Joseph Tinner and E.B. Henderson organized the first rural branch of the NAACP at Tinner Hill to fight residential segregation ordinances. Their successful legal challenge set important precedents for civil rights law.
+        </p>
+
+        <h2>The Little City Today</h2>
+        <p>
+            Today, Falls Church is known for its excellent schools, walkable downtown, and vibrant arts scene centered around the historic State Theatre. Despite its small size, the city maintains its independence and distinct character within the greater Washington metropolitan area.
+        </p>
+
+        <div class="article-see-also">
+            <h3>Explore More</h3>
+            <ul>
+                <li><a href="/page/history">Full History</a></li>
+                <li><a href="/page/tinner_hill">Tinner Hill Heritage</a></li>
+                <li><a href="/page/state_theater">State Theatre</a></li>
+                <li><a href="/page/timeline">Timeline</a></li>
+            </ul>
+        </div>
+    </article>
+
+    <!-- Sidebar Column -->
+    <aside class="home-sidebar">
+        <!-- What's Happening Section -->
+        {% if featured_events %}
+        <div class="sidebar-section">
+            <h3><i class="fas fa-calendar-alt"></i> What's Happening</h3>
+            <div class="sidebar-events">
+                {% for event in featured_events %}
+                <a href="/events" class="sidebar-event">
+                    <div class="event-date-compact">
+                        <span class="month">{{ event.date[5:7] | int }}</span>
+                        <span class="day">{{ event.date[8:10] | int }}</span>
+                    </div>
+                    <div class="event-info">
+                        <strong>{{ event.title }}</strong>
+                        <span class="event-location">{{ event.location }}</span>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            <a href="/events" class="sidebar-link">All Events <i class="fas fa-arrow-right"></i></a>
+        </div>
+        {% endif %}
+
+        <!-- Quick Links -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-compass"></i> Explore</h3>
+            <ul class="sidebar-quick-links">
+                <li><a href="/dining"><i class="fas fa-utensils"></i> Dining Guide</a></li>
+                <li><a href="/schools"><i class="fas fa-school"></i> Schools</a></li>
+                <li><a href="/arts"><i class="fas fa-palette"></i> Arts & Culture</a></li>
+                <li><a href="/worship"><i class="fas fa-church"></i> Houses of Worship</a></li>
+                <li><a href="/services"><i class="fas fa-building"></i> Public Services</a></li>
+                <li><a href="/map"><i class="fas fa-map"></i> Interactive Map</a></li>
+            </ul>
+        </div>
+
+        <!-- From the Archives -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-camera-retro"></i> From the Archives</h3>
+            <div class="sidebar-photo">
+                <p>The historic Falls Church has served this community since 1769, witnessing the American Revolution, Civil War, and the growth of Northern Virginia.</p>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<!-- Notable Stories Section -->
+<div class="home-stories">
+    <h2>Notable Stories</h2>
+    <div class="story-grid">
+        <a href="/page/tinner_hill" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-fist-raised"></i></div>
+            <h4>Tinner Hill</h4>
+            <p>Site of the first rural NAACP branch and a pivotal civil rights victory in 1915.</p>
+        </a>
+        <a href="/page/state_theater" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-masks-theater"></i></div>
+            <h4>State Theatre</h4>
+            <p>Historic 1936 movie palace transformed into a beloved concert venue.</p>
+        </a>
+        <a href="/page/history" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-church"></i></div>
+            <h4>The Falls Church</h4>
+            <p>The 1769 church that gave the city its name, with Washington as vestryman.</p>
+        </a>
+        <a href="/page/downtown" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-store"></i></div>
+            <h4>Downtown Revival</h4>
+            <p>How The Little City rebuilt its walkable downtown after suburban sprawl.</p>
+        </a>
+    </div>
+</div>
+{% endblock %}

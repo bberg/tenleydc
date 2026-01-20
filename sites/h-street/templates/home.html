@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="home-hero">
+    <div class="hero-content">
+        <h1>H Street Almanac</h1>
+        <p class="hero-tagline">Black Main Street, the fire, and the long road back</p>
+    </div>
+</div>
+
+<div class="home-layout">
+    <!-- Main Article Column -->
+    <article class="home-article">
+        <p class="article-lead">
+            <strong>H Street NE</strong> was once Washington's second-busiest commercial district, a place where Black Washingtonians could shop without the humiliation they faced in downtown's white-owned stores. It was called Black Main Street, a thriving corridor of theaters, department stores, and local businesses serving a community denied access elsewhere.
+        </p>
+
+        <div class="article-infobox">
+            <h4>H Street NE</h4>
+            <dl>
+                <dt>Street Built</dt>
+                <dd>1849</dd>
+                <dt>Streetcars Arrived</dt>
+                <dd>1870</dd>
+                <dt>1968 Uprising</dt>
+                <dd>April 4-8, 1968</dd>
+                <dt>Streetcar Returned</dt>
+                <dd>February 2016</dd>
+            </dl>
+        </div>
+
+        <h2>Black Main Street</h2>
+        <p>
+            What made H Street distinctive was its role in segregated Washington. While downtown theaters and stores served Black customers reluctantly or not at all, H Street welcomed them. Black-owned businesses established themselves along the corridor. It was not a utopia of racial harmony, but it was a place where the Black community could shop with dignity.
+        </p>
+
+        <h2>April 1968: When H Street Burned</h2>
+        <p>
+            On April 4, 1968, Martin Luther King Jr. was assassinated in Memphis. Within hours, grief and rage exploded into violence. H Street NE was looted and burned from Benning Road to the Hopscotch Bridge. What followed was not just destruction but abandonment: thirty years of disinvestment, boarded storefronts, and a community left to fend for itself.
+        </p>
+
+        <h2>Revival and Gentrification</h2>
+        <p>
+            Change began in the 1990s. The Atlas Theater reopened as a performing arts center in 2006. Streetcars returned in 2016. Forbes named H Street the sixth-most hipster place in America in 2012. But since 2002, over 150 businesses have been forced to close, and many long-time residents have been displaced.
+        </p>
+
+        <div class="article-see-also">
+            <h3>Explore More</h3>
+            <ul>
+                <li><a href="/page/history">Full History</a></li>
+                <li><a href="/page/black_main_street">Black Main Street</a></li>
+                <li><a href="/page/the_fire">1968 Uprising</a></li>
+                <li><a href="/page/atlas_theater">Atlas Theater</a></li>
+                <li><a href="/page/timeline">Timeline</a></li>
+            </ul>
+        </div>
+    </article>
+
+    <!-- Sidebar Column -->
+    <aside class="home-sidebar">
+        <!-- What's Happening Section -->
+        {% if featured_events %}
+        <div class="sidebar-section">
+            <h3><i class="fas fa-calendar-alt"></i> What's Happening</h3>
+            <div class="sidebar-events">
+                {% for event in featured_events %}
+                <a href="/events" class="sidebar-event">
+                    <div class="event-date-compact">
+                        <span class="month">{{ event.date[5:7] | int }}</span>
+                        <span class="day">{{ event.date[8:10] | int }}</span>
+                    </div>
+                    <div class="event-info">
+                        <strong>{{ event.title }}</strong>
+                        <span class="event-location">{{ event.location }}</span>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            <a href="/events" class="sidebar-link">All Events <i class="fas fa-arrow-right"></i></a>
+        </div>
+        {% endif %}
+
+        <!-- Quick Links -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-compass"></i> Explore</h3>
+            <ul class="sidebar-quick-links">
+                <li><a href="/page/atlas_district"><i class="fas fa-theater-masks"></i> Atlas District</a></li>
+                <li><a href="/page/black_main_street"><i class="fas fa-store"></i> Black Main Street</a></li>
+                <li><a href="/page/the_fire"><i class="fas fa-fire"></i> 1968 Uprising</a></li>
+                <li><a href="/page/streetcar"><i class="fas fa-train"></i> Streetcar Line</a></li>
+                <li><a href="/businesses"><i class="fas fa-store"></i> Local Businesses</a></li>
+                <li><a href="/map"><i class="fas fa-map"></i> Interactive Map</a></li>
+            </ul>
+        </div>
+
+        <!-- From the Archives -->
+        <div class="sidebar-section">
+            <h3><i class="fas fa-camera-retro"></i> From the Archives</h3>
+            <div class="sidebar-photo">
+                <p>The Atlas Theater opened in 1938 as an Art Deco showpiece</p>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<!-- Notable Stories Section -->
+<div class="home-stories">
+    <h2>Notable Stories</h2>
+    <div class="story-grid">
+        <a href="/page/black_main_street" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-store"></i></div>
+            <h4>Black Main Street</h4>
+            <p>Where Black Washingtonians could shop without humiliation.</p>
+        </a>
+        <a href="/page/the_fire" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-fire"></i></div>
+            <h4>When H Street Burned</h4>
+            <p>April 1968: grief and rage after MLK's assassination.</p>
+        </a>
+        <a href="/page/atlas_theater" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-film"></i></div>
+            <h4>The Atlas Theater</h4>
+            <p>From Art Deco movie palace to anchor of revival.</p>
+        </a>
+        <a href="/page/streetcar" class="story-card-link">
+            <div class="story-icon"><i class="fas fa-train"></i></div>
+            <h4>The Streetcar Returns</h4>
+            <p>In 2016, streetcars returned after 54 years.</p>
+        </a>
+    </div>
+</div>
+{% endblock %}
