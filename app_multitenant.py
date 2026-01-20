@@ -68,7 +68,7 @@ DOMAIN_TO_SITE = {
 # Site metadata (for GA, SEO, etc.)
 SITE_METADATA = {
     "tenleytown": {
-        "ga_id": "",  # Add GA measurement IDs when available
+        "ga_id": "G-FWWPBGYKR1",
         "site_name": "Tenley DC",
         "tagline": "Upper Northwest DC",
     },
