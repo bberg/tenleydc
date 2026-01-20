@@ -385,11 +385,19 @@ def load_markdown_content(slug):
 @app.context_processor
 def inject_site_context():
     """Inject site-specific variables into all templates."""
-    return {
-        'site': g.site,
-        'site_metadata': g.metadata,
-        'ga_id': g.metadata.get('ga_id', ''),
-    }
+    try:
+        return {
+            'site': g.site,
+            'site_metadata': g.metadata,
+            'ga_id': g.metadata.get('ga_id', ''),
+        }
+    except AttributeError:
+        # Fallback if g not populated
+        return {
+            'site': 'tenleytown',
+            'site_metadata': SITE_METADATA.get('tenleytown', {}),
+            'ga_id': SITE_METADATA.get('tenleytown', {}).get('ga_id', ''),
+        }
 
 
 # ============================================
