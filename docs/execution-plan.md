@@ -4,6 +4,41 @@
 
 ---
 
+## IMMEDIATE: tenleydc.com Launch Tasks
+
+**Site is LIVE at https://tenleydc.com** ✅
+
+### Pending Setup Tasks
+
+| Task | Status | Notes |
+|------|--------|-------|
+| Domain purchased (tenleydc.com) | ✅ Done | Cloudflare |
+| Railway deployment | ✅ Done | Multi-tenant app |
+| Cloudflare DNS | ✅ Done | CNAME to Railway |
+| HTTPS/SSL | ✅ Done | Via Cloudflare |
+| Sitemap (/sitemap.xml) | ✅ Done | Auto-generated |
+| Robots.txt | ✅ Done | Auto-generated |
+| **Google Analytics 4** | ⏳ Pending | Need to create property, add measurement ID |
+| **Google Search Console** | ⏳ Pending | Need to verify domain, submit sitemap |
+
+### To Complete GA4 Setup
+
+1. Go to [analytics.google.com](https://analytics.google.com)
+2. Admin → Create Property → "Tenley DC"
+3. Add web stream for `https://tenleydc.com`
+4. Copy Measurement ID (G-XXXXXXX)
+5. Update `app_multitenant.py` SITE_METADATA with GA ID
+6. Push and redeploy
+
+### To Complete Search Console Setup
+
+1. Go to [search.google.com/search-console](https://search.google.com/search-console)
+2. Add Property → Domain → `tenleydc.com`
+3. Verify via DNS TXT record (add in Cloudflare)
+4. Submit sitemap: `https://tenleydc.com/sitemap.xml`
+
+---
+
 ## Business Case Assessment
 
 ### Honest Outlook

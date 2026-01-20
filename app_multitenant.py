@@ -856,7 +856,8 @@ def about():
 def sitemap():
     """Generate a sitemap for the current site."""
     navigation = load_navigation()
-    host = request.host_url.rstrip('/')
+    # Force HTTPS for production
+    host = request.host_url.rstrip('/').replace('http://', 'https://')
 
     pages = []
 
@@ -888,7 +889,7 @@ def sitemap():
 @app.route('/robots.txt')
 def robots():
     """Generate robots.txt for the current site."""
-    host = request.host_url.rstrip('/')
+    host = request.host_url.rstrip('/').replace('http://', 'https://')
     content = f"""User-agent: *
 Allow: /
 
