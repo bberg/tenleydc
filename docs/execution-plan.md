@@ -19,7 +19,7 @@
 | Sitemap (/sitemap.xml) | ✅ Done | Auto-generated |
 | Robots.txt | ✅ Done | Auto-generated |
 | **Google Analytics 4** | ✅ Done | G-FWWPBGYKR1 |
-| **Google Search Console** | ⏳ Pending | Need to verify domain, submit sitemap |
+| **Google Search Console** | ✅ Done | Verified via DNS |
 
 ### To Complete GA4 Setup
 
