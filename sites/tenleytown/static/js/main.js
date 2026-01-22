@@ -1,5 +1,5 @@
 /**
- * Tennally's Almanac - Local History & Community Publication
+ * Tenley DC - Local History & Community Publication
  * Main JavaScript functionality
  */
 
@@ -415,6 +415,6 @@
     };
 
     // Log initialization
-    console.log("Tennally's Almanac initialized");
+    console.log("Tenley DC initialized");
 
 })();
