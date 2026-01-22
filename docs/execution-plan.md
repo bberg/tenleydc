@@ -110,61 +110,66 @@ cheights.com ──────►│   on Railway ($5)   │──► sites/{si
 
 ## Implementation Roadmap
 
-### Phase 0: Multi-Tenant Refactor (PRIORITY)
-**Status: NEXT**
+### Phase 0: Multi-Tenant Infrastructure ✅ COMPLETE
+**Completed: January 21, 2026**
 
-- [ ] Create multi-tenant app.py with domain routing
-- [ ] Add domain-to-site mapping configuration
-- [ ] Update templates to use site config variables
-- [ ] Add per-site GA measurement ID injection
-- [ ] Add per-site sitemap generation
-- [ ] Test locally with hosts file spoofing
-- [ ] Deploy single app to Railway
-- [ ] Configure all 16 domains on one Railway service
+- [x] Create multi-tenant app.py with domain routing
+- [x] Add domain-to-site mapping configuration
+- [x] Update templates to use site config variables
+- [x] Add per-site GA measurement ID injection
+- [x] Add per-site sitemap generation
+- [x] Deploy single app to Railway
+- [x] GitHub repo: bberg/tenleydc
 
-**Estimated time:** 2-4 hours
+### Phase 1: First Site Launch (tenleydc.com) ✅ COMPLETE
+**Completed: January 21, 2026**
 
-### Phase 1: Domain Purchase
-**Status: Ready when Phase 0 complete**
+- [x] Purchase tenleydc.com on Cloudflare ($9.15)
+- [x] Configure Cloudflare DNS (CNAME to Railway)
+- [x] Verify HTTPS/SSL working
+- [x] Set up GA4 property (G-FWWPBGYKR1)
+- [x] Verify in Google Search Console
+- [x] Submit sitemap
 
-- [ ] Purchase 16 domains on Cloudflare (~$146)
-- [ ] Point all to Railway service
-- [ ] Verify SSL working on each
+**Site is LIVE:** https://tenleydc.com
 
-**Domains:**
+### Phase 2: Expand to Additional Sites
+**Status: READY WHEN YOU ARE**
+
+To add a new site:
+1. Purchase domain on Cloudflare (~$9.15)
+2. Add CNAME record pointing to `t4rnhnbz.up.railway.app`
+3. Add custom domain in Railway dashboard
+4. Create GA4 property, add ID to site template
+5. Verify in Search Console, submit sitemap
+
+**Remaining 15 domains:**
 ```
-DC (10): tenleydc.com, brightwooddc.com, kaloramadc.com, cheights.com,
-         hstreethub.com, swdclocal.com, anacostiahub.com, shepherdparkdc.com,
-         gloverdc.com, woodleyhub.com
+DC (9):  brightwooddc.com, kaloramadc.com, cheights.com,
+         hstreethub.com, swdclocal.com, anacostiahub.com,
+         shepherdparkdc.com, gloverdc.com, woodleyhub.com
 
 MD (3):  collegeparkhub.com, hyattsvillehub.com, potomacspot.com
 
 VA (3):  fallschurchhub.com, viennalocal.com, delrayva.com
 ```
 
-### Phase 2: Analytics & SEO Setup
-
-- [ ] Create 16 GA4 properties
-- [ ] Add measurement IDs to config
-- [ ] Verify each domain in Search Console
-- [ ] Submit sitemaps for each domain
+**Recommended priority:** High-value neighborhoods first (Kalorama, Potomac, Vienna)
 
 ### Phase 3: Content Development (Ongoing)
 
-Per neighborhood:
-- [ ] Overview page
-- [ ] Timeline
-- [ ] Key historical content (3-5 pages)
+Tenleytown content is most complete. Other sites need:
+- [ ] Overview page with local history
+- [ ] Timeline of key events
+- [ ] Historical content (3-5 pages)
 - [ ] Business directory seed data
-- [ ] Events setup
+- [ ] Local events calendar
 
-**Priority order:** Start with Tenleytown (most complete), then expand
+### Phase 4: Revenue Setup (When Traffic Justifies)
 
-### Phase 4: Revenue Setup (Optional)
-
-- [ ] Apply for AdSense (need decent traffic first)
+- [ ] Apply for AdSense (need ~10K monthly pageviews)
 - [ ] Create sponsor package/rate card
-- [ ] Identify 5-10 local businesses per neighborhood to approach
+- [ ] Identify local businesses to approach
 - [ ] Set up contact forms for sponsor inquiries
 
 ---
@@ -237,9 +242,44 @@ Per neighborhood:
 | Jan 2026 | 16 neighborhoods (not 20+) | Manageable scope |
 | Jan 2026 | Mixed domain naming | Good domain > fleet consistency |
 | Jan 2026 | Cloudflare for domains | $9.15/domain, integrated DNS |
+| Jan 21 | Launch tenleydc.com first | Validate before buying 15 more domains |
+| Jan 21 | Hard-code GA IDs in templates | Context processor had Railway caching issues |
+| Jan 21 | GitHub repo: bberg/tenleydc | Railway auto-deploys on push |
 
 ---
 
-## Next Action
+## Current Status (January 21, 2026)
 
-**Build the multi-tenant Flask app** - this unlocks everything else at 1/16th the hosting cost.
+**LIVE:** https://tenleydc.com
+- Multi-tenant Flask app deployed on Railway
+- GA4 tracking active (G-FWWPBGYKR1)
+- Google Search Console verified
+- Sitemap submitted
+
+**Costs so far:**
+- Domain: $9.15/year
+- Hosting: ~$5/month ($60/year)
+- **Total: ~$69/year** for first site
+
+---
+
+## Next Steps
+
+### Immediate (This Week)
+1. **Monitor GA4** - Check analytics.google.com for first traffic data
+2. **Check Search Console** - Watch for indexing progress at search.google.com/search-console
+
+### Short-term (Next 2-4 Weeks)
+3. **Assess traffic** - Is anyone finding the site organically?
+4. **Content polish** - Fill gaps in Tenleytown content
+5. **Decide on expansion** - Add 2-3 more sites or wait?
+
+### If Expanding
+6. **Buy high-value domains first:** kaloramadc.com, potomacspot.com, viennalocal.com
+7. **Replicate setup** for each (DNS, Railway, GA4, Search Console)
+8. **Build out content** for each neighborhood
+
+### If Traffic Materializes (1K+ monthly)
+9. **Apply for AdSense**
+10. **Create sponsor outreach materials**
+11. **Contact local businesses**
