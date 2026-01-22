@@ -7,7 +7,7 @@ Configuration for DMV Neighborhood History Sites Network deployment
 SITES = {
     "tenleytown": {
         "name": "Tenley DC",
-        "display_name": "Tenley's Almanac",
+        "display_name": "Tenley DC",
         "domain": "tenleydc.com",
         "local_path": "/Users/bb/www/au-park-history/sites/tenleytown",
         "github_repo": "tenleydc",

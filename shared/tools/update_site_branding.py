@@ -12,7 +12,7 @@ from pathlib import Path
 SITE_CONFIGS = {
     "tenleytown": {
         "domain": "tenleydc.com",
-        "site_name": "Tenley's Almanac",
+        "site_name": "Tenley DC",
         "tagline": "Tenleytown, AU Park & Upper Northwest DC",
         "footer_desc": "Documenting the rich history of Tenleytown and Upper Northwest DC from the 1800s to the present.",
         "region": "Northwest Washington DC"

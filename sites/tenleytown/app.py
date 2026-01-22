@@ -15,7 +15,7 @@ app = Flask(__name__)
 # Site configuration
 SITE_CONFIG = {
     "domain": "tenleydc.com",
-    "site_name": "Tenley's Almanac",
+    "site_name": "Tenley DC",
     "tagline": "Tenleytown, AU Park & Upper Northwest DC",
     "region": "Northwest Washington DC"
 }
