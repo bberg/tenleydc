@@ -20,22 +20,9 @@
 | Robots.txt | ✅ Done | Auto-generated |
 | **Google Analytics 4** | ✅ Done | G-FWWPBGYKR1 |
 | **Google Search Console** | ✅ Done | Verified via DNS |
+| **Sitemap submitted** | ✅ Done | /sitemap.xml |
 
-### To Complete GA4 Setup
-
-1. Go to [analytics.google.com](https://analytics.google.com)
-2. Admin → Create Property → "Tenley DC"
-3. Add web stream for `https://tenleydc.com`
-4. Copy Measurement ID (G-XXXXXXX)
-5. Update `app_multitenant.py` SITE_METADATA with GA ID
-6. Push and redeploy
-
-### To Complete Search Console Setup
-
-1. Go to [search.google.com/search-console](https://search.google.com/search-console)
-2. Add Property → Domain → `tenleydc.com`
-3. Verify via DNS TXT record (add in Cloudflare)
-4. Submit sitemap: `https://tenleydc.com/sitemap.xml`
+**All launch tasks complete!** 🎉
 
 ---
 
